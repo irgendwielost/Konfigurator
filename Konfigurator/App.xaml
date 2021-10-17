@@ -2,8 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Konfigurator"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Windows/LogIn.xaml">
     <Application.Resources>
-         
+        
+        <Style x:Key="MaterialDesignFloatingHintTextBox" TargetType="TextBox" />
+        <Style x:Key="MaterialDesignFloatingHintPasswordBox" TargetType="PasswordBox" />
+        <Style x:Key="OrangeButton" TargetType="Button" />
     </Application.Resources>
 </Application>
