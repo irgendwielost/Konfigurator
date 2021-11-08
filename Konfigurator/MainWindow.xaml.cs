@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using Konfigurator.UserControls;
 using Konfigurator.Windows;
 
 namespace Konfigurator
@@ -14,8 +15,6 @@ namespace Konfigurator
         {
             InitializeComponent();
         }
-
-      
 
         private void Closebutton1_OnClick(object sender, RoutedEventArgs e)
         {

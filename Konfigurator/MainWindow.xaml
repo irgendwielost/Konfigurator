@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:Konfigurator.UserControls"
         xmlns:local="clr-namespace:Konfigurator"
         
         mc:Ignorable="d"
@@ -40,18 +41,17 @@
         </Border>
 
         <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"></Grid>
-        <Grid Grid.Row="2" Grid.Column="0">
+        <Grid Name="Buttons" Grid.Row="2" Grid.Column="0">
             <!-- Row Definitions -->
             <Grid.RowDefinitions>
-                <RowDefinition Height="65.4px"></RowDefinition>
-                <RowDefinition Height="65.4px"></RowDefinition>
-                <RowDefinition Height="65.4px"></RowDefinition>
-                <RowDefinition Height="65.4px"></RowDefinition>
-                <RowDefinition Height="65.4px"></RowDefinition>
-                <RowDefinition Height="65.4px"></RowDefinition>
-                <RowDefinition Height="65.4px"></RowDefinition>
-                <RowDefinition Height="65.4px"></RowDefinition>
-                <RowDefinition Height="65.4px"></RowDefinition>
+                <RowDefinition Height="84.14px"></RowDefinition>
+                <RowDefinition Height="84.14px"></RowDefinition>
+                <RowDefinition Height="84.14px"></RowDefinition>
+                <RowDefinition Height="84.14px"></RowDefinition>
+                <RowDefinition Height="84.14px"></RowDefinition>
+                <RowDefinition Height="84.14px"></RowDefinition>
+                <RowDefinition Height="84.14px"></RowDefinition>
+               
             </Grid.RowDefinitions>
 
             <Button  Content="Auftrag" FontSize="20px" Background="#586096" BorderThickness="0"></Button>
@@ -71,17 +71,22 @@
                 </Button.Style>
             </Button>
             <Button Grid.Row="5" Content="Mitarbeiter" FontSize="20px" Background="#586096" BorderThickness="0"></Button>
-            <Button Grid.Row="6" Content="Raum" FontSize="20px" Background="#586096" BorderThickness="0"></Button>
-            <Button Grid.Row="7" Content="Etage" FontSize="20px" Background="#586096" BorderThickness="0"></Button>
-            <Button Grid.Row="8" Content="Gebäude" FontSize="20px" Background="#586096" BorderThickness="0"></Button>
+            <Button Grid.Row="6" Content="Haus" FontSize="20px" Background="#586096" BorderThickness="0"></Button>
+            
 
         </Grid>
         <!-- 
+            Colors
             1 #586096
             2 #283373
             3 #181c34
         -->
+        
+        <!-- User Controls -->
         <Grid Grid.Column="1" Grid.Row="2" Background="Gray"></Grid>
+        <uc:HausTab Grid.Column="1" Grid.Row="2"></uc:HausTab>
+        
+        
         <Grid Grid.Column="1" Grid.Row="0" Background="#283373" Grid.RowSpan="2">
 
             <Button Click="Closebutton1_OnClick" BorderThickness="0" x:Name="Closebutton1" Content="" HorizontalAlignment="Left" Height="32" Margin="733,5.083,0,0" VerticalAlignment="Top" Width="32">
