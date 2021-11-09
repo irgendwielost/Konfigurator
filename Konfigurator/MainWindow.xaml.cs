@@ -1,6 +1,10 @@
-﻿using System.Threading;
+﻿using System;
+using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using Konfigurator.UserControls;
 using Konfigurator.Windows;
 
@@ -26,14 +30,19 @@ namespace Konfigurator
             {
                 Application.Current.Shutdown();
             }
-            
-            
         }
 
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
         {
             PasswortAendern pw = new PasswortAendern();
             pw.Show();
+        }
+        
+        
+        //Tab Buttons
+        private void Button_Enter(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Button Hover");
         }
     }
 }

@@ -23,17 +23,17 @@
         <!-- **Gebäude** -->
         <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1">
             <Grid>
-                <!-- Column == Breite -->
+                <!-- Column == Width -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="380"></ColumnDefinition>
                     <ColumnDefinition Width="15"></ColumnDefinition>
                     <ColumnDefinition Width="380"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <!--  Row == Höhe -->
+                <!--  Row == Height -->
                 <Grid.RowDefinitions>
                     <!-- Header -->
                     <RowDefinition Height="30"></RowDefinition>
-                    <!-- Inhalt -->
+                    <!-- Content -->
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 

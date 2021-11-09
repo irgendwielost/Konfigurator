@@ -64,17 +64,35 @@
     <Compile Include="UserControls\AuftragTab.xaml.cs">
       <DependentUpon>AuftragTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FaktorTab.xaml.cs">
+      <DependentUpon>FaktorTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\HausTab.xaml.cs">
       <DependentUpon>HausTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\KundeTab.xaml.cs">
+      <DependentUpon>KundeTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MitarbeiterTab.xaml.cs">
       <DependentUpon>MitarbeiterTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PaketTab.xaml.cs">
+      <DependentUpon>PaketTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PasswortAendern.xaml.cs">
       <DependentUpon>PasswortAendern.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PhasenTab.xaml.cs">
+      <DependentUpon>PhasenTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Auftrag\AuftragDetailsWindow.xaml.cs">
+      <DependentUpon>AuftragDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PaketDetailsWindow.xaml.cs">
+      <DependentUpon>PaketDetailsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\PasswortAendern.xaml.cs">
       <DependentUpon>PasswortAendern.xaml</DependentUpon>
@@ -93,10 +111,16 @@
     </Compile>
     <Page Include="UserControls\ArtikelTab.xaml" />
     <Page Include="UserControls\AuftragTab.xaml" />
+    <Page Include="UserControls\FaktorTab.xaml" />
     <Page Include="UserControls\HausTab.xaml" />
+    <Page Include="UserControls\KundeTab.xaml" />
     <Page Include="UserControls\MitarbeiterTab.xaml" />
+    <Page Include="UserControls\PaketTab.xaml" />
     <Page Include="UserControls\PasswortAendern.xaml" />
+    <Page Include="UserControls\PhasenTab.xaml" />
+    <Page Include="Windows\Auftrag\AuftragDetailsWindow.xaml" />
     <Page Include="Windows\LogIn.xaml" />
+    <Page Include="Windows\PaketDetailsWindow.xaml" />
     <Page Include="Windows\PasswortAendern.xaml" />
   </ItemGroup>
   <ItemGroup>

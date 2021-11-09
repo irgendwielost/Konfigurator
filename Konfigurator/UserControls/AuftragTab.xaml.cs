@@ -1,12 +1,20 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using Konfigurator.Windows.Auftrag;
 
 namespace Konfigurator.UserControls
 {
-    public partial class AuftragUserControl : UserControl
+    public partial class AuftragTab : UserControl
     {
-        public AuftragUserControl()
+        public AuftragTab()
         {
             InitializeComponent();
+        }
+
+        public void OpenDetailsWindow(object sender, RoutedEventArgs e)
+        {
+            AuftragDetailsWindow auftragDetails = new AuftragDetailsWindow();
+            auftragDetails.Show();
         }
     }
 }
