@@ -4,9 +4,14 @@
              xmlns:local="clr-namespace:Konfigurator"
              StartupUri="Windows/LogIn.xaml">
     <Application.Resources>
-        
         <Style x:Key="MaterialDesignFloatingHintTextBox" TargetType="TextBox" />
         <Style x:Key="MaterialDesignFloatingHintPasswordBox" TargetType="PasswordBox" />
-        <Style x:Key="OrangeButton" TargetType="Button" />
+        
+        
+        <!-- ButtonStyle -->
+        <Style TargetType="Button">
+            
+        </Style>
+        
     </Application.Resources>
 </Application>

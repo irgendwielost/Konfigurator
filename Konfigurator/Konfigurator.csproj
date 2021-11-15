@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="UserControls\ArtikelTab.xaml.cs">
       <DependentUpon>ArtikelTab.xaml</DependentUpon>
     </Compile>
@@ -85,6 +86,10 @@
     <Compile Include="UserControls\PhasenTab.xaml.cs">
       <DependentUpon>PhasenTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ArtikelViewModel.cs" />
+    <Compile Include="ViewModels\AuftragViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Windows\Auftrag\AuftragDetailsWindow.xaml.cs">
       <DependentUpon>AuftragDetailsWindow.xaml</DependentUpon>
     </Compile>

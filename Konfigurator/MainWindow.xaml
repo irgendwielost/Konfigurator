@@ -72,7 +72,7 @@
         
         <!-- User Controls -->
         <Grid Grid.Column="1" Grid.Row="2" Background="Gray"></Grid>
-        <ContentControl  x:Name="UserControl" Grid.Column="1" Grid.Row="2"></ContentControl>
+        <uc:AuftragTab Grid.Column="1" Grid.Row="2"/>
         
         
         
