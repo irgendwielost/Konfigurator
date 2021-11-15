@@ -1,0 +1,53 @@
+﻿<Window x:Class="Konfigurator.Views.Windows.LogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Konfigurator.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        BorderBrush="Black"
+        WindowStartupLocation="CenterScreen"
+        BorderThickness="1"
+        AllowsTransparency="True"
+        Title="LogIn" Height="500" Width="350">
+
+    <Grid>
+        <!-- Color Red Gradient -->
+        <Rectangle Height="300" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5, 0">
+                    <GradientStop Color="#586096"/>
+                    <GradientStop Color="#181c34" Offset="1"/>
+                    <GradientStop Color="#283373" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image Source="../Img/log-in.png" VerticalAlignment="Top" Height="100" Margin="10"></Image>
+        <!-- LogIn Interface Background -->
+        <Rectangle Width="280" Height="240" Fill="White" VerticalAlignment="Bottom" Margin="0,100" RadiusY="9.8" RadiusX="9.8">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Color="#FF747474" RenderingBias="Quality" ShadowDepth="1"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <!-- Interface -->
+        <Grid Width="280" Height="240" VerticalAlignment="Bottom" Margin="0,100">
+            <TextBlock Text="Login" VerticalAlignment="Top" HorizontalAlignment="Center"  Margin="20px" Foreground="Black" FontSize="18"/>
+            <StackPanel VerticalAlignment="Center" Margin="10">
+                <TextBox x:Name="Mitarbeiter" MaxLength="6" Margin="0,10" PreviewTextInput="NumberValidationTextBox" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                <PasswordBox x:Name="Password" Margin="0,10" materialDesign:HintAssist.Hint="SENHA" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+            </StackPanel>
+
+            <Button Click="LogIn_Onclick" Foreground="White" Background="#283373" VerticalAlignment="Center" Height="30" Margin="50, 130, 50, 0">
+                Log In
+            </Button>
+        </Grid>
+        <Grid>
+            <Image  VerticalAlignment="Bottom" Margin="100, 0, 100, 50" Source="../img/Logo.png"></Image>
+            <Button  Click="ButtonBase_OnClick" BorderThickness="0" Background="White" VerticalAlignment="Bottom" Margin="130, 0, 130, 10">schließen</Button>
+            <Label Content="Mitarbeiter-Nummer" VerticalAlignment="Top" Height="17.332" FontSize="7" Margin="42.667,225.734,212,0"/>
+            <Label Content="Passwort" VerticalAlignment="Top" Height="17.332" FontSize="7" Margin="42.667,272.401,212,0"/>
+        </Grid>
+    </Grid>
+</Window>

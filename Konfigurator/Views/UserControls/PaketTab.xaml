@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="Konfigurator.Views.UserControls.PaketTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="589" d:DesignWidth="775" Background="Gray">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="296" />
+            <RowDefinition Height="98" />
+            <RowDefinition Height="196" />
+        </Grid.RowDefinitions>
+        
+        <!-- **DataGridView** -->
+        
+        <!-- TextBox to define what you look for -->
+        <TextBox Grid.Row="0" Grid.Column="0" Margin="10, 10, 99, 257" />
+        <!-- Button to start search -->
+        <Button Grid.Row="0" Grid.Column="0" Margin="290, 10, 15, 257" Content="Go" FontSize="15" Background="DarkGray" />
+
+        <!-- DataGridView which shows the 10 latest changed entries -->
+        <DataGrid Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
+        
+        
+        <!-- **Buttons to Manipulate the Database** -->
+        
+        <!-- Button to delete -->
+        <Button Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 " FontSize="15" Content="Löschen" Background="#586096" />
+        <!-- Button to edit (Opens new Window) -->
+        <Button Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..." Background="#586096" />
+        <!-- Button to add (open new Window) -->
+        <Button Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen..." Background="#586096" />
+
+        
+        <!-- **Area to change the variables of the Package** -->
+        
+        <!-- Border -->
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="0, 10, 10, 0" Height="200"
+                BorderThickness="1px"
+                BorderBrush="Black">
+
+            <!-- Grid -->
+            <Grid  Margin="0, 0, 0, 0" Background="DimGray">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="98" />
+                    <ColumnDefinition Width="176" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+                
+                <!-- **Fields** -->
+                
+                <!-- ID Label -->
+                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">ID:</Label>
+                <!-- ID TextBox (cannot b edited) -->
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="13,5,-32,5" FontSize="15"/>
+
+                <!-- Name Label -->
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Name:</Label>
+                <!-- Name TextBox -->
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="13,5,-32,5" FontSize="15"/>
+
+                <!-- Verfügbar Label -->
+                <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Verfuegbar:</Label>
+                <!-- Verfügbar TextBox -->
+                <CheckBox Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" FontSize="15"/>
+
+             </Grid>
+        </Border>
+        
+        <!-- DataGridView for articles currently in the Package -->
+        <DataGrid Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
+    </Grid>
+</UserControl>

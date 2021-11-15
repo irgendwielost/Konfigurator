@@ -5,7 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Konfigurator.UserControls;
+using Konfigurator.Views.UserControls;
+using Konfigurator.Views.Windows;
 using Konfigurator.Windows;
 
 namespace Konfigurator
