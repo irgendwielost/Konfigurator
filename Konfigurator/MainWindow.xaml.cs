@@ -17,6 +17,7 @@ namespace Konfigurator
     {
         public MainWindow()
         {
+          
             InitializeComponent();
         }
 
@@ -39,7 +40,18 @@ namespace Konfigurator
         }
         
         
+
         //Tab Buttons
+
+        private AuftragTab _auftragTab = new AuftragTab();
+        
+        public void Open_Auftrag()
+        {
+            
+        }
+        
+        
+        
         private void Button_Enter(object sender, MouseEventArgs e)
         {
             Console.WriteLine("Button Hover");

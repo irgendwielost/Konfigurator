@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:Konfigurator.UserControls"
         xmlns:local="clr-namespace:Konfigurator"
-        
         mc:Ignorable="d"
         WindowStyle="None"
         BorderBrush="Black"
@@ -73,7 +72,8 @@
         
         <!-- User Controls -->
         <Grid Grid.Column="1" Grid.Row="2" Background="Gray"></Grid>
-        <uc:AuftragTab Grid.Column="1" Grid.Row="2"></uc:AuftragTab>
+        <ContentControl  x:Name="UserControl" Grid.Column="1" Grid.Row="2"></ContentControl>
+        
         
         
         <Grid Grid.Column="1" Grid.Row="0" Background="#283373" Grid.RowSpan="2">
