@@ -2,13 +2,12 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Windows;
-using Konfigurator.Models.Kunde;
 
-namespace Konfigurator.Models.Employee
+namespace Konfigurator.Models.Package
 {
-    public class EmployeeDB
+    public class PackageDB
     {
-        public static DataSet GetDataSetEmployee()
+        public static DataSet GetDataSetPackage()
         {
             using (var db = new DataBase.DataBase())
             {
@@ -16,22 +15,22 @@ namespace Konfigurator.Models.Employee
 
                 try
                 {
-                    var cmd = new OleDbDataAdapter("select * from Mitarbeiter"
+                    var cmd = new OleDbDataAdapter("select * from Paket"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
-                    cmd.Fill(dataSet, "Mitarbeiter");
+                    cmd.Fill(dataSet, "Paket");
                     return dataSet;
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die Mitarbeiter-Tabelle Konnte nicht gefunden werden");
+                    MessageBox.Show("Die Paket-Tabelle Konnte nicht gefunden werden");
                 }
             }
 
             return null;
         }
-
-        public static Employee GiveEmployeeBack(int id)
+        
+        public static Package GivePackageBack(int id)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
@@ -39,27 +38,25 @@ namespace Konfigurator.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Select * from Mitarbeiter where Mitarbeiter_ID = {id}"
+                    $"Select * from Paket where Paket_ID = {id}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Employee(id, reader.GetString(1), reader.GetString(2), reader.GetBoolean(3),
-                        reader.GetDateTime(4),
-                        reader.GetDateTime(5));
+                    return new Package(id, reader.GetString(1), reader.GetBoolean(2));
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
-                                "1: Der Mitarbeiter konnte nicht gefunden werden\n" +
+                                "1: Das Paket konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden");
                 return null;
             }
             return null;
         }
         
-        public static void CreateEmployee(Employee employee)
+        public static void CreatePackage(Package package)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
@@ -67,8 +64,7 @@ namespace Konfigurator.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Mitarbeiter (Mitarbeiter_ID = {employee.ID}, Mitarbeiter_Name = {employee.Name}, Mitarbeiter_Passwort = {employee.Password}," +
-                    $" Mitarbeiter_Angestellt = {employee.Working}, Mitarbeiter_Angefangen = {employee.Started}, Mitarbeiter_Kuendigung = {employee.Ended})"
+                    $"insert into Paket (Paket_ID = {package.ID}, Paket_Name = {package.Name}, Paket_Verfuegbar = {package.Available})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -78,7 +74,7 @@ namespace Konfigurator.Models.Employee
             }
         }
         
-        public static void DeleteEmployee(int ID)
+        public static void DeletePackage(int ID)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
@@ -86,17 +82,17 @@ namespace Konfigurator.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Delete * from Mitarbeiter where Mitarbeiter_ID={ID}"
+                    $"Delete * from Paket where Paket_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                MessageBox.Show("Der Mitarbeiter wurde nicht gefunden");
+                MessageBox.Show("Der Paket wurde nicht gefunden");
             }
         }
         
-        public static void UpdateEmployee(Employee employee)
+        public static void UpdatePackage(Package package)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
@@ -104,15 +100,15 @@ namespace Konfigurator.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Mitarbeiter set Mitarbeiter_Name = {employee.Name},Mitarbeiter_Passwort = {employee.Password}," +
-                    $" Mitarbeiter_Anglestellt = {employee.Working},Mitarbeiter_Angefangen = {employee.Started}, Mitarbeiter_Kuendigung = {employee.Ended} where Mitarbeiter_ID = {employee.ID}"
+                    $"Update Paket set Paket_Name = {package.Name},Paket_Verfuegbar = {package.Available}," +
+                    $"where Paket_ID = {package.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
                 MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
-                                "1: Der Mitarbeiter konnte nicht gefunden werden\n" +
+                                "1: Das Paket konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben");
             }

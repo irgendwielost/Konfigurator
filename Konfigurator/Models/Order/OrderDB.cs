@@ -2,13 +2,12 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Windows;
-using Konfigurator.Models.Kunde;
 
-namespace Konfigurator.Models.Employee
+namespace Konfigurator.Models.Order
 {
-    public class EmployeeDB
+    public class OrderDB
     {
-        public static DataSet GetDataSetEmployee()
+        public static DataSet GetDataSetOrder()
         {
             using (var db = new DataBase.DataBase())
             {
@@ -16,22 +15,22 @@ namespace Konfigurator.Models.Employee
 
                 try
                 {
-                    var cmd = new OleDbDataAdapter("select * from Mitarbeiter"
+                    var cmd = new OleDbDataAdapter("select * from Auftrag"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
-                    cmd.Fill(dataSet, "Mitarbeiter");
+                    cmd.Fill(dataSet, "Auftrag");
                     return dataSet;
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die Mitarbeiter-Tabelle Konnte nicht gefunden werden");
+                    MessageBox.Show("Die Auftrag-Tabelle Konnte nicht gefunden werden");
                 }
             }
 
             return null;
         }
-
-        public static Employee GiveEmployeeBack(int id)
+        
+        public static Order GiveOrderBack(int id)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
@@ -39,14 +38,14 @@ namespace Konfigurator.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Select * from Mitarbeiter where Mitarbeiter_ID = {id}"
+                    $"Select * from Auftrag where Auftrag_ID = {id}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Employee(id, reader.GetString(1), reader.GetString(2), reader.GetBoolean(3),
-                        reader.GetDateTime(4),
-                        reader.GetDateTime(5));
+                    return new Order(id, reader.GetDateTime(1), reader.GetBoolean(2), reader.GetDouble(3),
+                        reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6),
+                        reader.GetDouble(7), reader.GetDouble(8));
                 }
             }
             catch (Exception e)
@@ -59,16 +58,31 @@ namespace Konfigurator.Models.Employee
             return null;
         }
         
-        public static void CreateEmployee(Employee employee)
+        public static void CreateOrder(Order order)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
+            
+            
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Mitarbeiter (Mitarbeiter_ID = {employee.ID}, Mitarbeiter_Name = {employee.Name}, Mitarbeiter_Passwort = {employee.Password}," +
-                    $" Mitarbeiter_Angestellt = {employee.Working}, Mitarbeiter_Angefangen = {employee.Started}, Mitarbeiter_Kuendigung = {employee.Ended})"
+                    $"select  count(Auftrag_ID) from EtageUndRaum where Auftrag_ID = {order.Id}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
+            }
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"insert into Auftrag (Auftrag_ID = {order.Id}, Auftrag_Datum = {order.Datum}, Auftrag_NeuBesta = {order.NeuOrBestand}," +
+                    $" Auftrag_Grosse = {order.Size}, Kunde_ID= {order.CustomerId}, Gebaude_ID= {order.HousingId}, Phase_ID = {order.PhaseId}," +
+                    $" Faktor_Mult = {order.FactorMult}, Auftrag_PreisGesamt = {order.OverallPrice})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -78,7 +92,7 @@ namespace Konfigurator.Models.Employee
             }
         }
         
-        public static void DeleteEmployee(int ID)
+        public static void UpdateEmployee(Order order)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
@@ -86,26 +100,9 @@ namespace Konfigurator.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Delete * from Mitarbeiter where Mitarbeiter_ID={ID}"
-                    , db.Connection);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Der Mitarbeiter wurde nicht gefunden");
-            }
-        }
-        
-        public static void UpdateEmployee(Employee employee)
-        {
-            var db = new DataBase.DataBase();
-            db.Connection.Open();
-            
-            try
-            {
-                var cmd = new OleDbCommand(
-                    $"Update Mitarbeiter set Mitarbeiter_Name = {employee.Name},Mitarbeiter_Passwort = {employee.Password}," +
-                    $" Mitarbeiter_Anglestellt = {employee.Working},Mitarbeiter_Angefangen = {employee.Started}, Mitarbeiter_Kuendigung = {employee.Ended} where Mitarbeiter_ID = {employee.ID}"
+                    $"Update Mitarbeiter set Auftrag_Datum = {order.Datum}, Auftrag_NeuBesta = {order.NeuOrBestand}," +
+                    $" Auftrag_Grosse = {order.Size}, Kunde_ID= {order.CustomerId}, Gebaude_ID= {order.HousingId}, Phase_ID = {order.PhaseId}," +
+                    $" Faktor_Mult = {order.FactorMult}, Auftrag_PreisGesamt = {order.OverallPrice} where Order_ID = {order.Id}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

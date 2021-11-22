@@ -61,10 +61,20 @@
     <Compile Include="DataBase\DataBase.cs" />
     <Compile Include="Models\Customer\Customer.cs" />
     <Compile Include="Models\Customer\CustomerDB.cs" />
+    <Compile Include="Models\EmployeeToOrder\EmployeeToOrder.cs" />
+    <Compile Include="Models\EmployeeToOrder\EmployeeToOrderDB.cs" />
     <Compile Include="Models\Employee\Employee.cs" />
     <Compile Include="Models\Employee\EmployeeDB.cs" />
+    <Compile Include="Models\FloorAndRoom\FloorAndRoom.cs" />
+    <Compile Include="Models\FloorAndRoom\FloorAndRoomDB.cs" />
     <Compile Include="Models\Housing\Housing.cs" />
     <Compile Include="Models\Housing\HousingDB.cs" />
+    <Compile Include="Models\Order\Order.cs" />
+    <Compile Include="Models\Order\OrderDB.cs" />
+    <Compile Include="Models\PackageDetails\PackageDetails.cs" />
+    <Compile Include="Models\PackageDetails\PackageDetailsDB.cs" />
+    <Compile Include="Models\Package\Package.cs" />
+    <Compile Include="Models\Package\PackageDB.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Views\UserControls\ArtikelTab.xaml.cs">
       <DependentUpon>ArtikelTab.xaml</DependentUpon>
