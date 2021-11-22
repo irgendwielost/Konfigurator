@@ -62,8 +62,8 @@ namespace Konfigurator.Models.Order
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
-            
+
+            var PackegesInOrder = 0;
             
             try
             {
