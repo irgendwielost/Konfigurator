@@ -209,7 +209,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    Article = new Article(packageDetails.Article_ID , reader.GetString(1), reader.GetDouble(2), reader.GetBoolean(3));
+                    //Article = new Article(packageDetails.Article_ID , reader.GetString(1), reader.GetDouble(2), reader.GetBoolean(3));
                 }
             }
             catch (Exception e)

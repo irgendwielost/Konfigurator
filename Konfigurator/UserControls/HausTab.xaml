@@ -47,9 +47,9 @@
                 <TextBox Grid.Column="2" Grid.Row="1" Margin="65.333,78.117,108.084,152.55"></TextBox>
 
                 <!-- **Buttons** -->
-                <Button Style="{StaticResource UcButtonStyle}" Grid.Column="2" Grid.Row="1" Margin="111.916,188.332,108.083,36.5" Background="#FF586096" Content="Hinzufügen" Width="160" HorizontalAlignment="Center"></Button>
-                <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Margin="199.166,143.833,22.501,81" Background="#FF586096" Content="Bearbeiten" Grid.Column="2" Width="160"/>
-                <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Margin="24.5,143.833,194.5,81" Background="#FF586096" Content="Löschen" Grid.Column="2" Width="160"/>
+                <Button Style="{StaticResource UcButtonStyle}" Grid.Column="2" Grid.Row="1" Margin="111.916,188.332,108.083,36.5" Content="Hinzufügen" Width="160" HorizontalAlignment="Center"></Button>
+                <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Margin="199.166,143.833,22.501,81" Content="Bearbeiten" Grid.Column="2" Width="160"/>
+                <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Margin="24.5,143.833,194.5,81"  Content="Löschen" Grid.Column="2" Width="160"/>
 
 
                 <!-- **DataGridView** -->
@@ -106,9 +106,9 @@
                     <TextBox Grid.Column="1" Grid.Row="0" Margin="41.25,112.667,2.75,10"></TextBox>
 
                     <!-- Buttons -->
-                    <Button Grid.Column="1" Grid.Row="1" Background="#FF586096" Content="Hinzufügen" Margin="56.708,101,50.042,10" Width="84.25" HorizontalAlignment="Center" Height="35.5"></Button>
-                    <Button Grid.Column="1" Grid.Row="1" Background="#FF586096" Content="Bearbeiten" Margin="103.625,62.5,3.125,48.5" Width="85" Height="35.5"></Button>
-                    <Button Grid.Column="1" Grid.Row="1" Background="#FF586096" Content="Löschen" Margin="10,62.5,96.75,48.5" Width="85" Height="35.5"></Button>
+                    <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Hinzufügen" Margin="56.708,101,50.042,10" Width="84.25" HorizontalAlignment="Center" Height="35.5"></Button>
+                    <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Bearbeiten" Margin="103.625,62.5,3.125,48.5" Width="85" Height="35.5"></Button>
+                    <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Löschen" Margin="10,62.5,96.75,48.5" Width="85" Height="35.5"></Button>
 
                     <!-- **DataGridView** -->
 
@@ -151,9 +151,9 @@
                 <TextBox Grid.Column="1" Grid.Row="0" Margin="39.667,117.917,4.333,4.75"></TextBox>
 
                 <!-- Buttons -->
-                <Button Grid.Column="1" Grid.Row="1" Background="#FF586096" Content="Hinzufügen" Margin="60.875,96.167,47.875,14.833" Width="84.25" HorizontalAlignment="Center"></Button>
-                <Button Grid.Column="1" Grid.Row="1" Background="#FF586096" Content="Bearbeiten" Margin="102.625,55.667,4.125,55.333" Width="85"></Button>
-                <Button Grid.Column="1" Grid.Row="1" Background="#FF586096" Content="Löschen" Margin="10,55.667,98.75,55.333" Width="85"></Button>
+                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Hinzufügen" Margin="60.875,96.167,47.875,14.833" Width="84.25" HorizontalAlignment="Center"></Button>
+                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Bearbeiten" Margin="102.625,55.667,4.125,55.333" Width="85"></Button>
+                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Löschen" Margin="10,55.667,98.75,55.333" Width="85"></Button>
 
 
                 <!-- **DataGridView** -->

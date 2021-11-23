@@ -34,9 +34,9 @@
         <!-- Button to delete -->
         <Button Grid.Row="1" Grid.Column="0"  Style="{StaticResource UcButtonStyle}" Margin="40, 35, 220,10 " Content="Löschen" Command="{Binding DeleteCommand}" />
         <!-- Button to edit (Opens new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Click="OpenDetailsWindow" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..." Background="#586096" />
+        <Button Style="{StaticResource UcButtonStyle}" Click="OpenDetailsWindow" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..."/>
         <!-- Button to add (open new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Click="OpenDetailsWindow" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen..." Background="#586096" />
+        <Button Style="{StaticResource UcButtonStyle}" Click="OpenDetailsWindow" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen..."  />
 
 
         <!-- **Area to change the variables of the Package** -->

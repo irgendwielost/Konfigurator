@@ -64,7 +64,7 @@
         <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="239.25,306.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Foreground="White" Text="Neues Passwort"/>
         <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="239.25,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Foreground="White" Text="Passwort wiederholen"/>
         
-        <Button Content="Passwort ändern" HorizontalAlignment="Left" Height="21" Margin="265,394,0,0" VerticalAlignment="Top" Width="245" BorderThickness="0" Background="#FF414A87"/>
+        <Button  Style="{StaticResource UcButtonStyle}" Content="Passwort ändern" HorizontalAlignment="Left" Height="21" Margin="265,394,0,0" VerticalAlignment="Top" Width="245" BorderThickness="0" />
         
     </Grid>
 </UserControl>

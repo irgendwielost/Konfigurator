@@ -17,9 +17,9 @@
             <RowDefinition Height="98" />
             <RowDefinition Height="196" />
         </Grid.RowDefinitions>
-        
+
         <!-- **DataGridView** -->
-        
+
         <!-- TextBox to define what you look for -->
         <TextBox Grid.Row="0" Grid.Column="0" Margin="10, 10, 99, 257" />
         <!-- Button to start search -->
@@ -27,28 +27,31 @@
 
         <!-- DataGridView which shows the 10 latest changed entries -->
         <DataGrid Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
-        
-        
-        <!-- **Buttons to Manipulate the Database** -->
-        
-        <!-- Button to delete -->
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 " FontSize="15" Content="Löschen" Background="#586096" />
-        <!-- Button to edit (Opens new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..." Background="#586096" />
-        <!-- Button to add (open new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen..." Background="#586096" />
 
-        
+
+        <!-- **Buttons to Manipulate the Database** -->
+
+        <!-- Button to delete -->
+        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 "
+                FontSize="15" Content="Löschen" />
+        <!-- Button to edit (Opens new Window) -->
+        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 "
+                FontSize="15" Content="Bearbeiten..." />
+        <!-- Button to add (open new Window) -->
+        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 "
+                FontSize="15" Content="Hinzufügen..." />
+
+
         <!-- **Area to change the variables of the Package** -->
-        
+
         <!-- Border -->
         <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="0, 10, 10, 0" Height="200"
                 BorderThickness="1px"
                 BorderBrush="Black">
 
             <!-- Grid -->
-            <Grid  Margin="0, 0, 0, 0" Background="DimGray">
-                
+            <Grid Margin="0, 0, 0, 0" Background="DimGray">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="98" />
                     <ColumnDefinition Width="176" />
@@ -63,27 +66,27 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                
+
                 <!-- **Fields** -->
-                
+
                 <!-- ID Label -->
                 <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">ID:</Label>
                 <!-- ID TextBox (cannot b edited) -->
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="13,5,-32,5" FontSize="15"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
 
                 <!-- Name Label -->
                 <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Name:</Label>
                 <!-- Name TextBox -->
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="13,5,-32,5" FontSize="15"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
 
                 <!-- Verfügbar Label -->
                 <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Verfuegbar:</Label>
                 <!-- Verfügbar TextBox -->
-                <CheckBox Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" FontSize="15"/>
+                <CheckBox Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" FontSize="15" />
 
-             </Grid>
+            </Grid>
         </Border>
-        
+
         <!-- DataGridView for articles currently in the Package -->
         <DataGrid Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
     </Grid>

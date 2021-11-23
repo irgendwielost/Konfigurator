@@ -22,9 +22,9 @@
         <Button Grid.Row="0" Grid.Column="0" Margin="270, 10, 40, 257" Content="Go" FontSize="15" Background="DarkGray" />
 
         <DataGrid Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 " FontSize="15" Content="Löschen" Background="#586096" />
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten" Background="#586096" />
-        <Button  Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen" Background="#586096" />
+        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 " FontSize="15" Content="Löschen" />
+        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten" />
+        <Button  Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen" />
         <!--
         <Button Grid.Row="2" Grid.Column="1" Margin="50, 50, 20,10 " Content="Hinzufügen" Background="#586096" />
         -->
