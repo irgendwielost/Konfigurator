@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Konfigurator.Windows.Auftrag"
         mc:Ignorable="d"
+        Background="Gray"
          Title="AuftragDetailsWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
