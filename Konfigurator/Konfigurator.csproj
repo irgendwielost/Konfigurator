@@ -45,6 +45,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OleDb, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Data.OleDb.6.0.0\lib\net461\System.Data.OleDb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -58,65 +62,77 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataBase\DataBase.cs" />
-    <Compile Include="Models\Customer\Customer.cs" />
-    <Compile Include="Models\Customer\CustomerDB.cs" />
-    <Compile Include="Models\EmployeeToOrder\EmployeeToOrder.cs" />
-    <Compile Include="Models\EmployeeToOrder\EmployeeToOrderDB.cs" />
-    <Compile Include="Models\Employee\Employee.cs" />
-    <Compile Include="Models\Employee\EmployeeDB.cs" />
-    <Compile Include="Models\FloorAndRoom\FloorAndRoom.cs" />
-    <Compile Include="Models\FloorAndRoom\FloorAndRoomDB.cs" />
-    <Compile Include="Models\Housing\Housing.cs" />
-    <Compile Include="Models\Housing\HousingDB.cs" />
-    <Compile Include="Models\Order\Order.cs" />
-    <Compile Include="Models\Order\OrderDB.cs" />
-    <Compile Include="Models\PackageDetails\PackageDetails.cs" />
-    <Compile Include="Models\PackageDetails\PackageDetailsDB.cs" />
-    <Compile Include="Models\Package\Package.cs" />
-    <Compile Include="Models\Package\PackageDB.cs" />
+    <Compile Include="Logic\Auftrag.cs" />
+    <Compile Include="Logic\DataBase\DataBase.cs" />
+    <Compile Include="Logic\Models\Article\Article.cs" />
+    <Compile Include="Logic\Models\Article\ArticleDB.cs" />
+    <Compile Include="Logic\Models\Customer\Customer.cs" />
+    <Compile Include="Logic\Models\Customer\CustomerDB.cs" />
+    <Compile Include="Logic\Models\EmployeeToOrder\EmployeeToOrder.cs" />
+    <Compile Include="Logic\Models\EmployeeToOrder\EmployeeToOrderDB.cs" />
+    <Compile Include="Logic\Models\Employee\Employee.cs" />
+    <Compile Include="Logic\Models\Employee\EmployeeDB.cs" />
+    <Compile Include="Logic\Models\Factor\Factor.cs" />
+    <Compile Include="Logic\Models\Factor\FactorDB.cs" />
+    <Compile Include="Logic\Models\FloorAndRoom\FloorAndRoom.cs" />
+    <Compile Include="Logic\Models\FloorAndRoom\FloorAndRoomDB.cs" />
+    <Compile Include="Logic\Models\Floor\Floor.cs" />
+    <Compile Include="Logic\Models\Floor\FloorDB.cs" />
+    <Compile Include="Logic\Models\Housing\Housing.cs" />
+    <Compile Include="Logic\Models\Housing\HousingDB.cs" />
+    <Compile Include="Logic\Models\Order\Order.cs" />
+    <Compile Include="Logic\Models\Order\OrderDB.cs" />
+    <Compile Include="Logic\Models\PackageDetails\PackageDetails.cs" />
+    <Compile Include="Logic\Models\PackageDetails\PackageDetailsDB.cs" />
+    <Compile Include="Logic\Models\Package\Package.cs" />
+    <Compile Include="Logic\Models\Package\PackageDB.cs" />
+    <Compile Include="Logic\Models\Phase\Phase.cs" />
+    <Compile Include="Logic\Models\Phase\PhaseDB.cs" />
+    <Compile Include="Logic\Models\Room\Room.cs" />
+    <Compile Include="Logic\Models\Room\RoomDB.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Views\UserControls\ArtikelTab.xaml.cs">
+    <Compile Include="UserControls\ArtikelTab.xaml.cs">
       <DependentUpon>ArtikelTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\AuftragTab.xaml.cs">
+    <Compile Include="UserControls\AuftragTab.xaml.cs">
       <DependentUpon>AuftragTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\FaktorTab.xaml.cs">
+    <Compile Include="UserControls\FaktorTab.xaml.cs">
       <DependentUpon>FaktorTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\HausTab.xaml.cs">
+    <Compile Include="UserControls\HausTab.xaml.cs">
       <DependentUpon>HausTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\KundeTab.xaml.cs">
+    <Compile Include="UserControls\KundeTab.xaml.cs">
       <DependentUpon>KundeTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\MitarbeiterTab.xaml.cs">
+    <Compile Include="UserControls\MitarbeiterTab.xaml.cs">
       <DependentUpon>MitarbeiterTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\PaketTab.xaml.cs">
+    <Compile Include="UserControls\PaketTab.xaml.cs">
       <DependentUpon>PaketTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\PasswortAendern.xaml.cs">
+    <Compile Include="UserControls\PasswortAendern.xaml.cs">
       <DependentUpon>PasswortAendern.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\PhasenTab.xaml.cs">
+    <Compile Include="UserControls\PhasenTab.xaml.cs">
       <DependentUpon>PhasenTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ArtikelViewModel.cs" />
     <Compile Include="ViewModels\AuftragViewModel.cs" />
+    <Compile Include="ViewModels\LogInViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\Windows\Auftrag\AuftragDetailsWindow.xaml.cs">
+    <Compile Include="Windows\Auftrag\AuftragDetailsWindow.xaml.cs">
       <DependentUpon>AuftragDetailsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\LogIn.xaml.cs">
+    <Compile Include="Windows\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\PaketDetailsWindow.xaml.cs">
+    <Compile Include="Windows\PaketDetailsWindow.xaml.cs">
       <DependentUpon>PaketDetailsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\PasswortAendern.xaml.cs">
+    <Compile Include="Windows\PasswortAendern.xaml.cs">
       <DependentUpon>PasswortAendern.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -131,19 +147,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\UserControls\ArtikelTab.xaml" />
-    <Page Include="Views\UserControls\AuftragTab.xaml" />
-    <Page Include="Views\UserControls\FaktorTab.xaml" />
-    <Page Include="Views\UserControls\HausTab.xaml" />
-    <Page Include="Views\UserControls\KundeTab.xaml" />
-    <Page Include="Views\UserControls\MitarbeiterTab.xaml" />
-    <Page Include="Views\UserControls\PaketTab.xaml" />
-    <Page Include="Views\UserControls\PasswortAendern.xaml" />
-    <Page Include="Views\UserControls\PhasenTab.xaml" />
-    <Page Include="Views\Windows\Auftrag\AuftragDetailsWindow.xaml" />
-    <Page Include="Views\Windows\LogIn.xaml" />
-    <Page Include="Views\Windows\PaketDetailsWindow.xaml" />
-    <Page Include="Views\Windows\PasswortAendern.xaml" />
+    <Page Include="UserControls\ArtikelTab.xaml" />
+    <Page Include="UserControls\AuftragTab.xaml" />
+    <Page Include="UserControls\FaktorTab.xaml" />
+    <Page Include="UserControls\HausTab.xaml" />
+    <Page Include="UserControls\KundeTab.xaml" />
+    <Page Include="UserControls\MitarbeiterTab.xaml" />
+    <Page Include="UserControls\PaketTab.xaml" />
+    <Page Include="UserControls\PasswortAendern.xaml" />
+    <Page Include="UserControls\PhasenTab.xaml" />
+    <Page Include="Windows\Auftrag\AuftragDetailsWindow.xaml" />
+    <Page Include="Windows\LogIn.xaml" />
+    <Page Include="Windows\PaketDetailsWindow.xaml" />
+    <Page Include="Windows\PasswortAendern.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -164,17 +180,39 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\img\cancel.png" />
-    <Resource Include="Views\img\house.png" />
-    <Resource Include="Views\img\log-in.png" />
-    <Resource Include="Views\img\Logo.png" />
-    <Resource Include="Views\img\setting.png" />
+    <Resource Include="Img\Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views" />
+    <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\img\loupe.png" />
+    <Resource Include="Img\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\house.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\log-in.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\setting.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\settingGray.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\cancelRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="img\loupe.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />

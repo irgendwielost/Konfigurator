@@ -1,4 +1,8 @@
-﻿namespace Konfigurator.ViewModels
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Konfigurator.Logic;
+
+namespace Konfigurator.ViewModels
 {
     public class AuftragViewModel : ViewModelBase
     {
@@ -30,7 +34,16 @@
                 OnPropertyChanged(nameof(kundeID));
             }
         }
-        
+
+        private readonly ObservableCollection<Auftrag> _auftraege;
+
+        public ICommand DeleteCommand { get; }
+        public ICommand AddCommand { get; }
+        public ICommand EditCommand { get; }
+        public AuftragViewModel()
+        {
+            
+        }
         
     }
 }

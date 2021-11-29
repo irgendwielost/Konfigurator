@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="Konfigurator.UserControls.HausTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Konfigurator.UserControls"
+             Background="Gray"
+             mc:Ignorable="d"
+             d:DesignHeight="589" d:DesignWidth="775">
+    <Grid>
+        <!-- **Allgemein** -->
+        <!-- Row == Höhe -->
+        <Grid.RowDefinitions>
+            <!-- 0 | Gebäude -->
+            <RowDefinition Height="294.5"></RowDefinition>
+            <!-- Space -->
+            <RowDefinition Height="0"></RowDefinition>
+            <!-- 1 | Etage & Raum -->
+            <RowDefinition Height="294.5"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <!-- **Gebäude** -->
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1">
+            <Grid>
+                <!-- Column == Width -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="380"></ColumnDefinition>
+                    <ColumnDefinition Width="15"></ColumnDefinition>
+                    <ColumnDefinition Width="380"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!--  Row == Height -->
+                <Grid.RowDefinitions>
+                    <!-- Header -->
+                    <RowDefinition Height="30"></RowDefinition>
+                    <!-- Content -->
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <TextBlock  Grid.Column="0" Text="Gebäude" Margin="345,0,328,258" Grid.ColumnSpan="3" FontSize="20" FontWeight="Bold" Height="31" Grid.RowSpan="2" TextAlignment="Center"/>
+                <!-- ID -->
+                <Label Grid.Column="2" Grid.Row="1" Margin="21.333,22.583,314.667,206.417">ID</Label>
+                <TextBox Grid.Column="2" Grid.Row="1" Margin="65.332,22.583,108.084,206.417"/>
+                <!-- Name -->
+                <Label Grid.Column="2" Grid.Row="1" Margin="21.333,80.45,314.667,152.55">Name</Label>
+                <TextBox Grid.Column="2" Grid.Row="1" Margin="65.333,78.117,108.084,152.55"></TextBox>
+
+                <!-- **Buttons** -->
+                <Button Style="{StaticResource UcButtonStyle}" Grid.Column="2" Grid.Row="1" Margin="111.916,188.332,108.083,36.5" Content="Hinzufügen" Width="160" HorizontalAlignment="Center"></Button>
+                <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Margin="199.166,143.833,22.501,81" Content="Bearbeiten" Grid.Column="2" Width="160"/>
+                <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Margin="24.5,143.833,194.5,81"  Content="Löschen" Grid.Column="2" Width="160"/>
+
+
+                <!-- **DataGridView** -->
+
+                <!-- Search Bar -->
+                <TextBox Grid.Column="0" Grid.Row="1" Margin="10,22.583,95.5,217.917"></TextBox>
+                <!-- Search Button -->
+                <Button Grid.Column="0" Grid.Row="1" Margin="296.792,22.583,55.375,217.917" >
+                    <StackPanel>
+                        <Image Source="../img/loupe.png" Height="10" Width="16.167"/>
+                    </StackPanel>
+                </Button>
+                <!-- DataGrid -->
+                <DataGrid Grid.Column="0" Grid.Row="1" Margin="10,46.083,55.375,36.5" ></DataGrid>
+            </Grid>
+        </Border>
+
+
+
+        <!-- **Unten** -->
+        <Grid Grid.Row="2">
+            <!-- Column == Breite -->
+            <Grid.ColumnDefinitions>
+                <!-- 0 | Etage -->
+                <ColumnDefinition Width="387.5"></ColumnDefinition>
+                <!-- Space -->
+                <ColumnDefinition Width="0"></ColumnDefinition>
+                <!-- 1 | Raum -->
+                <ColumnDefinition Width="387.5"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!-- Etage -->
+            <Border BorderBrush="Black" BorderThickness="1px">
+                <Grid Grid.Column="0">
+                    <!-- Column == Breite -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Row == Höhe -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <!-- Name -->
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Etage" Margin="165.333,0,159.167,115.5" Grid.ColumnSpan="2" FontSize="22" FontWeight="Bold"></TextBlock>
+                    <!-- ID -->
+                    <Label Grid.Column="1" Grid.Row="0" Margin="0,64.083,149.75,55.584">ID</Label>
+                    <TextBox Grid.Column="1" Grid.Row="0" Margin="41.25,64.083,2.75,58.584"></TextBox>
+                    <!-- Name -->
+                    <Label Grid.Column="1" Grid.Row="0" Margin="0,112.667,149.75,7.833">Name</Label>
+                    <TextBox Grid.Column="1" Grid.Row="0" Margin="41.25,112.667,2.75,10"></TextBox>
+
+                    <!-- Buttons -->
+                    <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Hinzufügen" Margin="56.708,101,50.042,10" Width="84.25" HorizontalAlignment="Center" Height="35.5"></Button>
+                    <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Bearbeiten" Margin="103.625,62.5,3.125,48.5" Width="85" Height="35.5"></Button>
+                    <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Löschen" Margin="10,62.5,96.75,48.5" Width="85" Height="35.5"></Button>
+
+                    <!-- **DataGridView** -->
+
+                    <!-- Search Bar -->
+                    <TextBox Grid.Column="0" Grid.Row="0" Margin="9,64.833,69.5,66.667" Height="14.75"></TextBox>
+                    <!-- Search Button -->
+                    <Button Grid.Column="0" Grid.Row="0" Margin="123.25,64.833,46.5,66.667" Height="14.75" >
+                        <StackPanel>
+                            <Image Source="../img/loupe.png" Height="10" Width="16.167"/>
+                        </StackPanel>
+                    </Button>
+                    <!-- DataGrid -->
+                    <DataGrid Grid.Column="0" Grid.Row="0" Margin="10,84.583,46.5,0" Grid.RowSpan="2" Height="207.917"></DataGrid>
+                </Grid>
+            </Border>
+
+
+            <!-- **Raum** -->
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1px"></Border>
+            <Grid Grid.Column="2">
+                <!-- Column == Breite -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!-- Row == Höhe -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Name -->
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Raum" Margin="165.333,0,162.417,120" Grid.ColumnSpan="2" FontSize="22" FontWeight="Bold"></TextBlock>
+                <!-- ID -->
+                <Label Grid.Row="0" Margin="190.167,63.883,153.333,58.784" Grid.ColumnSpan="2" Grid.Column="0">ID</Label>
+                <TextBox Grid.Column="1" Grid.Row="0" Margin="39.667,64.417,4.333,58.25"></TextBox>
+                <!-- Name -->
+                <Label Grid.Row="0" Margin="190.167,117.917,153.333,4.75" Grid.ColumnSpan="2" Grid.Column="0">Name</Label>
+                <TextBox Grid.Column="1" Grid.Row="0" Margin="39.667,117.917,4.333,4.75"></TextBox>
+
+                <!-- Buttons -->
+                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Hinzufügen" Margin="60.875,96.167,47.875,14.833" Width="84.25" HorizontalAlignment="Center"></Button>
+                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Bearbeiten" Margin="102.625,55.667,4.125,55.333" Width="85"></Button>
+                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Löschen" Margin="10,55.667,98.75,55.333" Width="85"></Button>
+
+
+                <!-- **DataGridView** -->
+
+                <!-- Search Bar -->
+                <TextBox Grid.Column="0" Grid.Row="0" Margin="10,64.417,68.5,67.333"></TextBox>
+                <!-- Search Button -->
+                <Button Grid.Column="0" Grid.Row="0" Margin="125.25,64.417,46.5,67.333" >
+                    <StackPanel>
+                        <Image Source="../img/loupe.png" Height="10" Width="18.625"/>
+                    </StackPanel>
+                </Button>
+                <!-- DataGrid -->
+                <DataGrid Grid.Column="0" Grid.Row="0" Margin="10,80.583,46.5,2" Grid.RowSpan="2" Height="207.917"></DataGrid>
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+</UserControl>

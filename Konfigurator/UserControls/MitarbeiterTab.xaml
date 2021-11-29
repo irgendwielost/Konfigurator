@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Konfigurator.UserControls.MitarbeiterTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Konfigurator.UserControls"
+             mc:Ignorable="d"
+             Background="Gray"
+             d:DesignHeight="589" d:DesignWidth="775">
+    <Grid>
+        <!-- Column == Breite -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Row == Höhe -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Elemente -->
+
+        <!-- Links Oben -->
+        <TextBox Grid.Column="0" Grid.Row="0" Margin="30,3.5,70,264.5"></TextBox>
+        <Button Grid.Column="0" Grid.Row="0" Margin="317.5,3.5,30,264.5">
+            <StackPanel>
+                <Image Source="../img/loupe.png" Height="22.5" Width="34.5"/>
+            </StackPanel>
+        </Button>
+        <DataGrid Grid.Column="0" Grid.Row="0" Margin="30,40,30,17.167">
+
+        </DataGrid>
+
+        <!-- Rechts Oben -->
+        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="2" Margin="38,3.5,34.666,17.167">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,20.001,44" FontSize="20" Width="89.999">ID:</Label>
+                <TextBox Margin="4.5,10,0,36.444" FontSize="15" Grid.Column="1"/>
+
+                <Label Grid.Column="0" HorizontalAlignment="Right" Margin="0,7.556,20.001,46.444" FontSize="20" Width="89.999" Content="Name:" Grid.Row="1"/>
+                <TextBox Margin="4.5,0,0,46.444" FontSize="15" Grid.Row="1" Grid.Column="1"/>
+
+                <Label Grid.Column="0" HorizontalAlignment="Right" Margin="0,5.556,5.5,48.444" FontSize="20" Width="104.5" Content="Angestellt:" Grid.Row="2"/>
+                <CheckBox Margin="71.833,14.999,112.333,60.667" FontSize="15" Grid.Row="2" Grid.Column="1"/>
+                <TextBox Margin="98.5,10,0,55.778" FontSize="15" Grid.Row="2" Grid.Column="1"/>
+            </Grid>
+        </Border>
+
+        <!-- Links Unten -->
+        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="30,22.538,200,210.462" FontSize="15" Content="Löschen"  />
+        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="200,25.538,30,210.462" FontSize="15" Content="Bearbeiten..."  />
+        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="96,111.5,94,121.5" FontSize="15" Content="Hinzufügen"  />
+    </Grid>
+</UserControl>
