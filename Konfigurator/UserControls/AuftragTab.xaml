@@ -26,17 +26,17 @@
         <Button Grid.Row="0" Grid.Column="0" Margin="290, 10, 15, 257" Content="Go" FontSize="15" Background="DarkGray" />
 
         <!-- DataGridView which shows the 10 latest changed entries -->
-        <DataGrid Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
+        <DataGrid ItemsSource="{Binding Orders}"  Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
 
 
         <!-- **Buttons to Manipulate the Database** -->
 
         <!-- Button to delete -->
-        <Button Grid.Row="1" Grid.Column="0"  Style="{StaticResource UcButtonStyle}" Margin="40, 35, 220,10 " Content="Löschen" Command="{Binding DeleteCommand}" />
+        <Button Grid.Row="1" Grid.Column="0"  Style="{StaticResource UcButtonStyle}" Command="{Binding DeleteCommand}" Margin="40, 35, 220,10 " Content="Löschen"  />
         <!-- Button to edit (Opens new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Click="OpenDetailsWindow" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..."/>
+        <Button Style="{StaticResource UcButtonStyle}" Command="{Binding EditCommand }" Click="OpenDetailsWindow" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..."/>
         <!-- Button to add (open new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Click="OpenDetailsWindow" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen..."  />
+        <Button Style="{StaticResource UcButtonStyle}" Command="{Binding AddCommand }" Click="OpenDetailsWindow" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen..."  />
 
 
         <!-- **Area to change the variables of the Package** -->
@@ -90,25 +90,16 @@
                 <!-- Kunde ID Label -->
                 <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,134.333,0" FontSize="20" Grid.ColumnSpan="2">Kunden ID:</Label>
                 <!-- Kunde ID TextBox -->
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="41.667,6,-40.667,6" FontSize="22" Height="37" Grid.ColumnSpan="2" Text="{Binding kundeID}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="41.667,6,-40.667,6" FontSize="22" Height="37" Grid.ColumnSpan="2" Text="{Binding KundeID}"/>
 
                 <!-- GebäudeArt -->
                 <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,1,134.333,48" FontSize="20" Grid.ColumnSpan="2" Width="126.834" Grid.RowSpan="2">Gebäude Art:</Label>
-                <ComboBox Grid.Row="3" Grid.Column="1"  Margin="41.667,5,-40.667,5" FontSize="22" Height="37" Grid.ColumnSpan="2">
-                    <ComboBoxItem>
-                        <TextBlock Text="Hochhaus"></TextBlock>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="EinFamilien Haus"></TextBlock>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Müll"></TextBlock>
-                    </ComboBoxItem>
+                <ComboBox ItemsSource="{Binding HousingId }" Grid.Row="3" Grid.Column="1"  Margin="41.667,5,-40.667,5" FontSize="22" Height="37" Grid.ColumnSpan="2">
                 </ComboBox>
 
                 <!-- Phasen -->
                 <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,134.333,0" FontSize="20" Width="76.833" Grid.ColumnSpan="2">Phasen:</Label>
-                <ComboBox Grid.Row="4" Grid.Column="1"  Margin="41.667,5,-40.667,5" FontSize="22" Height="37" Grid.ColumnSpan="2">
+                <ComboBox x:Name="ComboBox_Phase" ItemsSource="{Binding}" Grid.Row="4" Grid.Column="1"  Margin="41.667,5,-40.667,5" FontSize="22" Height="37" Grid.ColumnSpan="2">
                     <ComboBoxItem>
                         <TextBlock Text="Phase 10"></TextBlock>
                     </ComboBoxItem>
@@ -131,6 +122,6 @@
         </Border>
 
         <!-- DataGridView for articles currently in the Package -->
-        <DataGrid Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
+        <DataGrid  Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
     </Grid>
 </UserControl>

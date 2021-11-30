@@ -6,6 +6,7 @@ namespace Konfigurator.ViewModels
     {
         public ViewModelBase CurrentViewModel { get; }
 
+        
         public MainViewModel()
         {
             CurrentViewModel = new ArtikelViewModel();

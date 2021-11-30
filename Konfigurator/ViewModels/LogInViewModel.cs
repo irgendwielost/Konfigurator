@@ -1,6 +1,6 @@
 ﻿namespace Konfigurator.ViewModels
 {
-    public class LogInViewModel
+    public class LogInViewModel : ViewModelBase
     {
         private int _id;
 
