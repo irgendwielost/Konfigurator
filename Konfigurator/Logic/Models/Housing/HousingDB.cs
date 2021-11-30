@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace Konfigurator.Logic.Models.Housing
 {
     public class HousingDB
     {
+        
+        // Returns Dataset with Gebaude inside
         public static DataSet GetDataSetHousing()
         {
+            // Database connection opens 
             using (var db = new DataBase.DataBase())
             {
                 db.Connection.Open();
@@ -30,11 +36,52 @@ namespace Konfigurator.Logic.Models.Housing
             return null;
         }
         
-        public static Housing GivePackageBack(int id)
+        /* ======================================================================================================================================================= */
+
+        public static List<Housing> ReturnHousingInList()
         {
+            // Database connection opens 
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
+            List<Housing> listOfHouses = null; 
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select * from Gebaude"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    foreach (var VARIABLE in reader)
+                    {
+                        listOfHouses.Add((Housing) Convert.ChangeType(VARIABLE, typeof(Housing)));
+                    }
+                    
+                }
+
+                return listOfHouses;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                                "1: Das Gebaude konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden");
+            }
+            
+            return null;
+        }
+        
+        /* ======================================================================================================================================================= */
+        
+        // Returns "Gebaude" by looking for ID 
+        public static Housing GiveHousingBack(int id)
+        {
+            // Database connection opens 
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
             try
             {
                 var cmd = new OleDbCommand(
@@ -56,8 +103,12 @@ namespace Konfigurator.Logic.Models.Housing
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Creates Gebaude with all attributes 
         public static void CreateHousing(Housing housing)
         {
+            // Database connection opens 
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -74,8 +125,12 @@ namespace Konfigurator.Logic.Models.Housing
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Deletes Gebaude by looking for ID
         public static void DeleteHousing(int ID)
         {
+            // Database connection opens 
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -92,8 +147,12 @@ namespace Konfigurator.Logic.Models.Housing
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        //Updates Gebaude by looking for ID 
         public static void UpdateHousing(Housing housing)
         {
+            // Database connection opens 
             var db = new DataBase.DataBase();
             db.Connection.Open();
             

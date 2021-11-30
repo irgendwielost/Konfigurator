@@ -7,8 +7,11 @@ namespace Konfigurator.Logic.Models.Factor
 {
     public class FactorDB
     {
+        
+        // Return a Dataset with "Faktors" inside
         public static DataSet GetDataSetFactor()
         {
+            // Opening a Connection to the Database (Has try in it already)
             using (var db = new DataBase.DataBase())
             {
                 db.Connection.Open();
@@ -23,6 +26,7 @@ namespace Konfigurator.Logic.Models.Factor
                 }
                 catch (Exception e)
                 {
+                    // If the above failed show following Error Message: 
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Die Faktor-Tabelle Konnte nicht gefunden werden\n" +
                                     "================");
@@ -31,8 +35,12 @@ namespace Konfigurator.Logic.Models.Factor
             return null;
         }
         
-        public static Factor GiveEmployeeBack(int id)
+        /* ======================================================================================================================================================= */
+        
+        // Returns a "Faktor" by ID
+        public static Factor GiveFactorBack(int id)
         {
+            // Opening a Connection to the Database
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
@@ -49,6 +57,7 @@ namespace Konfigurator.Logic.Models.Factor
             }
             catch (Exception e)
             {
+                // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Faktor konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
@@ -58,8 +67,12 @@ namespace Konfigurator.Logic.Models.Factor
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Create a "Faktor" (All attributes required) 
         public static void CreateFactor(Factor factor)
         {
+            // Opening a Connection to the Database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -74,14 +87,19 @@ namespace Konfigurator.Logic.Models.Factor
             }
             catch (Exception e)
             {
+                // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "================");
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // (Needs to be Changed!) Has to mark a "Faktor" as not to use
         public static void DeleteFactor(int ID)
         {
+            // Opening a Connection to the Database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -94,14 +112,19 @@ namespace Konfigurator.Logic.Models.Factor
             }
             catch (Exception e)
             {
+                // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Faktor wurde nicht gefunden\n" +
                                 "================");
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Updates a "Faktor" using all attributes except ID which is to search the "Faktor" 
         public static void UpdateFaktor(Factor factor)
         {
+            // Opening a Connection to the Database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -115,6 +138,7 @@ namespace Konfigurator.Logic.Models.Factor
             }
             catch (Exception e)
             {
+                // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Faktor konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +

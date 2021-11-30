@@ -7,7 +7,12 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
 {
     public class FloorAndRoomDB
     {
-
+        /// <summary>
+        /// Finds ID with the name
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <returns>int ID</returns>
+        
         /* Find  the FloorID with the Name*/
         public static int FloorIdToName(string Name)
         {
@@ -77,7 +82,9 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             return 0;
         }
         
-        /* DataSet to fill DataGrids and such */
+        /* ======================================================================================================================================================= */
+        
+        /* DataSet to fill DataGrids */
         public static DataSet GetDataSetFloorAndRoomDetails()
         {
             /* Database Connection being opened */
@@ -102,6 +109,14 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             return null;
         }
+        
+        /* ======================================================================================================================================================= */
+        
+        /// <summary>
+        /// Returns a full set of FloorAndRoom by looking for the different ID's
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns>FloorAndRoom</returns>
         
         /* Gives back a specific FloorAndRoom with the Auftrag_ID */
         public static FloorAndRoom GiveFloorAndRoomBackByOrder(int ID)
@@ -130,7 +145,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             return null;
         }
-        
+
         /* Gives back a specific FloorAndRoom with the Auftrag_ID and Etage_ID */
         public static FloorAndRoom GiveFloorAndRoomBackByFloor(int OrderID, int FloorID)
         {

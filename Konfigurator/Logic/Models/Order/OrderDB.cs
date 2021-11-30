@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace Konfigurator.Logic.Models.Order
 {
     public class OrderDB
     {
+        // Returns Dataset with "Aufträge" inside
         public static DataSet GetDataSetOrder()
         {
+            // Opening Database 
             using (var db = new DataBase.DataBase())
             {
                 db.Connection.Open();
@@ -30,8 +34,12 @@ namespace Konfigurator.Logic.Models.Order
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Returns "Auftrag" by looking for ID 
         public static Order GiveOrderBack(int id)
         {
+            // Opening Database 
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
@@ -58,19 +66,35 @@ namespace Konfigurator.Logic.Models.Order
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Creates Auftrag with all attributes 
         public static void CreateOrder(Order order)
         {
+            // Opening database connection 
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
-            var PackegesInOrder = 0;
+            List<int> PackegesInOrder = new List<int>();
             
             try
             {
-                var cmd = new OleDbCommand(
-                    $"select  count(Auftrag_ID) from EtageUndRaum where Auftrag_ID = {order.Id}"
+                var cmd1 = new OleDbCommand(
+                    $"select count(Auftrag_ID) from EtageUndRaum where Auftrag_ID = {order.Id}"
                     , db.Connection);
-                cmd.ExecuteNonQuery();
+                cmd1.ExecuteNonQuery();
+                
+                var reader = cmd1.ExecuteReader();
+                if (reader.Read())
+                {
+                    foreach (var VARIABLE in reader)
+                    {
+                        PackegesInOrder.Add(Int32.Parse(VARIABLE.ToString()));
+                    }
+                }
+                
+                
+                
             }
             catch (Exception e)
             {
@@ -91,6 +115,8 @@ namespace Konfigurator.Logic.Models.Order
                 MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
             }
         }
+        
+        /* ======================================================================================================================================================= */
         
         public static void UpdateEmployee(Order order)
         {

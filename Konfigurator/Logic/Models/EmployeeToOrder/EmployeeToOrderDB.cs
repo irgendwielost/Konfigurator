@@ -7,7 +7,6 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
     public class EmployeeToOrderDB
     {
         /* Gives back a specific EmployeeToOrder with the Aurftrag_ID */
-        /* Gives back a specific EmployeeToOrder with the Aurftrag_ID */
         public static EmployeeToOrder GiveEmployeeToOrderDetailsBackByOrder(int ID)
         {
             /* Database Connection being opened */
@@ -28,13 +27,17 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Auftrag konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "================");
                 return null;
             }
             return null;
         }
+        
+        /* ======================================================================================================================================================= */
+
         
         /* Gives back a specific EmployeeToOrder with the Mitarbeiter_ID */
         public static EmployeeToOrder GiveEmployeeToOrderBackByEmployee(int id)
@@ -57,13 +60,17 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Mitarbeiter konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "================");
                 return null;
             }
             return null;
         }
+        
+        /* ======================================================================================================================================================= */
+
         
         /* To Add an Employee to an order along with all other Attributes */
         public static void CreateEmployeeToOrderDetails(EmployeeToOrder employeeToOrder)
@@ -82,7 +89,9 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
     }

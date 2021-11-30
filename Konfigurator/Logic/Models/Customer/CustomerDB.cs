@@ -7,8 +7,11 @@ namespace Konfigurator.Logic.Models.Customer
 {
     public class CustomerDB
     {
+        
+        // Return the Dataset with "Kunden" inside
         public static DataSet GetDataSetCustomer()
         {
+            // Open the connection to the database
             using (var db = new DataBase.DataBase())
             {
                 db.Connection.Open();
@@ -23,14 +26,21 @@ namespace Konfigurator.Logic.Models.Customer
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die Kunden-Tabelle Konnte nicht gefunden werden");
+                    // If the above failed show following Error Message: 
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Die Kunden-Tabelle Konnte nicht gefunden werden\n" +
+                                    "================");
                 }
             }
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Returns a "Kunde" by ID
         public static Customer GiveCustomerBack(int id)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
@@ -47,17 +57,23 @@ namespace Konfigurator.Logic.Models.Customer
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Kunde konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "================");
                 return null;
             }
 
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Create a new "Kunde" (all data required) 
         public static void CreateCustomer(Customer customer)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -71,12 +87,19 @@ namespace Konfigurator.Logic.Models.Customer
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Delete a "Kunde" (will likely be replaced by recent or not) 
         public static void DeleteCustomer(int ID)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -89,12 +112,21 @@ namespace Konfigurator.Logic.Models.Customer
             }
             catch (Exception e)
             {
-                MessageBox.Show("Der Kunde wurde nicht gefunden");
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Kunde wurde nicht gefunden\n" +
+                                "================");
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        
+        // Update a "Kunde" by ID
+        // takes everything changed or not except ID
         public static void UpdateCustomer(Customer customer)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -108,10 +140,12 @@ namespace Konfigurator.Logic.Models.Customer
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Kunde konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben");
+                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
     }

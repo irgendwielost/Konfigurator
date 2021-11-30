@@ -7,8 +7,10 @@ namespace Konfigurator.Logic.Models.Employee
 {
      public class EmployeeDB
     {
+        // Return the Dataset with "Mitarbeiter" inside
         public static DataSet GetDataSetEmployee()
         {
+            // Open the connection to the database
             using (var db = new DataBase.DataBase())
             {
                 db.Connection.Open();
@@ -23,15 +25,22 @@ namespace Konfigurator.Logic.Models.Employee
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die Mitarbeiter-Tabelle Konnte nicht gefunden werden");
+                    // If the above failed show following Error Message: 
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Die Mitarbeiter-Tabelle Konnte nicht gefunden werden\n" +
+                                    "================");
                 }
             }
 
             return null;
         }
+        
+        /* ======================================================================================================================================================= */
 
+        // Returns a "Mitarbeiter" by ID
         public static Employee GiveEmployeeBack(int id)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
@@ -50,16 +59,22 @@ namespace Konfigurator.Logic.Models.Employee
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Mitarbeiter konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "================");
                 return null;
             }
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Create a new "Mitarbeiter" (all data required) 
         public static void CreateEmployee(Employee employee)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -73,17 +88,25 @@ namespace Konfigurator.Logic.Models.Employee
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Whether the Employee is still working or not (SQL command needs to be changed!)
         public static void DeleteEmployee(int ID)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
             try
             {
+                // Change this!
                 var cmd = new OleDbCommand(
                     $"Delete * from Mitarbeiter where Mitarbeiter_ID={ID}"
                     , db.Connection);
@@ -91,12 +114,18 @@ namespace Konfigurator.Logic.Models.Employee
             }
             catch (Exception e)
             {
-                MessageBox.Show("Der Mitarbeiter wurde nicht gefunden");
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Mitarbeiter wurde nicht gefunden\n" +
+                                "================");
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
         public static void UpdateEmployee(Employee employee)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -110,10 +139,12 @@ namespace Konfigurator.Logic.Models.Employee
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Mitarbeiter konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben");
+                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
     }

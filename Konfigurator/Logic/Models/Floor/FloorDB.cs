@@ -7,8 +7,10 @@ namespace Konfigurator.Logic.Models.Floor
 {
     public class FloorDB
     {
+        // Return the Dataset with "Etage" inside
         public static DataSet GetDataSetFloor()
         {
+            // Open the connection to the database
             using (var db = new DataBase.DataBase())
             {
                 db.Connection.Open();
@@ -32,8 +34,12 @@ namespace Konfigurator.Logic.Models.Floor
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Returns "Etage" by ID
         public static Floor GiveFlooreBack(int id)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
@@ -59,8 +65,13 @@ namespace Konfigurator.Logic.Models.Floor
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        
+        // Creates "Etage" with all attributes
         public static void CreateFloor(Floor floor)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
@@ -78,29 +89,13 @@ namespace Konfigurator.Logic.Models.Floor
                                 "================");
             }
         }
+
+        /* ======================================================================================================================================================= */
         
-        public static void DeleteFloor(int ID)
-        {
-            var db = new DataBase.DataBase();
-            db.Connection.Open();
-            
-            try
-            {
-                var cmd = new OleDbCommand(
-                    $"Delete * from Etage where Etage_ID={ID}"
-                    , db.Connection);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "Die Etage wurde nicht gefunden\n" +
-                                "================");
-            }
-        }
-        
+        // Update the "Etage" with all attributes except ID 
         public static void UpdateFloor(Floor floor)
         {
+            // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             

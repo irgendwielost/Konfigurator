@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Konfigurator.Logic.DataBase;
 
 
 namespace Konfigurator.Windows
@@ -28,6 +29,9 @@ namespace Konfigurator.Windows
         {
             pw = Password.Password;
             name = Mitarbeiter.Text;
+
+            var db = new DataBase();
+            db.Connection.Open();
 
             
             this.Hide();
