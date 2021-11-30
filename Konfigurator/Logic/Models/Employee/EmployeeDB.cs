@@ -52,6 +52,7 @@ namespace Konfigurator.Logic.Models.Employee
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    
                     return new Employee(id, reader.GetString(1), reader.GetString(2), reader.GetBoolean(3),
                         reader.GetDateTime(4),
                         reader.GetDateTime(5));
@@ -81,9 +82,18 @@ namespace Konfigurator.Logic.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Mitarbeiter (Mitarbeiter_ID = {employee.ID}, Mitarbeiter_Name = {employee.Name}, Mitarbeiter_Passwort = {employee.Password}," +
-                    $" Mitarbeiter_Angestellt = {employee.Working}, Mitarbeiter_Angefangen = {employee.Started}, Mitarbeiter_Kuendigung = {employee.Ended})"
+                    $"insert into Mitarbeiter (Mitarbeiter_ID, Mitarbeiter_Name, Mitarbeiter_Passwort," +
+                    $" Mitarbeiter_Angestellt, Mitarbeiter_Angefangen, Mitarbeiter_Kuendigung) values (?, ?, ?, ?, ?, ?)"
                     , db.Connection);
+                cmd.Parameters.AddRange( new[]
+                {
+                    new OleDbParameter("Mitarbeiter_ID",employee.ID),
+                    new OleDbParameter("Mitarbeiter_Name",employee.Name),
+                    new OleDbParameter("Mitarbeiter_Passwort",employee.Password),
+                    new OleDbParameter("Mitarbeiter_Angestellt",employee.Working),
+                    new OleDbParameter("Mitarbeiter_Angefangen",employee.Started),
+                    new OleDbParameter("Mitarbeiter_Kuendigung",employee.Ended),
+                });
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)

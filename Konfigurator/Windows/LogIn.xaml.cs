@@ -21,7 +21,6 @@ namespace Konfigurator.Windows
             Application.Current.Shutdown();
         }
         
-        
         //Log In
         private string pw;
         private string name;
@@ -33,13 +32,9 @@ namespace Konfigurator.Windows
             var db = new DataBase();
             db.Connection.Open();
 
-            
             this.Hide();
             MainWindow main = new MainWindow();
             main.Show();
-                
-            
-           
         }    
         
         //Only numbers

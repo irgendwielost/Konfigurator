@@ -80,7 +80,7 @@ namespace Konfigurator.Logic.Models.Customer
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Kunde_Name = {customer.Name}, Kunde_Plz = {customer.Plz}, Kunde_Strasse = {customer.Street}, Kunde_Ort = {customer.Region}, " +
+                    $"insert into Kunde (Kunde_Name = {customer.Name}, Kunde_Plz = {customer.Plz}, Kunde_Strasse = {customer.Street}, Kunde_Ort = {customer.Region}, " +
                     $"Kunde_Tel = {customer.Tel}, Kunde_Email = {customer.Email}, Kunde_Aktuell = {customer.Recent})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
