@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Data.OleDb;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Konfigurator.Logic.DataBase;
+using Konfigurator.UserControls;
 
 
 namespace Konfigurator.Windows
@@ -24,18 +27,44 @@ namespace Konfigurator.Windows
         //Log In
         private string pw;
         private string name;
+        
         private void LogIn_Onclick(object sender, RoutedEventArgs e)
         {
-            pw = Password.Password;
+            pw = Password.Text;
             name = Mitarbeiter.Text;
 
-            
-            this.Hide();
-            MainWindow main = new MainWindow();
-            main.Show();
-                
-            
+            var db = new DataBase();
            
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Mitarbeiter_Passwort from Mitarbeiter where Mitarbeiter_ID = {name}"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    if (pw == reader.GetString(0))
+                    {
+                        this.Hide();
+                        MainWindow main = new MainWindow();
+                        main.Show();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // If the above failed show following Error Message: 
+                MessageBox.Show("Die ID oder das Passwort sind falsch");
+
+            }
+            
+
+
+
+
+
         }    
         
         //Only numbers
