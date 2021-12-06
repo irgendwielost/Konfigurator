@@ -29,7 +29,7 @@
                 <Image Source="../img/loupe.png" Height="22.5" Width="34.5"/>
             </StackPanel>
         </Button>
-        <DataGrid Grid.Column="0" Grid.Row="0" Margin="30,40,30,17.167">
+        <DataGrid x:Name="DataGrid" Grid.Column="0" Grid.Row="0" Margin="30,40,30,17.167">
 
         </DataGrid>
 

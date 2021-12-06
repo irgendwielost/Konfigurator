@@ -18,7 +18,7 @@ namespace Konfigurator.Logic.Models.Housing
                     var cmd = new OleDbDataAdapter("select * from Gebaude"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
-                    cmd.Fill(dataSet, "Packet");
+                    cmd.Fill(dataSet, "Gebaude");
                     return dataSet;
                 }
                 catch (Exception e)

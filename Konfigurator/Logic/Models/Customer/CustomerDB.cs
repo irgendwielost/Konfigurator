@@ -8,7 +8,7 @@ namespace Konfigurator.Logic.Models.Customer
     public class CustomerDB
     {
         
-        // Return the Dataset with "Kunden" inside
+        // Return the Dataset with "Kunde" inside
         public static DataSet GetDataSetCustomer()
         {
             // Open the connection to the database
@@ -18,7 +18,7 @@ namespace Konfigurator.Logic.Models.Customer
 
                 try
                 {
-                    var cmd = new OleDbDataAdapter("select * from Kunden"
+                    var cmd = new OleDbDataAdapter("select * from Kunde"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
                     cmd.Fill(dataSet, "Kunde");
@@ -46,7 +46,7 @@ namespace Konfigurator.Logic.Models.Customer
 
             try
             {
-                var cmd = new OleDbCommand($"Select * from Firma where Kunden_ID={id}"
+                var cmd = new OleDbCommand($"Select * from Kunde where Kunde_ID={id}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())

@@ -21,7 +21,7 @@
         <TextBox Grid.Row="0" Grid.Column="0" Margin="10, 10, 119, 257" />
         <Button Grid.Row="0" Grid.Column="0" Margin="270, 10, 40, 257" Content="Go" FontSize="15" Background="DarkGray" />
 
-        <DataGrid Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
+        <DataGrid x:Name="DataGrid" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
         <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 "
                 FontSize="15" Content="Löschen" />
         <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 "

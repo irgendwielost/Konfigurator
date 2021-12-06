@@ -36,7 +36,6 @@ namespace Konfigurator.Windows
             var db = new DataBase();
            
             db.Connection.Open();
-            
             try
             {
                 var cmd = new OleDbCommand(

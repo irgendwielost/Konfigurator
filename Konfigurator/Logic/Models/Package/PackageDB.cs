@@ -91,7 +91,7 @@ namespace Konfigurator.Logic.Models.Package
                 MessageBox.Show("Der Paket wurde nicht gefunden");
             }
         }
-        
+
         public static void UpdatePackage(Package package)
         {
             var db = new DataBase.DataBase();

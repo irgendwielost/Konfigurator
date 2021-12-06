@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Konfigurator.Logic.Models.Employee;
 
 namespace Konfigurator.UserControls
 {
@@ -7,6 +8,10 @@ namespace Konfigurator.UserControls
         public MitarbeiterTab()
         {
             InitializeComponent();
+            //Fill DataGridView
+            var dataset = EmployeeDB.GetDataSetEmployee();
+            DataGrid.ItemsSource = dataset.Tables["Mitarbeiter"].DefaultView;
+            
         }
     }
 }

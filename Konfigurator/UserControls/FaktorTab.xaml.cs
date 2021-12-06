@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Konfigurator.Logic.Models.Factor;
 
 namespace Konfigurator.UserControls
 {
@@ -7,6 +8,9 @@ namespace Konfigurator.UserControls
         public FaktorTab()
         {
             InitializeComponent();
+            //Fill DataGridView
+            var dataset = FactorDB.GetDataSetFactor();
+            DataGrid.ItemsSource = dataset.Tables["Faktor"].DefaultView;
         }
     }
 }

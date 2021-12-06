@@ -63,7 +63,7 @@
                     </StackPanel>
                 </Button>
                 <!-- DataGrid -->
-                <DataGrid Grid.Column="0" Grid.Row="1" Margin="10,46.083,55.375,36.5" ></DataGrid>
+                <DataGrid x:Name="DataGridHousing" Grid.Column="0" Grid.Row="1" Margin="10,46.083,55.375,36.5" ></DataGrid>
             </Grid>
         </Border>
 
@@ -121,7 +121,7 @@
                         </StackPanel>
                     </Button>
                     <!-- DataGrid -->
-                    <DataGrid Grid.Column="0" Grid.Row="0" Margin="10,84.583,46.5,0" Grid.RowSpan="2" Height="207.917"></DataGrid>
+                    <DataGrid x:Name="DataGridFloor" Grid.Column="0" Grid.Row="0" Margin="10,84.583,46.5,0" Grid.RowSpan="2" Height="207.917"></DataGrid>
                 </Grid>
             </Border>
 
@@ -167,7 +167,7 @@
                     </StackPanel>
                 </Button>
                 <!-- DataGrid -->
-                <DataGrid Grid.Column="0" Grid.Row="0" Margin="10,80.583,46.5,2" Grid.RowSpan="2" Height="207.917"></DataGrid>
+                <DataGrid x:Name="DataGridRoom" Grid.Column="0" Grid.Row="0" Margin="10,80.583,46.5,2" Grid.RowSpan="2" Height="207.917"></DataGrid>
             </Grid>
 
 
