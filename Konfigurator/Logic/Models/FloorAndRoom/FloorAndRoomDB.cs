@@ -122,7 +122,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                 try
                 {
                     /* in the EtageUndRaum all entries will be selected and added to the DataSet (consider changing this for not all but just all recently) */
-                    var cmd = new OleDbDataAdapter($"select * from EtageUndRaum where Auftrag_ID = {id}"
+                    var cmd = new OleDbDataAdapter($"Select * from EtageUndRaum where Auftrag_ID = {id}"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
                     cmd.Fill(dataSet, "EtageUndRaum");
