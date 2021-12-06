@@ -31,7 +31,6 @@ namespace Konfigurator.Logic.Models.Employee
                                     "================");
                 }
             }
-
             return null;
         }
         
@@ -85,6 +84,7 @@ namespace Konfigurator.Logic.Models.Employee
                     $"insert into Mitarbeiter (Mitarbeiter_ID, Mitarbeiter_Name, Mitarbeiter_Passwort," +
                     $" Mitarbeiter_Angestellt, Mitarbeiter_Angefangen, Mitarbeiter_Kuendigung) values (?, ?, ?, ?, ?, ?)"
                     , db.Connection);
+                // gives the Values to the "?" 
                 cmd.Parameters.AddRange( new[]
                 {
                     new OleDbParameter("Mitarbeiter_ID",employee.ID),
@@ -92,7 +92,7 @@ namespace Konfigurator.Logic.Models.Employee
                     new OleDbParameter("Mitarbeiter_Passwort",employee.Password),
                     new OleDbParameter("Mitarbeiter_Angestellt",employee.Working),
                     new OleDbParameter("Mitarbeiter_Angefangen",employee.Started),
-                    new OleDbParameter("Mitarbeiter_Kuendigung",employee.Ended),
+                    new OleDbParameter("Mitarbeiter_Kuendigung",employee.Ended)
                 });
                 cmd.ExecuteNonQuery();
             }
@@ -118,7 +118,7 @@ namespace Konfigurator.Logic.Models.Employee
             {
                 // Change this!
                 var cmd = new OleDbCommand(
-                    $"Delete * from Mitarbeiter where Mitarbeiter_ID={ID}"
+                    $"Update Mitarbeiter set Mitarbeiter_Angestellt={false} where Mitarbeiter_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -133,6 +133,7 @@ namespace Konfigurator.Logic.Models.Employee
         
         /* ======================================================================================================================================================= */
         
+        // Update the data on "Mitarbeiter" except ID
         public static void UpdateEmployee(Employee employee)
         {
             // Open the connection to the database

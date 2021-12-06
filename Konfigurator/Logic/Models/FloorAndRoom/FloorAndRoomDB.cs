@@ -229,5 +229,30 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             return null;
         }
+        
+        /* ======================================================================================================================================================= */
+        
+        // Creates "Etage" with all attributes
+        public static void CreateFloor(FloorAndRoom floorAndRoom)
+        {
+            // Open the connection to the database
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"insert into EtageUndRaum (Auftrag_ID, Etage_ID, Raum_ID, Paket_ID, Raum_Grosse) values ({floorAndRoom.Order_ID}, {floorAndRoom.Floor_ID}, {floorAndRoom.Room_ID}, " +
+                    $"{floorAndRoom.Package_ID}, {floorAndRoom.Room_Size})"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
+            }
+        }
     }
 }

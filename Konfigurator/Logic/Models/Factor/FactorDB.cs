@@ -52,7 +52,7 @@ namespace Konfigurator.Logic.Models.Factor
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Factor(id, reader.GetString(1), reader.GetFloat(2), reader.GetFloat(3));
+                    return new Factor(id, reader.GetString(1), reader.GetFloat(2), reader.GetFloat(3), reader.GetBoolean(4));
                 }
             }
             catch (Exception e)
@@ -79,8 +79,8 @@ namespace Konfigurator.Logic.Models.Factor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Faktor (Faktor_ID = {factor.ID}, Faktor_Name = {factor.Name}" +
-                    $" Faktor_Angestellt = {factor.Mult}, Faktor_Angefangen = {factor.Grosse})"
+                    $"insert into Faktor (Faktor_ID, Faktor_Name," +
+                    $" Faktor_Angestellt, Faktor_Angefangen) values ({factor.ID}, {factor.Name}, {factor.Mult}, {factor.Grosse}, {factor.Used})"
                     , db.Connection);
                 cmd.Parameters.Add(factor.Name);
                 cmd.ExecuteNonQuery();
@@ -106,7 +106,7 @@ namespace Konfigurator.Logic.Models.Factor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Delete * from Faktor where Faktor_ID={ID}"
+                    $"Update Faktor set Faktor_Benutzung={false} where Faktor_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -131,8 +131,8 @@ namespace Konfigurator.Logic.Models.Factor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Faktor set Faktor_ID = {factor.ID}, Faktor_Name = {factor.Name}" +
-                    $" Faktor_Angestellt = {factor.Mult}, Faktor_Angefangen = {factor.Grosse} where Faktor_ID = {factor.ID}"
+                    $"Update Faktor set Faktor_Name = {factor.Name}" +
+                    $" Faktor_Angestellt = {factor.Mult}, Faktor_Angefangen = {factor.Grosse}, Faktor_Benutzung = {factor.Used} where Faktor_ID = {factor.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

@@ -18,7 +18,7 @@ namespace Konfigurator.Logic.Models.Customer
 
                 try
                 {
-                    var cmd = new OleDbDataAdapter("select * from Kunden"
+                    var cmd = new OleDbDataAdapter("select * from Kunde"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
                     cmd.Fill(dataSet, "Kunde");
@@ -28,7 +28,7 @@ namespace Konfigurator.Logic.Models.Customer
                 {
                     // If the above failed show following Error Message: 
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                    "Die Kunden-Tabelle Konnte nicht gefunden werden\n" +
+                                    "Die Kunde-Tabelle Konnte nicht gefunden werden\n" +
                                     "================");
                 }
             }
@@ -46,7 +46,7 @@ namespace Konfigurator.Logic.Models.Customer
 
             try
             {
-                var cmd = new OleDbCommand($"Select * from Firma where Kunden_ID={id}"
+                var cmd = new OleDbCommand($"Select * from Firma where Kunde_ID={id}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -76,13 +76,22 @@ namespace Konfigurator.Logic.Models.Customer
             // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Kunde (Kunde_Name = {customer.Name}, Kunde_Plz = {customer.Plz}, Kunde_Strasse = {customer.Street}, Kunde_Ort = {customer.Region}, " +
-                    $"Kunde_Tel = {customer.Tel}, Kunde_Email = {customer.Email}, Kunde_Aktuell = {customer.Recent})"
+                    $"insert into Kunde (Kunde_Name, Kunde_Plz, Kunde_Strasse, Kunde_Ort, " +
+                    $"Kunde_Tel, Kunde_Email, Kunde_Aktuell) value (?, ?, ?, ?, ?, ?)"
                     , db.Connection);
+                cmd.Parameters.AddRange( new[]
+                {
+                    new OleDbParameter("Mitarbeiter_ID", customer.ID),
+                    new OleDbParameter("Mitarbeiter_ID", customer.ID),
+                    new OleDbParameter("Mitarbeiter_ID", customer.ID),
+                    new OleDbParameter("Mitarbeiter_ID", customer.ID),
+                    new OleDbParameter("Mitarbeiter_ID", customer.ID),
+                    new OleDbParameter("Mitarbeiter_ID", customer.ID),
+                });
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -106,7 +115,7 @@ namespace Konfigurator.Logic.Models.Customer
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Delete * from Kunden where Kunden_ID={ID}"
+                    $"Delete * from Kunde where Kunde_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -123,7 +132,6 @@ namespace Konfigurator.Logic.Models.Customer
         
         
         // Update a "Kunde" by ID
-        // takes everything changed or not except ID
         public static void UpdateCustomer(Customer customer)
         {
             // Open the connection to the database

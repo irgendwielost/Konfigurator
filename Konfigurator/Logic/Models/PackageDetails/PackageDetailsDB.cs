@@ -157,8 +157,8 @@ namespace Konfigurator.Logic.Models.PackageDetails
             {
                 /* SQL-Command to insert everything into PackageDetails */
                 var cmd = new OleDbCommand(
-                    $"insert into PaketDetails (Paket_ID = {packageDetails.Package_ID},Artikel_ID = {packageDetails.Article_ID}, Artikel_Menge = {packageDetails.ArtMenge}," +
-                    $" Artikel_Preis = {packageDetails.Preis}, Preis_Aktuell = {packageDetails.Recent})"
+                    $"insert into PaketDetails (Paket_ID,Artikel_ID, Artikel_Menge, Artikel_Preis, Preis_Aktuell)" +
+                    $" Values({packageDetails.Package_ID}, {packageDetails.Article_ID}, {packageDetails.ArtMenge}, {packageDetails.Preis}, {packageDetails.Recent})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

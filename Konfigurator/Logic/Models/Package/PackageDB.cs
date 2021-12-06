@@ -17,9 +17,9 @@ namespace Konfigurator.Logic.Models.Package
                 {
                     var cmd = new OleDbDataAdapter("select * from Paket"
                         , db.Connection);
-                    DataSet dataSet = new DataSet();
-                    cmd.Fill(dataSet, "Paket");
-                    return dataSet;
+                    DataSet dataSet1 = new DataSet();
+                    cmd.Fill(dataSet1, "Paket");
+                    return dataSet1;
                 }
                 catch (Exception e)
                 {
@@ -64,7 +64,7 @@ namespace Konfigurator.Logic.Models.Package
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Paket (Paket_ID = {package.ID}, Paket_Name = {package.Name}, Paket_Verfuegbar = {package.Available})"
+                    $"insert into Paket (Paket_ID, Paket_Name, Paket_Verfuegbar) values ({package.ID}, {package.Name},  {package.Available})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

@@ -24,7 +24,7 @@ namespace Konfigurator.Logic.Models.Housing
                     var cmd = new OleDbDataAdapter("select * from Gebaude"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
-                    cmd.Fill(dataSet, "Packet");
+                    cmd.Fill(dataSet, "Gebaude");
                     return dataSet;
                 }
                 catch (Exception e)
@@ -56,11 +56,10 @@ namespace Konfigurator.Logic.Models.Housing
                 {
                     foreach (var VARIABLE in reader)
                     {
-                        listOfHouses.Add((Housing) Convert.ChangeType(VARIABLE, typeof(Housing)));
+                        Housing housingObject = new Housing(reader.GetInt32(0), reader.GetString(1));
+                        listOfHouses.Add(housingObject);
                     }
-                    
                 }
-
                 return listOfHouses;
             }
             catch (Exception e)
@@ -69,7 +68,6 @@ namespace Konfigurator.Logic.Models.Housing
                                 "1: Das Gebaude konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden");
             }
-            
             return null;
         }
         
@@ -115,7 +113,7 @@ namespace Konfigurator.Logic.Models.Housing
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Gebaude (Gebaude_ID = {housing.ID}, Gebaude_Name = {housing.Name})"
+                    $"insert into Gebaude (Gebaude_ID, Gebaude_Name) values ({housing.ID}, {housing.ID})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

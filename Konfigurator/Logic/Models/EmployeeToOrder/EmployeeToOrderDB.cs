@@ -70,7 +70,6 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
         }
         
         /* ======================================================================================================================================================= */
-
         
         /* To Add an Employee to an order along with all other Attributes */
         public static void CreateEmployeeToOrderDetails(EmployeeToOrder employeeToOrder)
@@ -83,7 +82,7 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             {
                 /* SQL-Command to insert everything into AuftragZuMitarbeiter */
                 var cmd = new OleDbCommand(
-                    $"insert into AuftragZuMitarbeiter (Auftrag_ID = {employeeToOrder.OrderID},Mitarbeiter_ID = {employeeToOrder.EmployeeID})"
+                    $"insert into AuftragZuMitarbeiter (Auftrag_ID, Mitarbeiter_ID) values ({employeeToOrder.OrderID}, {employeeToOrder.EmployeeID})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -91,6 +90,54 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
+            }
+        }
+        
+        /* ======================================================================================================================================================= */
+        
+        // Delete a "AuftragZuMitarbeiter" by Auftrag_ID
+        public static void DeleteCustomerByOrder(int ID)
+        {
+            // Open the connection to the database
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Delete * from AuftragZuMitarbeiter where Auftrag_ID={ID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Die Auftrag ID wurde nicht gefunden\n" +
+                                "================");
+            }
+        }
+        
+        // Delete a "AuftragZuMitarbeiter" by Mitarbeiter_ID
+        public static void DeleteCustomerByEmployee(int ID)
+        {
+            // Open the connection to the database
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Delete * from AuftragZuMitarbeiter where Mitarbeiter_ID={ID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Die Mitarbeiter ID wurde nicht gefunden\n" +
                                 "================");
             }
         }

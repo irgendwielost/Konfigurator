@@ -78,7 +78,7 @@ namespace Konfigurator.Logic.Models.Floor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Etage (Etage_ID = {floor.ID}, Etage_Name = {floor.Name}"
+                    $"insert into Etage (Etage_ID, Etage_Name) values ({floor.ID}, {floor.Name})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

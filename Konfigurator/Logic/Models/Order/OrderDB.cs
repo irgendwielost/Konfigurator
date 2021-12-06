@@ -104,9 +104,10 @@ namespace Konfigurator.Logic.Models.Order
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Auftrag (Auftrag_ID = {order.Id}, Auftrag_Datum = {order.Datum}, Auftrag_NeuBesta = {order.NeuOrBestand}," +
-                    $" Auftrag_Grosse = {order.Size}, Kunde_ID= {order.CustomerId}, Gebaude_ID= {order.HousingId}, Phase_ID = {order.PhaseId}," +
-                    $" Faktor_Mult = {order.FactorMult}, Auftrag_PreisGesamt = {order.OverallPrice})"
+                    $"insert into Auftrag (Auftrag_ID, Auftrag_Datum, Auftrag_NeuBesta," +
+                    $" Auftrag_Grosse, Kunde_ID, Gebaude_ID, Phase_ID," +
+                    $" Faktor_Mult, Auftrag_PreisGesamt) Values ({order.Id}, {order.Datum}, {order.NeuOrBestand}, {order.Size}, {order.CustomerId}," +
+                    $" {order.HousingId}, {order.PhaseId}, {order.FactorMult}, {order.OverallPrice})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
