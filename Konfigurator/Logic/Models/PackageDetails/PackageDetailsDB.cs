@@ -28,9 +28,10 @@ namespace Konfigurator.Logic.Models.PackageDetails
                                 "1: Der Paket konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden");
             }
+
             return 0;
         }
-        
+
         /* Find  the ArticleID with the Name*/
         public int ArticleIdToName(string Name)
         {
@@ -51,11 +52,12 @@ namespace Konfigurator.Logic.Models.PackageDetails
                                 "1: Der Artikel konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden");
             }
+
             return 0;
         }
 
         /* ======================================================================================================================================================= */
-        
+
         /* DataSet to fill DataGrids and such */
         public static DataSet GetDataSetPackageDetails()
         {
@@ -83,9 +85,9 @@ namespace Konfigurator.Logic.Models.PackageDetails
 
             return null;
         }
-        
+
         /* ======================================================================================================================================================= */
-        
+
         /* Gives back a specific PackageDetails with the PackageID */
         public static PackageDetails GivePackageDetailsBackByPackage(int ID)
         {
@@ -102,7 +104,8 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new PackageDetails(ID, reader.GetInt32(1), reader.GetInt32(2), reader.GetDouble(3), reader.GetBoolean(4));
+                    return new PackageDetails(ID, reader.GetInt32(1), reader.GetInt32(2), reader.GetDouble(3),
+                        reader.GetBoolean(4));
                 }
             }
             catch (Exception e)
@@ -112,9 +115,10 @@ namespace Konfigurator.Logic.Models.PackageDetails
                                 "2: Die Tabelle konnte nicht gefunden werden");
                 return null;
             }
+
             return null;
         }
-        
+
         /* Gives back a specific PackageDetails with the ArticleID */
         public static PackageDetails GivePackageDetialsBackByArticle(int id)
         {
@@ -131,7 +135,8 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new PackageDetails(reader.GetInt32(0),id , reader.GetInt32(2), reader.GetDouble(3), reader.GetBoolean(4));
+                    return new PackageDetails(reader.GetInt32(0), id, reader.GetInt32(2), reader.GetDouble(3),
+                        reader.GetBoolean(4));
                 }
             }
             catch (Exception e)
@@ -141,18 +146,19 @@ namespace Konfigurator.Logic.Models.PackageDetails
                                 "2: Die Tabelle konnte nicht gefunden werden");
                 return null;
             }
+
             return null;
         }
-        
+
         /* ======================================================================================================================================================= */
-        
+
         /* To Add an Article to a Package along with all other Attributes */
         public static void CreatePackageDetails(PackageDetails packageDetails)
         {
             /* Database Connection being opened */
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 /* SQL-Command to insert everything into PackageDetails */
@@ -167,9 +173,9 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
             }
         }
-        
+
         /* ======================================================================================================================================================= */
-        
+
         /* Add function to find out if the Price is still the same */
 
         public static bool ArticlePriceChecker(PackageDetails packageDetails)
@@ -179,8 +185,8 @@ namespace Konfigurator.Logic.Models.PackageDetails
             db.Connection.Open();
 
             PackageDetails detailsArticle = null;
-            PackageDetails Article = null;
-            
+            Article.Article Article = null;
+
             try
             {
                 /* SQL-Command to select everything from this ArticleID */
@@ -190,7 +196,8 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    detailsArticle = new PackageDetails(reader.GetInt32(0),packageDetails.Article_ID , reader.GetInt32(2), reader.GetDouble(3), reader.GetBoolean(4));
+                    detailsArticle = new PackageDetails(reader.GetInt32(0), packageDetails.Article_ID,
+                        reader.GetInt32(2), reader.GetDouble(3), reader.GetBoolean(4));
                 }
             }
             catch (Exception e)
@@ -209,7 +216,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    //Article = new Article(packageDetails.Article_ID , reader.GetString(1), reader.GetDouble(2), reader.GetBoolean(3));
+                    Article = new Article.Article(packageDetails.Article_ID , reader.GetString(1), reader.GetDouble(2), reader.GetBoolean(3));
                 }
             }
             catch (Exception e)
@@ -219,12 +226,11 @@ namespace Konfigurator.Logic.Models.PackageDetails
                                 "2: Die Tabelle konnte nicht gefunden werden");
             }
 
-            if (detailsArticle.Preis == Article.Preis)
+            if (detailsArticle.Preis == Article.Price)
             {
                 return true;
             }
-            else
-                return false;
+            return false;
         }
     }
 }

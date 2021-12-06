@@ -110,6 +110,32 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             return null;
         }
         
+        /* DataSet to fill DataGrids */
+        public static DataSet GetDataSetFloorAndRoomDetailsByOrder(int id)
+        {
+            /* Database Connection being opened */
+            using (var db = new DataBase.DataBase())
+            {
+                db.Connection.Open();
+
+                /* in case the Table is not found "try" is used */
+                try
+                {
+                    /* in the EtageUndRaum all entries will be selected and added to the DataSet (consider changing this for not all but just all recently) */
+                    var cmd = new OleDbDataAdapter($"select * from EtageUndRaum where Auftrag_ID = {id}"
+                        , db.Connection);
+                    DataSet dataSet = new DataSet();
+                    cmd.Fill(dataSet, "EtageUndRaum");
+                    return dataSet;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Die EtageUndRaum-Tabelle konnte nicht gefunden werden");
+                }
+            }
+            return null;
+        }
+        
         /* ======================================================================================================================================================= */
         
         /// <summary>
