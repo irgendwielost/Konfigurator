@@ -10,23 +10,18 @@ namespace Konfigurator.Logic.DataBase
 
         public DataBase()
         {
-            try
-            {
-                var connectionString = new OleDbConnectionStringBuilder
+            Connection = new OleDbConnection(
+                new OleDbConnectionStringBuilder
                 {
                     Provider = "Microsoft.ACE.OLEDB.12.0",
-                    DataSource = @"BestellVerwaltung.accdb"
-                }.ConnectionString;
-                Connection = new OleDbConnection(connectionString);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("The Database could not be found");
-            }
+                    DataSource = @"DatenBank.accdb"
+                }.ConnectionString
+            );
         }
 
         public void Dispose()
         {
+            
             Connection.Close();
         }
     }

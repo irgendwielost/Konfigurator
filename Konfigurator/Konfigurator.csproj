@@ -118,10 +118,11 @@
     <Compile Include="UserControls\PhasenTab.xaml.cs">
       <DependentUpon>PhasenTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ArtikelViewModel.cs" />
-    <Compile Include="ViewModels\AuftragViewModel.cs" />
+    <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\LogInViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Order\OrderViewModel.cs" />
+    <Compile Include="ViewModels\Order\OrderViewModelTab.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Windows\Auftrag\AuftragDetailsWindow.xaml.cs">
       <DependentUpon>AuftragDetailsWindow.xaml</DependentUpon>
@@ -206,6 +207,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="propchange.snippet" />
     <Resource Include="img\settingGray.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

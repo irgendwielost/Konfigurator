@@ -26,7 +26,7 @@
         <Button Grid.Row="0" Grid.Column="0" Margin="290, 10, 15, 257" Content="Go" FontSize="15" Background="DarkGray" />
 
         <!-- DataGridView which shows the 10 latest changed entries -->
-        <DataGrid Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
+        <DataGrid x:Name="DataGrid" ItemsSource="dataView" AutoGenerateColumns="True" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
 
 
         <!-- **Buttons to Manipulate the Database** -->
