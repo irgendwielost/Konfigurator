@@ -7,8 +7,10 @@ namespace Konfigurator.Logic.Models.Phase
 {
      public class PhaseDB
     {
+        // Returns a Dataset filled with all Phases
         public static DataSet GetDataSetPhasen()
         {
+            // opening the Database
             using (var db = new DataBase.DataBase())
             {
                 db.Connection.Open();
@@ -32,8 +34,12 @@ namespace Konfigurator.Logic.Models.Phase
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Returns a Phase looking with the ID
         public static Phase GivePhaseBack(int id)
         {
+            // Database will be opened 
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
@@ -59,15 +65,19 @@ namespace Konfigurator.Logic.Models.Phase
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // creates a "Phase" in the Database 
         public static void CreatePhase(Phase phase)
         {
+            // opening the Database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Phasen (Phase_ID = {phase.ID}, Phase_Name = {phase.Name}"
+                    $"insert into Phasen (Phase_ID, Phase_Name) Values ({phase.ID}, {phase.Name})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -79,6 +89,9 @@ namespace Konfigurator.Logic.Models.Phase
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // deletes a "Phase" from the Database
         public static void DeleteFactor(int ID)
         {
             var db = new DataBase.DataBase();
@@ -99,6 +112,9 @@ namespace Konfigurator.Logic.Models.Phase
             }
         }
         
+        /* ======================================================================================================================================================= */
+        
+        // Updates a "Phase" in the Database using Id to find it
         public static void UpdatePhase(Phase phase)
         {
             var db = new DataBase.DataBase();

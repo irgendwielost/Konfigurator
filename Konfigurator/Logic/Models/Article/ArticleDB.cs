@@ -36,6 +36,33 @@ namespace Konfigurator.Logic.Models.Article
         
         /* ======================================================================================================================================================= */
         
+        /* Find  the "Artikel_ID" with the Name*/
+        public int PackageIdToName(string Name)
+        {
+            /* Open the connection to the DataBase */
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+
+            try
+            {
+                /* Select the ID by searching with the Name */
+                var cmd = new OleDbCommand($"Select Paket_ID from Paket where Paket_Name = {Name}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+                return Int32.Parse(cmd.ToString());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
+                                "1: Das Paket konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "================");
+            }
+            return 0;
+        }
+        
+        /* ======================================================================================================================================================= */
+        
         // Returns a "Artikel" by ID
         public static Article GiveArticleBack(int id)
         {
@@ -81,7 +108,6 @@ namespace Konfigurator.Logic.Models.Article
                     $"insert into Artikel (Artikel_ID, Artikel_Name," +
                     $" Artikel_Angestellt, Artikel_Angefangen) values ({article.ID}, {article.Name}, {article.Price}, {article.Available})"
                     , db.Connection);
-                cmd.Parameters.Add(article.Name);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -95,8 +121,8 @@ namespace Konfigurator.Logic.Models.Article
         
         /* ======================================================================================================================================================= */
         
-        // (Needs to be Changed!) Has to mark a "Artikel" as not to use
-        public static void DeleteArticle(int ID)
+        // Marks a "Artikel" as not in use
+        public static void KillArticle(int ID)
         {
             // Opening a Connection to the Database
             var db = new DataBase.DataBase();
@@ -106,6 +132,29 @@ namespace Konfigurator.Logic.Models.Article
             {
                 var cmd = new OleDbCommand(
                     $"Update Artikel set Artikel_Verfuegbar={false} where Artikel_ID={ID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Artikel wurde nicht gefunden\n" +
+                                "================");
+            }
+        }
+        
+        // Marks a "Artikel" as in use
+        public static void ReviveArticle(int ID)
+        {
+            // Opening a Connection to the Database
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Update Artikel set Artikel_Verfuegbar={true} where Artikel_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -139,9 +188,9 @@ namespace Konfigurator.Logic.Models.Article
             {
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Der Artikel konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "1: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "2: Der Artikel konnte nicht gefunden werden\n" +
+                                "3: Die Tabelle konnte nicht gefunden werden\n" +
                                 "================");
             }
         }

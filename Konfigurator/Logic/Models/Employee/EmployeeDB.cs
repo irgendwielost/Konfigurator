@@ -152,9 +152,9 @@ namespace Konfigurator.Logic.Models.Employee
             {
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Der Mitarbeiter konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "1: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "2: Der Mitarbeiter konnte nicht gefunden werden\n" +
+                                "3: Die Tabelle konnte nicht gefunden werden\n" +
                                 "================");
             }
         }

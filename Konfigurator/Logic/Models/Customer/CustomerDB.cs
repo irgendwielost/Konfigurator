@@ -46,7 +46,7 @@ namespace Konfigurator.Logic.Models.Customer
 
             try
             {
-                var cmd = new OleDbCommand($"Select * from Firma where Kunde_ID={id}"
+                var cmd = new OleDbCommand($"Select * from Kunde where Kunde_ID={id}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -105,8 +105,13 @@ namespace Konfigurator.Logic.Models.Customer
         
         /* ======================================================================================================================================================= */
         
-        // Delete a "Kunde" (will likely be replaced by recent or not) 
-        public static void DeleteCustomer(int ID)
+        /// <summary>
+        /// Marks "Kunde" as recent or not
+        /// </summary>
+        /// <param name="ID"></param>
+        
+        // Marks "kunde" as not Recent
+        public static void KillCustomer(int ID)
         {
             // Open the connection to the database
             var db = new DataBase.DataBase();
@@ -115,7 +120,30 @@ namespace Konfigurator.Logic.Models.Customer
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Delete * from Kunde where Kunde_ID={ID}"
+                    $"Update Kunde set Kunde_Aktuell = {false} where Kunde_ID={ID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Kunde wurde nicht gefunden\n" +
+                                "================");
+            }
+        }
+        
+        // Marks "Kunde" as recent 
+        public static void ReviveCustomer(int ID)
+        {
+            // Open the connection to the database
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Update Kunde set Kunde_Aktuell = {true} where Kunde_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -129,8 +157,7 @@ namespace Konfigurator.Logic.Models.Customer
         }
         
         /* ======================================================================================================================================================= */
-        
-        
+
         // Update a "Kunde" by ID
         public static void UpdateCustomer(Customer customer)
         {
@@ -150,9 +177,9 @@ namespace Konfigurator.Logic.Models.Customer
             {
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Der Kunde konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "1: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "2: Der Kunde konnte nicht gefunden werden\n" +
+                                "3: Die Tabelle konnte nicht gefunden werden\n" +
                                 "================");
             }
         }

@@ -7,6 +7,7 @@ namespace Konfigurator.Logic.Models.Room
 {
      public class RoomDB
         {
+            // Returns a Dataset filled with all Rooms
             public static DataSet GetDataSetRoom()
             {
                 using (var db = new DataBase.DataBase())
@@ -30,6 +31,9 @@ namespace Konfigurator.Logic.Models.Room
                 return null;
             }
             
+            /* ======================================================================================================================================================= */
+            
+            // Returns a Room looking with the ID
             public static Room GiveRoomBack(int ID)
             {
                 var db = new DataBase.DataBase();
@@ -56,6 +60,9 @@ namespace Konfigurator.Logic.Models.Room
                 return null;
             }
             
+            /* ======================================================================================================================================================= */
+            
+            // creates a "Raum" in the Database 
             public static void CreateRaum(Room room)
             {
                 var db = new DataBase.DataBase();
@@ -74,7 +81,10 @@ namespace Konfigurator.Logic.Models.Room
                 }
             }
             
-            public static void DeleteRoom(int ID)
+            /* ======================================================================================================================================================= */
+            
+            
+            /*public static void DeleteRoom(int ID)
             {
                 var db = new DataBase.DataBase();
                 db.Connection.Open();
@@ -90,8 +100,12 @@ namespace Konfigurator.Logic.Models.Room
                 {
                     MessageBox.Show("Die Raum wurde nicht gefunden");
                 }
-            }
+            }*/
             
+            /* ======================================================================================================================================================= */
+            
+            // Updates a "Room" in the Database using Id to find it
+
             public static void UpdateRoom(Room room)
             {
                 var db = new DataBase.DataBase();

@@ -36,7 +36,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             return 0;
         }
         
-        /* Find  the RoomID with the Name*/
+        /* Find the RoomID with the Name*/
         public static int RoomIdToName(string Name)
         {
             /* Open the connection to the DataBase */
@@ -110,7 +110,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             return null;
         }
         
-        /* DataSet to fill DataGrids */
+        /* DataSet to fill DataGrids With all "EtageUndRaum" where this Order is in */
         public static DataSet GetDataSetFloorAndRoomDetailsByOrder(int id)
         {
             /* Database Connection being opened */
@@ -141,7 +141,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
         /// <summary>
         /// Returns a full set of FloorAndRoom by looking for the different ID's
         /// </summary>
-        /// <param name="ID"></param>
+        /// <param name="ID('s)"></param>
         /// <returns>FloorAndRoom</returns>
         
         /* Gives back a specific FloorAndRoom with the Auftrag_ID */
@@ -277,6 +277,32 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
+            }
+        }
+        
+        /* ======================================================================================================================================================= */
+        
+        // Updates "EtageUndRaum" with "Paket_ID" and "Raum_Grosse" in the Database using Id for "Auftrag", "Etage" and "Raum" to find it
+        public static void UpdatePhase(FloorAndRoom floorAndRoom)
+        {
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Update EtageUndRaum set Paket_ID = {floorAndRoom.Package_ID}, Raum_Grosse = {floorAndRoom.Room_Size}" +
+                    $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Floor_ID = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "1: Die Phase konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "================");
             }
         }
