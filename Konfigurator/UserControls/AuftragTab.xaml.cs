@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.OleDb;
 using System.Windows;
@@ -26,21 +28,42 @@ namespace Konfigurator.UserControls
         }
 
         //On Selected Datagrid Row
-        private void DataGridOrder_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DataGridOrder_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Make sure row was clicked
-            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
-                e.OriginalSource as DependencyObject) as DataGridRow;
-
-            if (row == null) return;
+            //Selected Item
+            object item = DataGridOrder.SelectedItem; 
             
-            //Fill Textboxes
-            var Id = IDText.Text; // ID
+            //Selected Item | id
+            string id = (DataGridOrder.SelectedCells[0].Column.GetCellContent(item) as TextBlock)?.Text;
             
+            //Selected Item | date
+            string date = (DataGridOrder.SelectedCells[1].Column.GetCellContent(item) as TextBlock)?.Text;
             
-
+            //Selected Item | "Neu" or "Bestand"
+            string nOrB = (DataGridOrder.SelectedCells[2].Column.GetCellContent(item) as TextBlock)?.Text;
+            
+            //Selected Item | phase
+            string customerId = (DataGridOrder.SelectedCells[3].Column.GetCellContent(item) as TextBlock)?.Text;
+            
+            //Selected Item | housing
+            string housingId = (DataGridOrder.SelectedCells[4].Column.GetCellContent(item) as TextBlock)?.Text;
+            
+            //Selected Item | phase
+            string phaseId = (DataGridOrder.SelectedCells[5].Column.GetCellContent(item) as TextBlock)?.Text;
+            
+            //Selected Item | total
+            string total = (DataGridOrder.SelectedCells[5].Column.GetCellContent(item) as TextBlock)?.Text;
+            
+            //Display Items in Textbox
+            IDText.Text = id;
+            dateText.Text = date;
+            customerIdText.Text = customerId;
+            housingCombo.SelectedValue = housingId;
+            phaseCombo.SelectedValue = phaseId;
+            totalText.Text = total;
         }
 
+        
         //Show Package by selected ID
         public void GetPackageById()
         {
@@ -69,14 +92,6 @@ namespace Konfigurator.UserControls
             {
                 e.Cancel = true;
             }
-            if (propertyDescriptor.DisplayName == "Kunde_ID")
-            {
-                e.Cancel = true;
-            }
-            if (propertyDescriptor.DisplayName == "Gebaude_ID")
-            {
-                e.Cancel = true;
-            }
             if (propertyDescriptor.DisplayName == "Faktor_Mult")
             {
                 e.Cancel = true;
@@ -90,6 +105,7 @@ namespace Konfigurator.UserControls
             auftragDetails.Show();
         }
 
-        
+
+      
     }
 }

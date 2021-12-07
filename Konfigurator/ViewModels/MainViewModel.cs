@@ -11,5 +11,7 @@ namespace Konfigurator.ViewModels
         {
             CurrentViewModel = new ArtikelViewModel();
         }
+        
+        
     }
 }
