@@ -26,7 +26,7 @@
         <Button Grid.Row="0" Grid.Column="0" Margin="290, 10, 15, 257" Content="Go" FontSize="15" Background="DarkGray" />
 
         <!-- DataGridView which shows the 10 latest changed entries -->
-        <DataGrid x:Name="DataGrid"   Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
+        <DataGrid x:Name="DataGridOrder"  MouseDoubleClick="DataGridOrder_OnMouseDoubleClick" AutoGeneratingColumn="OnAutoGeneratingColumn" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
 
 
         <!-- **Buttons to Manipulate the Database** -->
@@ -70,7 +70,7 @@
                 <!-- ID Label -->
                 <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,132.316,0" FontSize="20">ID:</Label>
                 <!-- ID TextBox  -->
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="41.667,6,-40.667,6" FontSize="22" Height="37" Grid.ColumnSpan="2" Text="{Binding ID}"/>
+                <TextBox x:Name="IDText" Grid.Row="0" Grid.Column="1" Margin="41.667,6,-40.667,6" FontSize="22" Height="37" Grid.ColumnSpan="2" Text="{Binding ID}"/>
 
                 <!-- Name Label -->
                 <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,134.333,0" FontSize="20" Grid.ColumnSpan="2">Datum:</Label>
@@ -122,6 +122,6 @@
         </Border>
 
         <!-- DataGridView for articles currently in the Package -->
-        <DataGrid  Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
+        <DataGrid x:Name="DataGridPackage" Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
     </Grid>
 </UserControl>
