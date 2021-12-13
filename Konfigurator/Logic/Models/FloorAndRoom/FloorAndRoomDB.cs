@@ -197,12 +197,15 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
+            double currentPackagePrice = 0;
 
             try
             {
+                
+                currentPackagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
                 var cmd = new OleDbCommand(
-                    $"insert into EtageUndRaum (Auftrag_ID, Etage_ID, Raum_ID, Paket_ID, Raum_Grosse) values ({floorAndRoom.Order_ID}, {floorAndRoom.Floor_ID}, {floorAndRoom.Room_ID}, " +
-                    $"{floorAndRoom.Package_ID}, {floorAndRoom.Room_Size})"
+                    $"insert into EtageUndRaum (Auftrag_ID, Etage_ID, Raum_ID, Paket_ID, Raum_Grosse, Paket_Preis) values ({floorAndRoom.Order_ID}, {floorAndRoom.Floor_ID}, {floorAndRoom.Room_ID}, " +
+                    $"{floorAndRoom.Package_ID}, {floorAndRoom.Room_Size}, {currentPackagePrice})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -216,8 +219,8 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
 
             double totalPrice = 0;
 
-            totalPrice = AddAndGetPriceForOrder(floorAndRoom.Package_ID, floorAndRoom.Order_ID);
-            
+            totalPrice = currentPackagePrice + GetPriceForOrder(floorAndRoom.Order_ID);
+
             // Insert the new Price into "Auftrag"
             try
             {
@@ -243,9 +246,11 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
         // Updates "EtageUndRaum" with "Paket_ID" and "Raum_Grosse" in the Database using Id for "Auftrag", "Etage" and "Raum" to find it
         public static void UpdatePhase(FloorAndRoom floorAndRoom)
         {
+            // Open Database
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
+            // Update all but "Paket_Preis" by looking for ID
             try
             {
                 var cmd = new OleDbCommand(
@@ -262,17 +267,51 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
             }
+            
+            // deduct the old Price and add the Price of the new Package
+
+            double oldPrice = 0;
+            try
+            {
+                var cmd1 = new OleDbCommand(
+                    $"Select Paket_Preis from EtageUndRaum" +
+                    $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Etage = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
+                    , db.Connection);
+                var reader = cmd1.ExecuteReader();
+                if (reader.Read() && reader.HasRows)
+                {
+                    oldPrice = reader.GetDouble(0);
+                }
+
+                double orderPrice = GetPriceForOrder(floorAndRoom.Order_ID);
+                orderPrice -= oldPrice;
+                double PackagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
+                orderPrice += PackagePrice;
+
+                var cmd2 = new OleDbCommand(
+                    $"Update Auftrag set Auftrag_PreisGesamt = {orderPrice} where Auftrag_ID = {floorAndRoom.Order_ID}"
+                    , db.Connection);
+                cmd2.ExecuteNonQuery();
+
+                var cmdUpdateFloortAndRoomPrice = new OleDbCommand(
+                    $"Update EtageUndRaum set Paket_Preis = {PackagePrice}" +
+                    $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Etage = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
+                    , db.Connection);
+                cmdUpdateFloortAndRoomPrice.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
+                                "========");
+            }
         }
 
-        public static double AddAndGetPriceForOrder(int PackageId, int OrderID)
+        public static double GetPriceForOrder(int OrderID)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
             double totalPrice = 0;
-            
-            // get the price of all articles in this Package
-            totalPrice += PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(PackageId);
-
             // Get the Price so far calculated for the "Auftrag"
             try
             {
