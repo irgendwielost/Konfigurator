@@ -272,6 +272,8 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 return true;
             }
         }
+        
+        /* ======================================================================================================================================================= */
 
         // Get the Price of all Articles within this Package
         public static double PackageDetailsGetPrice(int id)

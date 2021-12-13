@@ -306,6 +306,8 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                                 "========");
             }
         }
+        
+        /* ======================================================================================================================================================= */
 
         public static double GetPriceForOrder(int OrderID)
         {
