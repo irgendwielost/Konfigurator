@@ -7,6 +7,32 @@ namespace Konfigurator.Logic.Models.Room
 {
      public class RoomDB
         {
+            /* Find  the "Raum_ID" with the Name */
+            public static int RoomIdToName(string Name)
+            {
+                /* Open the connection to the DataBase */
+                var db = new DataBase.DataBase();
+                db.Connection.Open();
+
+                try
+                {
+                    /* Select the ID by searching with the Name */
+                    var cmd = new OleDbCommand($"Select Raum_ID from Raum where Raum_Name = {Name}"
+                        , db.Connection);
+                    return Int32.Parse(cmd.ToString());
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "1: Der Raum konnte nicht gefunden werden\n" +
+                                    "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                    "========");
+                }
+                return 0;
+            }
+            
+            /* ======================================================================================================================================================= */
+            
             // Returns a Dataset filled with all Rooms
             public static DataSet GetDataSetRoom()
             {

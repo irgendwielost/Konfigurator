@@ -272,5 +272,34 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 return true;
             }
         }
+
+        // Get the Price of all Articles within this Package
+        public static double PackageDetailsGetPrice(int id)
+        {
+            // open DataBase Connection
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            double totalPrice = 0;
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Artikel_Preis from PaketDetails where Paket_ID = {id}"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read() && reader.HasRows)
+                {
+                    totalPrice += reader.GetDouble(0);
+                }
+                return totalPrice;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "========");
+            }
+
+            return 0;
+        }
     }
 }

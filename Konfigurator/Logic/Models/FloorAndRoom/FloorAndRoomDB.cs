@@ -3,90 +3,12 @@ using System.Data;
 using System.Data.OleDb;
 using System.Windows;
 
+// Needs DeleteMethod 
+
 namespace Konfigurator.Logic.Models.FloorAndRoom
 {
     public class FloorAndRoomDB
     {
-        /// <summary>
-        /// Finds ID with the name
-        /// </summary>
-        /// <param name="Name"></param>
-        /// <returns>int ID</returns>
-        
-        /* Find  the FloorID with the Name*/
-        public static int FloorIdToName(string Name)
-        {
-            /* Open the connection to the DataBase */
-            var db = new DataBase.DataBase();
-            db.Connection.Open();
-
-            try
-            {
-                /* Select the ID by searching with the Name */
-                var cmd = new OleDbCommand($"Select Etage_ID from Etage where Etage_Name = {Name}"
-                    , db.Connection);
-                return Int32.Parse(cmd.ToString());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Die Etage konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "========");
-            }
-            return 0;
-        }
-        
-        /* Find the RoomID with the Name*/
-        public static int RoomIdToName(string Name)
-        {
-            /* Open the connection to the DataBase */
-            var db = new DataBase.DataBase();
-            db.Connection.Open();
-
-            try
-            {
-                /* Select the ID by searching with the Name */
-                var cmd = new OleDbCommand($"Select Raum_ID from Raum where Raum_Name = {Name}"
-                    , db.Connection);
-                return Int32.Parse(cmd.ToString());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Der Raum konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "========");
-            }
-            return 0;
-        }
-        
-        /* Find  the PackageID with the Name*/
-        public static int PackageIdToName(string Name)
-        {
-            /* Open the connection to the DataBase */
-            var db = new DataBase.DataBase();
-            db.Connection.Open();
-
-            try
-            {
-                /* Select the ID by searching with the Name */
-                var cmd = new OleDbCommand($"Select Paket_ID from Paket where Paket_Name = {Name}"
-                    , db.Connection);
-                return Int32.Parse(cmd.ToString());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Der Paket konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "========");
-            }
-            return 0;
-        }
-        
-        /* ======================================================================================================================================================= */
-        
         /* DataSet to fill DataGrids */
         public static DataSet GetDataSetFloorAndRoomDetails()
         {
@@ -146,7 +68,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
         /* ======================================================================================================================================================= */
         
         /// <summary>
-        /// Returns a full set of FloorAndRoom by looking for the different ID's
+        /// Returns a FloorAndRoom by looking for the different ID's
         /// </summary>
         /// <param name="ID('s)"></param>
         /// <returns>FloorAndRoom</returns>
@@ -269,13 +191,13 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
         
         /* ======================================================================================================================================================= */
         
-        // Creates "Etage" with all attributes
-        public static void CreateFloor(FloorAndRoom floorAndRoom)
+        // Creates "EtageUndRaum" with all attributes
+        public static void CreateFloorAndRoom(FloorAndRoom floorAndRoom)
         {
             // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(
@@ -287,7 +209,31 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             catch (Exception e)
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "1: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "2: Einer der Id's existiert nicht\n" +
+                                "========");
+            }
+
+            double totalPrice = 0;
+
+            totalPrice = AddAndGetPriceForOrder(floorAndRoom.Package_ID, floorAndRoom.Order_ID);
+            
+            // Insert the new Price into "Auftrag"
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"insert into Auftrag (Auftrag_PreisGesamt) values ({totalPrice} where Auftrag_ID = {floorAndRoom.Order_ID})"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    totalPrice += reader.GetDouble(0);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
                                 "========");
             }
         }
@@ -316,6 +262,39 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
             }
+        }
+
+        public static double AddAndGetPriceForOrder(int PackageId, int OrderID)
+        {
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            double totalPrice = 0;
+            
+            // get the price of all articles in this Package
+            totalPrice += PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(PackageId);
+
+            // Get the Price so far calculated for the "Auftrag"
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Auftrag_PreisGesamt from Auftrag where Auftrag_ID {OrderID}"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                if (reader.Read() && reader.HasRows /*|| reader.Read() != null*/)
+                {
+                    totalPrice += reader.GetDouble(0);
+                }
+
+                return totalPrice;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
+                                "========");
+            }
+
+            return 0;
         }
     }
 }

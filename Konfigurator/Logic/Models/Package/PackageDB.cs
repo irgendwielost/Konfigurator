@@ -7,6 +7,32 @@ namespace Konfigurator.Logic.Models.Package
 {
     public class PackageDB
     {
+        /* Find  the "Paket_ID" with the Name */
+        public static int PackageIdToName(string Name)
+        {
+            /* Open the connection to the DataBase */
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+
+            try
+            {
+                /* Select the ID by searching with the Name */
+                var cmd = new OleDbCommand($"Select Paket_ID from Paket where Paket_Name = {Name}"
+                    , db.Connection);
+                return Int32.Parse(cmd.ToString());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "1: Der Paket konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
+            }
+
+            return 0;
+        }
+
+        /* ======================================================================================================================================================= */
         public static DataSet GetDataSetPackage()
         {
             using (var db = new DataBase.DataBase())
@@ -31,9 +57,9 @@ namespace Konfigurator.Logic.Models.Package
 
             return null;
         }
-        
+
         /* ======================================================================================================================================================= */
-        
+
         public static Package GivePackageBack(int id)
         {
             var db = new DataBase.DataBase();
@@ -58,16 +84,17 @@ namespace Konfigurator.Logic.Models.Package
                                 "========");
                 return null;
             }
+
             return null;
         }
-        
+
         /* ======================================================================================================================================================= */
-        
+
         public static void CreatePackage(Package package)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(
@@ -82,19 +109,18 @@ namespace Konfigurator.Logic.Models.Package
                                 "========");
             }
         }
-        
+
         /* ======================================================================================================================================================= */
-        
+
         /// <summary>
         /// Marks a "Paket" as available or not
         /// </summary>
         /// <param name="ID"></param>
-        
         public static void KillPackage(int ID)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(
@@ -109,12 +135,12 @@ namespace Konfigurator.Logic.Models.Package
                                 "========");
             }
         }
-        
+
         public static void RevivePackage(int ID)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(
@@ -129,14 +155,14 @@ namespace Konfigurator.Logic.Models.Package
                                 "========");
             }
         }
-        
+
         /* ======================================================================================================================================================= */
 
         public static void UpdatePackage(Package package)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(

@@ -7,6 +7,32 @@ namespace Konfigurator.Logic.Models.Floor
 {
     public class FloorDB
     {
+        /* Find  the "Etage_ID" in "Etage" with the Name */
+        public static int FloorIdToName(string Name)
+        {
+            /* Open the connection to the DataBase */
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+
+            try
+            {
+                /* Select the ID by searching with the Name */
+                var cmd = new OleDbCommand($"Select Etage_ID from Etage where Etage_Name = {Name}"
+                    , db.Connection);
+                return Int32.Parse(cmd.ToString());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "1: Die Etage konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
+            }
+            return 0;
+        }
+        
+        /* ======================================================================================================================================================= */
+        
         // Return the Dataset with "Etage" inside
         public static DataSet GetDataSetFloor()
         {
