@@ -23,12 +23,16 @@ namespace Konfigurator.Logic.Models.Package
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die Paket-Tabelle Konnte nicht gefunden werden");
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Die Paket-Tabelle Konnte nicht gefunden werden\n" +
+                                    "================");
                 }
             }
 
             return null;
         }
+        
+        /* ======================================================================================================================================================= */
         
         public static Package GivePackageBack(int id)
         {
@@ -48,13 +52,16 @@ namespace Konfigurator.Logic.Models.Package
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Das Paket konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "================");
                 return null;
             }
             return null;
         }
+        
+        /* ======================================================================================================================================================= */
         
         public static void CreatePackage(Package package)
         {
@@ -70,11 +77,20 @@ namespace Konfigurator.Logic.Models.Package
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
         
-        public static void DeletePackage(int ID)
+        /* ======================================================================================================================================================= */
+        
+        /// <summary>
+        /// Marks a "Paket" as available or not
+        /// </summary>
+        /// <param name="ID"></param>
+        
+        public static void KillPackage(int ID)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
@@ -82,15 +98,39 @@ namespace Konfigurator.Logic.Models.Package
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Delete * from Paket where Paket_ID={ID}"
+                    $"Update Paket set Paket_Verfuegbar = {false} where Paket_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                MessageBox.Show("Der Paket wurde nicht gefunden");
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Paket wurde nicht gefunden\n" +
+                                "================");
             }
         }
+        
+        public static void RevivePackage(int ID)
+        {
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Update Paket set Paket_Verfuegbar = {true} where Paket_ID={ID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Paket wurde nicht gefunden\n" +
+                                "================");
+            }
+        }
+        
+        /* ======================================================================================================================================================= */
 
         public static void UpdatePackage(Package package)
         {
@@ -107,10 +147,11 @@ namespace Konfigurator.Logic.Models.Package
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Das Paket konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben");
+                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
     }

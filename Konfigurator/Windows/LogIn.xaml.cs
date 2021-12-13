@@ -17,24 +17,24 @@ namespace Konfigurator.Windows
         {
             InitializeComponent();
         }
-        
+
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-        
-        
+
+
         //Log In
         private string pw;
         private string name;
-        
+
         private void LogIn_Onclick(object sender, RoutedEventArgs e)
         {
             pw = Password.Text;
             name = Mitarbeiter.Text;
 
             var db = new DataBase();
-           
+
             db.Connection.Open();
             try
             {
@@ -42,6 +42,9 @@ namespace Konfigurator.Windows
                     $"Select Mitarbeiter_Passwort from Mitarbeiter where Mitarbeiter_ID = {name}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
+                if (!reader.HasRows)
+                    MessageBox.Show("Id oder Passwort Falsch");
+
                 if (reader.Read())
                 {
                     if (pw == reader.GetString(0))
@@ -50,22 +53,17 @@ namespace Konfigurator.Windows
                         MainWindow main = new MainWindow();
                         main.Show();
                     }
+                    else
+                        MessageBox.Show("Id oder Passwort ist falsch");
                 }
             }
             catch (Exception)
             {
                 // If the above failed show following Error Message: 
                 MessageBox.Show("Die ID oder das Passwort sind falsch");
-
             }
-            
+        }
 
-
-
-
-
-        }    
-        
         //Only numbers
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {

@@ -96,8 +96,13 @@ namespace Konfigurator.Logic.Models.Factor
         
         /* ======================================================================================================================================================= */
         
-        // (Needs to be Changed!) Has to mark a "Faktor" as not to use
-        public static void DeleteFactor(int ID)
+        /// <summary>
+        /// Marks a "Faktor" as used or not
+        /// </summary>
+        /// <param name="ID"></param>
+        
+        //  Marks a "Faktor" as not to use
+        public static void KillFactor(int ID)
         {
             // Opening a Connection to the Database
             var db = new DataBase.DataBase();
@@ -107,6 +112,29 @@ namespace Konfigurator.Logic.Models.Factor
             {
                 var cmd = new OleDbCommand(
                     $"Update Faktor set Faktor_Benutzung={false} where Faktor_ID={ID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Faktor wurde nicht gefunden\n" +
+                                "================");
+            }
+        }
+        
+        // Marks a "Faktor" as used 
+        public static void ReviveFactor(int ID)
+        {
+            // Opening a Connection to the Database
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Update Faktor set Faktor_Benutzung={true} where Faktor_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

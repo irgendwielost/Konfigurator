@@ -6,8 +6,14 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
 {
     public class EmployeeToOrderDB
     {
+        /// <summary>
+        /// Gives back EmployeeToOrder by ID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        
         /* Gives back a specific EmployeeToOrder with the Aurftrag_ID */
-        public static EmployeeToOrder GiveEmployeeToOrderDetailsBackByOrder(int ID)
+        public static EmployeeToOrder GiveEmployeeToOrderDetailsByOrder(int ID)
         {
             /* Database Connection being opened */
             var db = new DataBase.DataBase();
@@ -35,8 +41,6 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             }
             return null;
         }
-        
-        /* ======================================================================================================================================================= */
 
         
         /* Gives back a specific EmployeeToOrder with the Mitarbeiter_ID */
@@ -77,7 +81,37 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             /* Database Connection being opened */
             var db = new DataBase.DataBase();
             db.Connection.Open();
+
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Mitarbeiter_ID from Mitarbeiter where Mitarbeiter_ID = {employeeToOrder.EmployeeID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Mitarbeiter wurde nicht gefunden\n" +
+                                "================");
+                return;
+            }
             
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Auftrag_ID from Auftrag where Auftrag_ID = {employeeToOrder.OrderID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Auftrag wurde nicht gefunden\n" +
+                                "================");
+                return;
+            }
+
             try
             {
                 /* SQL-Command to insert everything into AuftragZuMitarbeiter */

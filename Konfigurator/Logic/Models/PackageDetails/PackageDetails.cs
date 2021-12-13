@@ -2,19 +2,19 @@
 {
     public class PackageDetails
     {
-        public PackageDetails(int packageId, int articleId, int artMenge, double preis, bool recent)
+        public PackageDetails(int packageId, int articleId, int artMenge, double price, bool recent)
         {
             Package_ID = packageId;
             Article_ID = articleId;
             ArtMenge = artMenge;
-            Preis = preis;
+            Price = price;
             Recent = recent;
         }
 
         public int Package_ID { get; set; }
         public int Article_ID { get; set; }
         public int ArtMenge { get; set; }
-        public double Preis { get; set; }
+        public double Price { get; set; }
         public bool Recent { get; set; }
     }
 }

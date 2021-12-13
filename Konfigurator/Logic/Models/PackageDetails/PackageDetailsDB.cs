@@ -165,12 +165,32 @@ namespace Konfigurator.Logic.Models.PackageDetails
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
+            double articlePrice = 0;
+
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Artikel_Preis from Artikel where Artikel_ID = {packageDetails.Article_ID}"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    articlePrice = reader.GetDouble(0);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
+            }
+
             try
             {
                 /* SQL-Command to insert everything into PackageDetails */
                 var cmd = new OleDbCommand(
                     $"insert into PaketDetails (Paket_ID,Artikel_ID, Artikel_Menge, Artikel_Preis, Preis_Aktuell)" +
-                    $" Values({packageDetails.Package_ID}, {packageDetails.Article_ID}, {packageDetails.ArtMenge}, {packageDetails.Preis}, {packageDetails.Recent})"
+                    $" Values({packageDetails.Package_ID}, {packageDetails.Article_ID}, {packageDetails.ArtMenge}, {articlePrice}, {packageDetails.Recent})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -236,11 +256,21 @@ namespace Konfigurator.Logic.Models.PackageDetails
                                 "================");
             }
 
-            if (detailsArticle.Preis == article.Price)
+            // check if the price is the same or not
+            if (detailsArticle.Price != article.Price)
             {
+                var cmd = new OleDbCommand(
+                    $"Update PaketDetails set Preis_Aktuell = {false} where Paket_ID = {packageDetails.Package_ID} and where Artikel_ID = {packageDetails.Article_ID}"
+                    , db.Connection);
+                return false;
+            }
+            else
+            {
+                var cmd = new OleDbCommand(
+                    $"Update PaketDetails set Preis_Aktuell = {true} where Paket_ID = {packageDetails.Package_ID} and where Artikel_ID = {packageDetails.Article_ID}"
+                    , db.Connection);
                 return true;
             }
-            return false;
         }
     }
 }

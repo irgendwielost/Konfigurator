@@ -9,32 +9,33 @@ namespace Konfigurator.Logic.Models.Order
     {
         public static DataSet GetDataSetOrder()
         {
-            using (var db = new DataBase.DataBase())
-            {
-                db.Connection.Open();
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
 
-                try
-                {
-                    var cmd = new OleDbDataAdapter("select * from Auftrag"
-                        , db.Connection);
-                    DataSet dataSet = new DataSet();
-                    cmd.Fill(dataSet, "Auftrag");
-                    return dataSet;
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Die Auftrag-Tabelle Konnte nicht gefunden werden");
-                }
+            try
+            {
+                var cmd = new OleDbDataAdapter("select * from Auftrag"
+                    , db.Connection);
+                DataSet dataSet = new DataSet();
+                cmd.Fill(dataSet, "Auftrag");
+                return dataSet;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+ 
+                                "Die Auftrag-Tabelle Konnte nicht gefunden werden\n" +
+                                "================");
             }
 
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+
         public static Order GiveOrderBack(int id)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
-
             try
             {
                 var cmd = new OleDbCommand(
@@ -50,33 +51,36 @@ namespace Konfigurator.Logic.Models.Order
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
-                                "1: Der Mitarbeiter konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
-                return null;
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "1: Der Auftrag konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "================");
             }
+
             return null;
         }
         
+        /* ======================================================================================================================================================= */
+
         public static void CreateOrder(Order order)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
             
-            
-            
-            try
+            /*try
             {
                 var cmd = new OleDbCommand(
-                    $"select  count(Auftrag_ID) from EtageUndRaum where Auftrag_ID = {order.Id}"
+                    $"select count(Auftrag_ID) from EtageUndRaum where Auftrag_ID = {order.Id}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
-            }
-            
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
+            }*/
+
             try
             {
                 var cmd = new OleDbCommand(
@@ -89,19 +93,23 @@ namespace Konfigurator.Logic.Models.Order
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
         
-        public static void UpdateEmployee(Order order)
+        /* ======================================================================================================================================================= */
+
+        public static void UpdateOrder(Order order)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Mitarbeiter set Auftrag_Datum = {order.Datum}, Auftrag_NeuBesta = {order.NeuOrBestand}," +
+                    $"Update Auftrag set Auftrag_Datum = {order.Datum}, Auftrag_NeuBesta = {order.NeuOrBestand}," +
                     $" Auftrag_Grosse = {order.Size}, Kunde_ID= {order.CustomerId}, Gebaude_ID= {order.HousingId}, Phase_ID = {order.PhaseId}," +
                     $" Faktor_Mult = {order.FactorMult}, Auftrag_PreisGesamt = {order.OverallPrice} where Order_ID = {order.Id}"
                     , db.Connection);
@@ -109,10 +117,11 @@ namespace Konfigurator.Logic.Models.Order
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
-                                "1: Der Mitarbeiter konnte nicht gefunden werden\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "1: Der Auftrag konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben");
+                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "================");
             }
         }
     }

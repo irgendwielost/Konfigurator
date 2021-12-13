@@ -10,13 +10,23 @@ namespace Konfigurator.Logic.DataBase
 
         public DataBase()
         {
-            Connection = new OleDbConnection(
-                new OleDbConnectionStringBuilder
-                {
-                    Provider = "Microsoft.ACE.OLEDB.12.0",
-                    DataSource = @"DatenBank.accdb"
-                }.ConnectionString
-            );
+            try
+            {
+                Connection = new OleDbConnection(
+                    new OleDbConnectionStringBuilder
+                    {
+                        Provider = "Microsoft.ACE.OLEDB.12.0",
+                        DataSource = @"DatenBank.accdb"
+                    }.ConnectionString
+                );
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Die Datenbank konnte nicht gefunden werden\n" +
+                                "================");
+            }
+            
         }
 
         public void Dispose()
