@@ -124,5 +124,34 @@ namespace Konfigurator.Logic.Models.Order
                                 "========");
             }
         }
+        
+        public static double GetPriceForOrder(int OrderID)
+        {
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            double totalPrice = 0;
+            // Get the Price so far calculated for the "Auftrag"
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Auftrag_PreisGesamt from Auftrag where Auftrag_ID {OrderID}"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                if (reader.Read() && reader.HasRows /*|| reader.Read() != null*/)
+                {
+                    totalPrice += reader.GetDouble(0);
+                }
+
+                return totalPrice;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
+                                "========");
+            }
+
+            return 0;
+        }
     }
 }

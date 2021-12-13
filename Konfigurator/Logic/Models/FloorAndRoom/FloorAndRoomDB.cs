@@ -219,7 +219,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
 
             double totalPrice = 0;
 
-            totalPrice = currentPackagePrice + GetPriceForOrder(floorAndRoom.Order_ID);
+            totalPrice = currentPackagePrice + Order.OrderDB.GetPriceForOrder(floorAndRoom.Order_ID);
 
             // Insert the new Price into "Auftrag"
             try
@@ -270,9 +270,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             
             // deduct the old Price and add the Price of the new Package
 
-            double oldPrice = 0;
+         
             try
             {
+                double oldPrice = 0;
                 var cmd1 = new OleDbCommand(
                     $"Select Paket_Preis from EtageUndRaum" +
                     $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Etage = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
@@ -283,10 +284,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                     oldPrice = reader.GetDouble(0);
                 }
 
-                double orderPrice = GetPriceForOrder(floorAndRoom.Order_ID);
+                double orderPrice = Order.OrderDB.GetPriceForOrder(floorAndRoom.Order_ID);
                 orderPrice -= oldPrice;
-                double PackagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
-                orderPrice += PackagePrice;
+                double packagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
+                orderPrice += packagePrice;
 
                 var cmd2 = new OleDbCommand(
                     $"Update Auftrag set Auftrag_PreisGesamt = {orderPrice} where Auftrag_ID = {floorAndRoom.Order_ID}"
@@ -294,7 +295,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                 cmd2.ExecuteNonQuery();
 
                 var cmdUpdateFloortAndRoomPrice = new OleDbCommand(
-                    $"Update EtageUndRaum set Paket_Preis = {PackagePrice}" +
+                    $"Update EtageUndRaum set Paket_Preis = {packagePrice}" +
                     $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Etage = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
                     , db.Connection);
                 cmdUpdateFloortAndRoomPrice.ExecuteNonQuery();
@@ -305,37 +306,6 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                                 "Ein Unbekannter Fehler ist Aufgetreten\n" +
                                 "========");
             }
-        }
-        
-        /* ======================================================================================================================================================= */
-
-        public static double GetPriceForOrder(int OrderID)
-        {
-            var db = new DataBase.DataBase();
-            db.Connection.Open();
-            double totalPrice = 0;
-            // Get the Price so far calculated for the "Auftrag"
-            try
-            {
-                var cmd = new OleDbCommand(
-                    $"Select Auftrag_PreisGesamt from Auftrag where Auftrag_ID {OrderID}"
-                    , db.Connection);
-                var reader = cmd.ExecuteReader();
-                if (reader.Read() && reader.HasRows /*|| reader.Read() != null*/)
-                {
-                    totalPrice += reader.GetDouble(0);
-                }
-
-                return totalPrice;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
-                                "========");
-            }
-
-            return 0;
         }
     }
 }
