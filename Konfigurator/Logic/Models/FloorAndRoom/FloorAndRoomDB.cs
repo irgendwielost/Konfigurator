@@ -29,9 +29,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Die Etage konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
             }
             return 0;
         }
@@ -52,9 +53,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Raum konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
             }
             return 0;
         }
@@ -75,9 +77,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Paket konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
             }
             return 0;
         }
@@ -104,7 +107,9 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die EtageUndRaum-Tabelle konnte nicht gefunden werden");
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Die EtageUndRaum-Tabelle konnte nicht gefunden werden\n" +
+                                    "========");
                 }
             }
             return null;
@@ -130,7 +135,9 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die EtageUndRaum-Tabelle konnte nicht gefunden werden");
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Die EtageUndRaum-Tabelle konnte nicht gefunden werden\n" +
+                                    "========");
                 }
             }
             return null;
@@ -165,9 +172,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: EtageUndRaum konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
             }
             return null;
         }
@@ -193,9 +201,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Auftrag und/oder Etage konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
             }
             return null;
         }
@@ -221,9 +230,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Auftrag und/oder Etage konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
             }
             return null;
         }
@@ -249,9 +259,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Auftrag und/oder Etage konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden \n" +
+                                "========");
             }
             return null;
         }
@@ -277,7 +288,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -303,7 +314,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                                 "1: Die Phase konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
     }

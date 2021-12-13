@@ -29,7 +29,7 @@ namespace Konfigurator.Logic.Models.Factor
                     // If the above failed show following Error Message: 
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Die Faktor-Tabelle Konnte nicht gefunden werden\n" +
-                                    "================");
+                                    "========");
                 }
             }
             return null;
@@ -61,7 +61,7 @@ namespace Konfigurator.Logic.Models.Factor
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Faktor konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
             return null;
@@ -90,7 +90,7 @@ namespace Konfigurator.Logic.Models.Factor
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -120,7 +120,7 @@ namespace Konfigurator.Logic.Models.Factor
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Faktor wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -143,7 +143,7 @@ namespace Konfigurator.Logic.Models.Factor
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Faktor wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -171,7 +171,7 @@ namespace Konfigurator.Logic.Models.Factor
                                 "1: Der Faktor konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
     }

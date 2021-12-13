@@ -32,7 +32,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 {
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
                                     "Die PaketDetails-Tabelle Konnte nicht gefunden werden\n" +
-                                    "================");
+                                    "========");
                 }
             }
 
@@ -60,7 +60,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
                                 "1: Der Paket konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
             return 0;
         }
@@ -84,7 +84,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
                                 "1: Der Artikel konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
 
             return 0;
@@ -117,7 +117,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
                                 "1: PaketDetails konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
 
@@ -149,7 +149,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
                                 "1: PaketDetails konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
 
@@ -182,7 +182,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
 
             try
@@ -198,7 +198,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
 
@@ -233,7 +233,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Artikel konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
 
             try
@@ -253,7 +253,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Artikel konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
 
             // check if the price is the same or not

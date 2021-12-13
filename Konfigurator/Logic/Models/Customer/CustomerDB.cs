@@ -29,7 +29,7 @@ namespace Konfigurator.Logic.Models.Customer
                     // If the above failed show following Error Message: 
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Die Kunde-Tabelle Konnte nicht gefunden werden\n" +
-                                    "================");
+                                    "========");
                 }
             }
             return null;
@@ -61,7 +61,7 @@ namespace Konfigurator.Logic.Models.Customer
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Kunde konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
 
@@ -99,7 +99,7 @@ namespace Konfigurator.Logic.Models.Customer
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -129,7 +129,7 @@ namespace Konfigurator.Logic.Models.Customer
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Kunde wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -152,7 +152,7 @@ namespace Konfigurator.Logic.Models.Customer
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Kunde wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -180,7 +180,7 @@ namespace Konfigurator.Logic.Models.Customer
                                 "1: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "2: Der Kunde konnte nicht gefunden werden\n" +
                                 "3: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
         }
     }

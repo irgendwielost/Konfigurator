@@ -24,7 +24,7 @@ namespace Konfigurator.Logic.Models.Order
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+ 
                                 "Die Auftrag-Tabelle Konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
 
             return null;
@@ -54,7 +54,7 @@ namespace Konfigurator.Logic.Models.Order
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Auftrag konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
 
             return null;
@@ -78,7 +78,7 @@ namespace Konfigurator.Logic.Models.Order
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }*/
 
             try
@@ -95,7 +95,7 @@ namespace Konfigurator.Logic.Models.Order
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -121,7 +121,7 @@ namespace Konfigurator.Logic.Models.Order
                                 "1: Der Auftrag konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
     }

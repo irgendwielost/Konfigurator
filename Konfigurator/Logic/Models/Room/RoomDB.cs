@@ -24,7 +24,9 @@ namespace Konfigurator.Logic.Models.Room
                     }
                     catch (Exception e)
                     {
-                        MessageBox.Show("Die Raum-Tabelle Konnte nicht gefunden werden");
+                        MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                        "Die Raum-Tabelle Konnte nicht gefunden werden\n" +
+                                        "========");
                     }
                 }
     
@@ -52,9 +54,10 @@ namespace Konfigurator.Logic.Models.Room
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "1: Der Raum konnte nicht gefunden werden\n" +
-                                    "2: Die Tabelle konnte nicht gefunden werden");
+                                    "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                    "========");
                     return null;
                 }
                 return null;
@@ -77,7 +80,9 @@ namespace Konfigurator.Logic.Models.Room
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Nicht alle Daten wurden richtig eingegeben\n" +
+                                    "========");
                 }
             }
             
@@ -98,7 +103,8 @@ namespace Konfigurator.Logic.Models.Room
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die Raum wurde nicht gefunden");
+                    MessageBox.Show("Die Raum wurde nicht gefunden\n" +
+                                    "========");
                 }
             }*/
             
@@ -120,10 +126,11 @@ namespace Konfigurator.Logic.Models.Room
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "1: Der Raum konnte nicht gefunden werden\n" +
                                     "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                    "3: Nicht alle Daten wurden richtig eingegeben");
+                                    "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                    "========");
                 }
             }
         }

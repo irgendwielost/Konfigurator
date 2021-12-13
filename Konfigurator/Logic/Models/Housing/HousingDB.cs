@@ -29,7 +29,9 @@ namespace Konfigurator.Logic.Models.Housing
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Die Gebaude-Tabelle Konnte nicht gefunden werden");
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Die Gebaude-Tabelle Konnte nicht gefunden werden\n" +
+                                    "========");
                 }
             }
 
@@ -64,9 +66,10 @@ namespace Konfigurator.Logic.Models.Housing
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Das Gebaude konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
             }
             return null;
         }
@@ -93,9 +96,10 @@ namespace Konfigurator.Logic.Models.Housing
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Das Gebaude konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden");
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
                 return null;
             }
             return null;
@@ -119,7 +123,9 @@ namespace Konfigurator.Logic.Models.Housing
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nicht alle Daten wurden richtig eingegeben");
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "========");
             }
         }
         
@@ -141,7 +147,9 @@ namespace Konfigurator.Logic.Models.Housing
             }
             catch (Exception e)
             {
-                MessageBox.Show("Das Gebaude wurde nicht gefunden");
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Das Gebaude wurde nicht gefunden\n" +
+                                "========");
             }
         }
         
@@ -164,10 +172,11 @@ namespace Konfigurator.Logic.Models.Housing
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ein Fehler ist Aufgetreten:\n" +
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Das Gebaude konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben");
+                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "========");
             }
         }
     }

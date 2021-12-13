@@ -43,7 +43,9 @@ namespace Konfigurator.Windows
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
                 if (!reader.HasRows)
-                    MessageBox.Show("Id oder Passwort Falsch");
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Id oder Passwort Falsch\n" +
+                                    "========");
 
                 if (reader.Read())
                 {
@@ -54,13 +56,17 @@ namespace Konfigurator.Windows
                         main.Show();
                     }
                     else
-                        MessageBox.Show("Id oder Passwort ist falsch");
+                        MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                        "Id oder Passwort ist falsch\n" +
+                                        "========");
                 }
             }
             catch (Exception)
             {
                 // If the above failed show following Error Message: 
-                MessageBox.Show("Die ID oder das Passwort sind falsch");
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
+                                "========");
             }
         }
 

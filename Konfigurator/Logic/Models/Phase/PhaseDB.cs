@@ -27,7 +27,7 @@ namespace Konfigurator.Logic.Models.Phase
                 {
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Die Phasen-Tabelle Konnte nicht gefunden werden\n" +
-                                    "================");
+                                    "========");
                 }
             }
 
@@ -59,7 +59,7 @@ namespace Konfigurator.Logic.Models.Phase
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Die Phase konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
             return null;
@@ -85,7 +85,7 @@ namespace Konfigurator.Logic.Models.Phase
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -108,7 +108,7 @@ namespace Konfigurator.Logic.Models.Phase
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Die Phase wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -133,7 +133,7 @@ namespace Konfigurator.Logic.Models.Phase
                                 "1: Die Phase konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
     }

@@ -36,7 +36,7 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Auftrag konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
             return null;
@@ -67,7 +67,7 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Mitarbeiter konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
             return null;
@@ -93,7 +93,7 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Mitarbeiter wurde nicht gefunden\n" +
-                                "================");
+                                "========");
                 return;
             }
             
@@ -108,7 +108,7 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Auftrag wurde nicht gefunden\n" +
-                                "================");
+                                "========");
                 return;
             }
 
@@ -124,7 +124,7 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -149,7 +149,7 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Die Auftrag ID wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -172,7 +172,7 @@ namespace Konfigurator.Logic.Models.EmployeeToOrder
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Die Mitarbeiter ID wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
     }

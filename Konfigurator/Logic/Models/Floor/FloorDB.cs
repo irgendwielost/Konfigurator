@@ -27,7 +27,7 @@ namespace Konfigurator.Logic.Models.Floor
                 {
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Die Etage-Tabelle Konnte nicht gefunden werden\n" +
-                                    "================");
+                                    "========");
                 }
             }
 
@@ -59,7 +59,7 @@ namespace Konfigurator.Logic.Models.Floor
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Die Etage konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
             return null;
@@ -86,7 +86,7 @@ namespace Konfigurator.Logic.Models.Floor
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
 
@@ -112,7 +112,7 @@ namespace Konfigurator.Logic.Models.Floor
                                 "1: Die Etage konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
     }

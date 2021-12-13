@@ -28,7 +28,7 @@ namespace Konfigurator.Logic.Models.Employee
                     // If the above failed show following Error Message: 
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Die Mitarbeiter-Tabelle Konnte nicht gefunden werden\n" +
-                                    "================");
+                                    "========");
                 }
             }
             return null;
@@ -63,7 +63,7 @@ namespace Konfigurator.Logic.Models.Employee
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Mitarbeiter konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
             return null;
@@ -101,7 +101,7 @@ namespace Konfigurator.Logic.Models.Employee
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -127,7 +127,7 @@ namespace Konfigurator.Logic.Models.Employee
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Mitarbeiter wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -155,7 +155,7 @@ namespace Konfigurator.Logic.Models.Employee
                                 "1: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "2: Der Mitarbeiter konnte nicht gefunden werden\n" +
                                 "3: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
         }
     }

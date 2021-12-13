@@ -28,7 +28,7 @@ namespace Konfigurator.Logic.Models.Article
                     // If the above failed show following Error Message: 
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Die Artikel-Tabelle Konnte nicht gefunden werden\n" +
-                                    "================");
+                                    "========");
                 }
             }
             return null;
@@ -56,7 +56,7 @@ namespace Konfigurator.Logic.Models.Article
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
                                 "1: Das Paket konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
             return 0;
         }
@@ -87,7 +87,7 @@ namespace Konfigurator.Logic.Models.Article
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "1: Der Artikel konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
                 return null;
             }
             return null;
@@ -115,7 +115,7 @@ namespace Konfigurator.Logic.Models.Article
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -140,7 +140,7 @@ namespace Konfigurator.Logic.Models.Article
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Artikel wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -163,7 +163,7 @@ namespace Konfigurator.Logic.Models.Article
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Artikel wurde nicht gefunden\n" +
-                                "================");
+                                "========");
             }
         }
         
@@ -191,7 +191,7 @@ namespace Konfigurator.Logic.Models.Article
                                 "1: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "2: Der Artikel konnte nicht gefunden werden\n" +
                                 "3: Die Tabelle konnte nicht gefunden werden\n" +
-                                "================");
+                                "========");
             }
         }
     }
