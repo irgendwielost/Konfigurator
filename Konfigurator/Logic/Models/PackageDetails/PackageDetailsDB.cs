@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows;
+using System.Windows.Documents;
+using Konfigurator.Logic.Models.Article;
 
 namespace Konfigurator.Logic.Models.PackageDetails
 {
@@ -164,29 +167,10 @@ namespace Konfigurator.Logic.Models.PackageDetails
             /* Database Connection being opened */
             var db = new DataBase.DataBase();
             db.Connection.Open();
-
-            double articlePrice = 0;
-
+            
             try
             {
-                var cmd = new OleDbCommand(
-                    $"Select Artikel_Preis from Artikel where Artikel_ID = {packageDetails.Article_ID}"
-                    , db.Connection);
-                var reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    articlePrice = reader.GetDouble(0);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
-                                "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "========");
-            }
-
-            try
-            {
+                double articlePrice = ArticleDB.PriceOfArticle(packageDetails.Article_ID);
                 /* SQL-Command to insert everything into PackageDetails */
                 var cmd = new OleDbCommand(
                     $"insert into PaketDetails (Paket_ID,Artikel_ID, Artikel_Menge, Artikel_Preis, Preis_Aktuell)" +
@@ -204,72 +188,26 @@ namespace Konfigurator.Logic.Models.PackageDetails
 
         /* ======================================================================================================================================================= */
 
-        /* Add function to find out if the Price is still the same */
-
-        public static bool ArticlePriceChecker(PackageDetails packageDetails)
+        public static void UpdatePackageDetails(PackageDetails packageDetails)
         {
-            /* Database Connection being opened */
             var db = new DataBase.DataBase();
             db.Connection.Open();
 
-            PackageDetails detailsArticle = null;
-            Article.Article article = null;
-
             try
             {
-                /* SQL-Command to select everything from this ArticleID */
-                var cmd = new OleDbCommand(
-                    $"Select * from PaketDetails where Artikel_ID = {packageDetails.Article_ID}"
-                    , db.Connection);
-                var reader = cmd.ExecuteReader();
-                if (reader.Read())
+                double articlePrice = ArticleDB.PriceOfArticle(packageDetails.Article_ID);
+                if (articlePrice != 0)
                 {
-                    detailsArticle = new PackageDetails(reader.GetInt32(0), packageDetails.Article_ID,
-                        reader.GetInt32(2), reader.GetDouble(3), reader.GetBoolean(4));
+                    var cmd = new OleDbCommand(
+                        $"Update PaketDetails set Artikel_ID = {packageDetails.Article_ID}, Artikel_Menge = {packageDetails.ArtMenge} where Paket_ID = {packageDetails.Package_ID}"
+                        , db.Connection);
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Artikel konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "========");
-            }
-
-            try
-            {
-                /* SQL-Command to select everything from this ArticleID */
-                var cmd = new OleDbCommand(
-                    $"Select * from Artikel where Artikel_ID = {packageDetails.Article_ID}"
-                    , db.Connection);
-                var reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    article = new Article.Article(packageDetails.Article_ID , reader.GetString(1), reader.GetDouble(2), reader.GetBoolean(3));
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Artikel konnte nicht gefunden werden\n" +
-                                "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "========");
-            }
-
-            // check if the price is the same or not
-            if (detailsArticle.Price != article.Price)
-            {
-                var cmd = new OleDbCommand(
-                    $"Update PaketDetails set Preis_Aktuell = {false} where Paket_ID = {packageDetails.Package_ID} and where Artikel_ID = {packageDetails.Article_ID}"
-                    , db.Connection);
-                return false;
-            }
-            else
-            {
-                var cmd = new OleDbCommand(
-                    $"Update PaketDetails set Preis_Aktuell = {true} where Paket_ID = {packageDetails.Package_ID} and where Artikel_ID = {packageDetails.Article_ID}"
-                    , db.Connection);
-                return true;
+                Console.WriteLine(e);
+                throw;
             }
         }
         
@@ -282,22 +220,39 @@ namespace Konfigurator.Logic.Models.PackageDetails
             var db = new DataBase.DataBase();
             db.Connection.Open();
             double totalPrice = 0;
+            List<int> articleIds = new List<int>();
+            // Select all "Artikel_ID" in "PaketDetails" and add them to articeIds
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Select Artikel_Preis from PaketDetails where Paket_ID = {id}"
+                    $"Select Artikel_ID from PaketDetails where Paket_ID = {id}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
-                while (reader.Read() && reader.HasRows)
+                if (reader.HasRows)
                 {
-                    totalPrice += reader.GetDouble(0);
+                    while (reader.Read())
+                    {
+                        articleIds.Add(reader.GetInt32(0));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Das Paket hat keine Artikel\n" +
+                                    "========");
+                }
+
+                // For each id in articleIds go to the id and get the Price Then add it so the totalPrice
+                foreach (int Ids in articleIds)
+                {
+                    totalPrice += ArticleDB.PriceOfArticle(Ids);
                 }
                 return totalPrice;
             }
             catch (Exception e)
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "Nicht alle Daten wurden richtig eingegeben\n" +
+                                "Ein unbekannter Fehler ist Aufgetreten\n" +
                                 "========");
             }
 

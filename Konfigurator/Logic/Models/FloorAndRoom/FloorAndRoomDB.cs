@@ -197,15 +197,14 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            double currentPackagePrice = 0;
-
+            
             try
             {
-                
-                currentPackagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
+                double packagePrice = 0;
+                packagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
                 var cmd = new OleDbCommand(
                     $"insert into EtageUndRaum (Auftrag_ID, Etage_ID, Raum_ID, Paket_ID, Raum_Grosse, Paket_Preis) values ({floorAndRoom.Order_ID}, {floorAndRoom.Floor_ID}, {floorAndRoom.Room_ID}, " +
-                    $"{floorAndRoom.Package_ID}, {floorAndRoom.Room_Size}, {currentPackagePrice})"
+                    $"{floorAndRoom.Package_ID}, {floorAndRoom.Room_Size}, {packagePrice})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -220,7 +219,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
         
         /* ======================================================================================================================================================= */
         
-        // Updates "EtageUndRaum" with "Paket_ID" and "Raum_Grosse" in the Database using Id for "Auftrag", "Etage" and "Raum" to find it
+        // Updates "EtageUndRaum" with "Paket_ID", "Raum_Grosse" and "Paket_Preis" in the Database using Id for "Auftrag", "Etage" and "Raum" to find it
         public static void UpdatePhase(FloorAndRoom floorAndRoom)
         {
             // Open Database
