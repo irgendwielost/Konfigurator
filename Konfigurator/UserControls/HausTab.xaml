@@ -38,13 +38,13 @@
                 </Grid.RowDefinitions>
 
                 <!-- Header -->
-                <TextBlock  Grid.Column="0" Text="Gebäude" Margin="345,0,328,258" Grid.ColumnSpan="3" FontSize="20" FontWeight="Bold" Height="31" Grid.RowSpan="2" TextAlignment="Center"/>
+                <TextBlock   Grid.Column="0" Text="Gebäude" Margin="345,0,328,258" Grid.ColumnSpan="3" FontSize="20" FontWeight="Bold" Height="31" Grid.RowSpan="2" TextAlignment="Center"/>
                 <!-- ID -->
                 <Label Grid.Column="2" Grid.Row="1" Margin="21.333,22.583,314.667,206.417">ID</Label>
-                <TextBox Grid.Column="2" Grid.Row="1" Margin="65.332,22.583,108.084,206.417"/>
+                <TextBox x:Name="HousingIdText" Grid.Column="2" Grid.Row="1" Margin="65.332,22.583,108.084,206.417"/>
                 <!-- Name -->
                 <Label Grid.Column="2" Grid.Row="1" Margin="21.333,80.45,314.667,152.55">Name</Label>
-                <TextBox Grid.Column="2" Grid.Row="1" Margin="65.333,78.117,108.084,152.55"></TextBox>
+                <TextBox x:Name="HousingNameText" Grid.Column="2" Grid.Row="1" Margin="65.333,78.117,108.084,152.55"></TextBox>
 
                 <!-- **Buttons** -->
                 <Button Style="{StaticResource UcButtonStyle}" Grid.Column="2" Grid.Row="1" Margin="111.916,188.332,108.083,36.5" Content="Hinzufügen" Width="160" HorizontalAlignment="Center"></Button>
@@ -63,7 +63,7 @@
                     </StackPanel>
                 </Button>
                 <!-- DataGrid -->
-                <DataGrid x:Name="DataGridHousing" Grid.Column="0" Grid.Row="1" Margin="10,46.083,55.375,36.5" ></DataGrid>
+                <DataGrid x:Name="DataGridHousing" SelectionChanged="DataGridHousing_OnSelectionChanged" Grid.Column="0" Grid.Row="1" Margin="10,46.083,55.375,36.5" ></DataGrid>
             </Grid>
         </Border>
 
@@ -100,10 +100,10 @@
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Etage" Margin="165.333,0,159.167,115.5" Grid.ColumnSpan="2" FontSize="22" FontWeight="Bold"></TextBlock>
                     <!-- ID -->
                     <Label Grid.Column="1" Grid.Row="0" Margin="0,64.083,149.75,55.584">ID</Label>
-                    <TextBox Grid.Column="1" Grid.Row="0" Margin="41.25,64.083,2.75,58.584"></TextBox>
+                    <TextBox x:Name="FloorIdText" Grid.Column="1" Grid.Row="0" Margin="41.25,64.083,2.75,58.584"></TextBox>
                     <!-- Name -->
                     <Label Grid.Column="1" Grid.Row="0" Margin="0,112.667,149.75,7.833">Name</Label>
-                    <TextBox Grid.Column="1" Grid.Row="0" Margin="41.25,112.667,2.75,10"></TextBox>
+                    <TextBox x:Name="FloorNameText" Grid.Column="1" Grid.Row="0" Margin="41.25,112.667,2.75,10"></TextBox>
 
                     <!-- Buttons -->
                     <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Hinzufügen" Margin="56.708,101,50.042,10" Width="84.25" HorizontalAlignment="Center" Height="35.5"></Button>
@@ -121,7 +121,7 @@
                         </StackPanel>
                     </Button>
                     <!-- DataGrid -->
-                    <DataGrid x:Name="DataGridFloor" Grid.Column="0" Grid.Row="0" Margin="10,84.583,46.5,0" Grid.RowSpan="2" Height="207.917"></DataGrid>
+                    <DataGrid x:Name="DataGridFloor" SelectionChanged="DataGridFloor_OnSelectionChanged" Grid.Column="0" Grid.Row="0" Margin="10,84.583,46.5,0" Grid.RowSpan="2" Height="207.917"></DataGrid>
                 </Grid>
             </Border>
 
@@ -145,10 +145,10 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="Raum" Margin="165.333,0,162.417,120" Grid.ColumnSpan="2" FontSize="22" FontWeight="Bold"></TextBlock>
                 <!-- ID -->
                 <Label Grid.Row="0" Margin="190.167,63.883,153.333,58.784" Grid.ColumnSpan="2" Grid.Column="0">ID</Label>
-                <TextBox Grid.Column="1" Grid.Row="0" Margin="39.667,64.417,4.333,58.25"></TextBox>
+                <TextBox x:Name="RoomIdText" Grid.Column="1" Grid.Row="0" Margin="39.667,64.417,4.333,58.25"></TextBox>
                 <!-- Name -->
                 <Label Grid.Row="0" Margin="190.167,117.917,153.333,4.75" Grid.ColumnSpan="2" Grid.Column="0">Name</Label>
-                <TextBox Grid.Column="1" Grid.Row="0" Margin="39.667,117.917,4.333,4.75"></TextBox>
+                <TextBox x:Name="RoomNameText" Grid.Column="1" Grid.Row="0" Margin="39.667,117.917,4.333,4.75"></TextBox>
 
                 <!-- Buttons -->
                 <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource UcButtonStyle}" Content="Hinzufügen" Margin="60.875,96.167,47.875,14.833" Width="84.25" HorizontalAlignment="Center"></Button>
@@ -167,7 +167,7 @@
                     </StackPanel>
                 </Button>
                 <!-- DataGrid -->
-                <DataGrid x:Name="DataGridRoom" Grid.Column="0" Grid.Row="0" Margin="10,80.583,46.5,2" Grid.RowSpan="2" Height="207.917"></DataGrid>
+                <DataGrid x:Name="DataGridRoom" SelectionChanged="DataGridRoom_OnSelectionChanged" Grid.Column="0" Grid.Row="0" Margin="10,80.583,46.5,2" Grid.RowSpan="2" Height="207.917"></DataGrid>
             </Grid>
 
 

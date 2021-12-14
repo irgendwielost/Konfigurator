@@ -29,7 +29,7 @@
                 <Image Source="../img/loupe.png" Height="22.5" Width="34.5"/>
             </StackPanel>
         </Button>
-        <DataGrid x:Name="DataGrid" Grid.Column="0" Grid.Row="0" Margin="30,40,30,17.167">
+        <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_OnSelectionChanged" Grid.Column="0" Grid.Row="0" Margin="30,40,30,17.167">
 
         </DataGrid>
 
@@ -48,14 +48,14 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,20.001,44" FontSize="20" Width="89.999">ID:</Label>
-                <TextBox Margin="4.5,10,0,36.444" FontSize="15" Grid.Column="1"/>
+                <TextBox x:Name="IdText" Margin="4.5,10,0,36.444" FontSize="15" Grid.Column="1"/>
 
                 <Label Grid.Column="0" HorizontalAlignment="Right" Margin="0,7.556,20.001,46.444" FontSize="20" Width="89.999" Content="Name:" Grid.Row="1"/>
-                <TextBox Margin="4.5,0,0,46.444" FontSize="15" Grid.Row="1" Grid.Column="1"/>
+                <TextBox x:Name="NameText" Margin="4.5,0,0,46.444" FontSize="15" Grid.Row="1" Grid.Column="1"/>
 
                 <Label Grid.Column="0" HorizontalAlignment="Right" Margin="0,5.556,5.5,48.444" FontSize="20" Width="104.5" Content="Angestellt:" Grid.Row="2"/>
                 <CheckBox Margin="71.833,14.999,112.333,60.667" FontSize="15" Grid.Row="2" Grid.Column="1"/>
-                <TextBox Margin="98.5,10,0,55.778" FontSize="15" Grid.Row="2" Grid.Column="1"/>
+                <TextBox x:Name="employedText" Margin="98.5,10,0,55.778" FontSize="15" Grid.Row="2" Grid.Column="1"/>
             </Grid>
         </Border>
 

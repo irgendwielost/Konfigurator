@@ -26,7 +26,7 @@
         <Button Grid.Row="0" Grid.Column="0" Margin="290, 10, 15, 257" Content="Go" FontSize="15" Background="DarkGray" />
 
         <!-- DataGridView which shows the 10 latest changed entries -->
-        <DataGrid x:Name="DataGrid" ItemsSource="dataView" AutoGenerateColumns="True" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
+        <DataGrid x:Name="DataGrid" ItemsSource="dataView" SelectionChanged="DataGrid_OnSelectionChanged" AutoGenerateColumns="True" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
 
 
         <!-- **Buttons to Manipulate the Database** -->
@@ -72,17 +72,17 @@
                 <!-- ID Label -->
                 <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">ID:</Label>
                 <!-- ID TextBox (cannot b edited) -->
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
+                <TextBox x:Name="IdText" Grid.Row="1" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
 
                 <!-- Name Label -->
                 <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Name:</Label>
                 <!-- Name TextBox -->
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
+                <TextBox x:Name="NameText" Grid.Row="2" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
 
                 <!-- Verfügbar Label -->
                 <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Verfuegbar:</Label>
                 <!-- Verfügbar TextBox -->
-                <CheckBox Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" FontSize="15" />
+                <CheckBox x:Name="AvalableCheck" Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" FontSize="15" />
 
             </Grid>
         </Border>
