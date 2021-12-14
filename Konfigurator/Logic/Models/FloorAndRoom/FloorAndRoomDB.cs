@@ -216,29 +216,6 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                                 "2: Einer der Id's existiert nicht\n" +
                                 "========");
             }
-
-            double totalPrice = 0;
-
-            totalPrice = currentPackagePrice + Order.OrderDB.GetPriceForOrder(floorAndRoom.Order_ID);
-
-            // Insert the new Price into "Auftrag"
-            try
-            {
-                var cmd = new OleDbCommand(
-                    $"insert into Auftrag (Auftrag_PreisGesamt) values ({totalPrice} where Auftrag_ID = {floorAndRoom.Order_ID})"
-                    , db.Connection);
-                var reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    totalPrice += reader.GetDouble(0);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
-                                "========");
-            }
         }
         
         /* ======================================================================================================================================================= */
@@ -253,8 +230,9 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             // Update all but "Paket_Preis" by looking for ID
             try
             {
+                double packagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
                 var cmd = new OleDbCommand(
-                    $"Update EtageUndRaum set Paket_ID = {floorAndRoom.Package_ID}, Raum_Grosse = {floorAndRoom.Room_Size}" +
+                    $"Update EtageUndRaum set Paket_ID = {floorAndRoom.Package_ID}, Raum_Grosse = {floorAndRoom.Room_Size}, Paket_Preis = {packagePrice}" +
                     $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Floor_ID = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
@@ -262,48 +240,10 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             catch (Exception e)
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "1: Die Phase konnte nicht gefunden werden\n" +
+                                "1: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
-                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
-                                "========");
-            }
-            
-            // deduct the old Price and add the Price of the new Package
-
-         
-            try
-            {
-                double oldPrice = 0;
-                var cmd1 = new OleDbCommand(
-                    $"Select Paket_Preis from EtageUndRaum" +
-                    $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Etage = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
-                    , db.Connection);
-                var reader = cmd1.ExecuteReader();
-                if (reader.Read() && reader.HasRows)
-                {
-                    oldPrice = reader.GetDouble(0);
-                }
-
-                double orderPrice = Order.OrderDB.GetPriceForOrder(floorAndRoom.Order_ID);
-                orderPrice -= oldPrice;
-                double packagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
-                orderPrice += packagePrice;
-
-                var cmd2 = new OleDbCommand(
-                    $"Update Auftrag set Auftrag_PreisGesamt = {orderPrice} where Auftrag_ID = {floorAndRoom.Order_ID}"
-                    , db.Connection);
-                cmd2.ExecuteNonQuery();
-
-                var cmdUpdateFloortAndRoomPrice = new OleDbCommand(
-                    $"Update EtageUndRaum set Paket_Preis = {packagePrice}" +
-                    $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Etage = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
-                    , db.Connection);
-                cmdUpdateFloortAndRoomPrice.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
+                                "3: Der Auftrag konnte nicht gefunden werden\n" +
+                                "4: Der Raum in diesem Auftrag wurde nicht gefunden\n" +
                                 "========");
             }
         }
