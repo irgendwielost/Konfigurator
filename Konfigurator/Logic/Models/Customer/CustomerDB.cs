@@ -18,7 +18,7 @@ namespace Konfigurator.Logic.Models.Customer
 
                 try
                 {
-                    var cmd = new OleDbDataAdapter("select * from Kunde"
+                    var cmd = new OleDbDataAdapter("SELECT * FROM Kunde"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
                     cmd.Fill(dataSet, "Kunde");
@@ -80,9 +80,15 @@ namespace Konfigurator.Logic.Models.Customer
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Kunde (Kunde_Name, Kunde_Plz, Kunde_Strasse, Kunde_Ort, " +
-                    $"Kunde_Tel, Kunde_Email, Kunde_Aktuell) value (?, ?, ?, ?, ?, ?)"
+                    $"INSERT INTO Kunde (Kunde_ID, Kunde_Name, Kunde_Plz, Kunde_Ort, Kunde_Strasse," +
+                    $" Kunde_Tel, Kunde_Email, Kunde_Aktuell) VALUES ({customer.ID}, \"{customer.Name}\",{customer.Plz}," +
+                    $" \"{customer.Region}\" , \"{customer.Street}\", \"{customer.Tel}\"," +
+                    $" " +
+                    $"\"{customer.Email}\", {customer.Recent} )"
                     , db.Connection);
+                
+                //! What is this? !!!!!!!!!!!!!!!!!!!!!!!!!
+                /*
                 cmd.Parameters.AddRange( new[]
                 {
                     new OleDbParameter("Mitarbeiter_ID", customer.ID),
@@ -92,6 +98,7 @@ namespace Konfigurator.Logic.Models.Customer
                     new OleDbParameter("Mitarbeiter_ID", customer.ID),
                     new OleDbParameter("Mitarbeiter_ID", customer.ID),
                 });
+                */
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -100,6 +107,7 @@ namespace Konfigurator.Logic.Models.Customer
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
+                throw e;
             }
         }
         

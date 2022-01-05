@@ -144,7 +144,7 @@ namespace Konfigurator.Logic.Models.Employee
             {
                 var cmd = new OleDbCommand(
                     $"Update Mitarbeiter set Mitarbeiter_Name = {employee.Name},Mitarbeiter_Passwort = {employee.Password}," +
-                    $" Mitarbeiter_Anglestellt = {employee.Working},Mitarbeiter_Angefangen = {employee.Started}, Mitarbeiter_Kuendigung = {employee.Ended} where Mitarbeiter_ID = {employee.ID}"
+                    $" Mitarbeiter_Angestellt = {employee.Working},Mitarbeiter_Angefangen = {employee.Started}, Mitarbeiter_Kuendigung = {employee.Ended} where Mitarbeiter_ID = {employee.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

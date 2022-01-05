@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using Konfigurator.Logic.Models.Customer;
 
@@ -44,6 +45,22 @@ namespace Konfigurator.UserControls
             }
         }
         */
+
+        
+        public void AddCustomer(object sender, RoutedEventArgs e)
+        {
+            var id = IdText.Text;
+            var name = NameText.Text;
+            var plz = PlzText.Text;
+            var region = PlaceText.Text;
+            var street = StreetText.Text;
+            var tel = TelText.Text;
+            var email = EmailText.Text;
+
+            CustomerDB.CreateCustomer(new Customer(Int32.Parse(id), name, Int32.Parse(plz), region, street,
+                tel, email, true));
+
+        }
         
         //On Selected Datagrid Row
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,5 +101,7 @@ namespace Konfigurator.UserControls
             
             //isAvailableText.SelectedText = isAvailable;
         }
+
+       
     }
 }

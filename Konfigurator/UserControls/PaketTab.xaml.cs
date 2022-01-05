@@ -16,11 +16,17 @@ namespace Konfigurator.UserControls
         public PaketTab()
         {
             InitializeComponent();
+            UpdateDataGrid();
             
+        }
+
+        public void UpdateDataGrid()
+        {
             //Fill DataGridView
             var dataset = PackageDB.GetDataSetPackage();
             DataGrid.ItemsSource = dataset.Tables["Paket"].DefaultView;
         }
+        
         
         //On Selected Datagrid Row
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -40,6 +46,19 @@ namespace Konfigurator.UserControls
             NameText.Text = name;
             //isAvailableText.SelectedText = isAvailable;
         }
+
+        private void AddPackage(object sender, RoutedEventArgs e)
+        {
+            var id = IdText.Text;
+            var name = NameText.Text;
+            bool available = (bool)AvailableCheck.IsChecked;
+            
+            PackageDB.CreatePackage(new Logic.Models.Package.Package(Int32.Parse(id), name, available));
+            System.Threading.Thread.Sleep(1000);
+            UpdateDataGrid();
+        }
+
+  
     }
 
     

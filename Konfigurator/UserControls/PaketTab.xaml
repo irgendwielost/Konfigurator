@@ -38,7 +38,7 @@
         <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 "
                 FontSize="15" Content="Bearbeiten..." />
         <!-- Button to add (open new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 "
+        <Button Click="AddPackage" Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 "
                 FontSize="15" Content="Hinzufügen..." />
 
 
@@ -82,7 +82,7 @@
                 <!-- Verfügbar Label -->
                 <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Verfuegbar:</Label>
                 <!-- Verfügbar TextBox -->
-                <CheckBox x:Name="AvalableCheck" Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" FontSize="15" />
+                <CheckBox x:Name="AvailableCheck" Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" FontSize="15" />
 
             </Grid>
         </Border>

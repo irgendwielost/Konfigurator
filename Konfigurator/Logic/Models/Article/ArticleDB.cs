@@ -105,8 +105,7 @@ namespace Konfigurator.Logic.Models.Article
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Artikel (Artikel_ID, Artikel_Name," +
-                    $" Artikel_Angestellt, Artikel_Angefangen) values ({article.ID}, {article.Name}, {article.Price}, {article.Available})"
+                    $"INSERT INTO Artikel (Artikel_ID, Artikel_Name,Artikel_Preis, Artikel_Verfugbar) VALUES ({article.ID}, \"{article.Name} \" , {article.Price},{article.Available})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -116,7 +115,9 @@ namespace Konfigurator.Logic.Models.Article
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
+                throw e;
             }
+            
         }
         
         /* ======================================================================================================================================================= */
@@ -228,5 +229,7 @@ namespace Konfigurator.Logic.Models.Article
             
             return 0;
         }
+
+        
     }
 }

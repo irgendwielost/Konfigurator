@@ -52,6 +52,7 @@ namespace Konfigurator.Logic.Models.Package
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Die Paket-Tabelle Konnte nicht gefunden werden\n" +
                                     "========");
+                    
                 }
             }
 
@@ -98,7 +99,7 @@ namespace Konfigurator.Logic.Models.Package
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Paket (Paket_ID, Paket_Name, Paket_Verfuegbar) values ({package.ID}, {package.Name},  {package.Available})"
+                        $"INSERT INTO Paket (Paket_ID, Paket_Name, Paket_Verfugbar) VALUES ({package.ID}, \"{package.Name}\",  {package.Available})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -107,6 +108,7 @@ namespace Konfigurator.Logic.Models.Package
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
+                
             }
         }
 

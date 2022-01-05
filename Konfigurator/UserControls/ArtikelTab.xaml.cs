@@ -17,13 +17,17 @@ namespace Konfigurator.UserControls
             
             
             InitializeComponent();
+            UpdateDataGrid();
+        }
+
+        public void UpdateDataGrid()
+        {
             //Fill DataGridView
             var dataset = ArticleDB.GetDataSetArticle();
             DataGrid.ItemsSource = dataset.Tables["Artikel"].DefaultView;
             
             isItAvailable();
         }
-        
         //On Selected Datagrid Row
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -50,11 +54,12 @@ namespace Konfigurator.UserControls
        
        
 
-        public bool isAvailable;
+        
         public void isItAvailable()
         {
+            bool available = (bool)AvailableCheck.IsChecked;
             
-            if (isAvailable)
+            if (available)
             {
                 isAvailableText.Text = "Verügbar";
                 isAvailableText.Foreground = Brushes.Green;
@@ -66,18 +71,17 @@ namespace Konfigurator.UserControls
             }
         }
       
-        private void AddArticle_OnClick(Article article, RoutedEventArgs e)
-        {
-            MessageBox.Show("Hurensohn");
-        }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             var idTextBox = IdText.Text;
             var nameTextBox = NameText.Text;
             var priceTextBox = PriceText.Text;
-            
-            ArticleDB.CreateArticle(new Article(Int32.Parse(idTextBox), ToString(NameText.Text) , Double.Parse(priceTextBox), true ) );
+            bool available = (bool)AvailableCheck.IsChecked;
+
+            ArticleDB.CreateArticle(new Article(Int32.Parse(idTextBox), nameTextBox.ToString(), Double.Parse(priceTextBox), available ));
+            System.Threading.Thread.Sleep(1000);
+            UpdateDataGrid();
         }
     }
 }
