@@ -194,5 +194,39 @@ namespace Konfigurator.Logic.Models.Article
                                 "========");
             }
         }
+        
+        /* ======================================================================================================================================================= */
+        
+        // Return the Price of the Article
+        public static double PriceOfArticle(int id)
+        {
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Artikel_Preis from Artikel where Artikel_ID = {id}"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                if (reader.Read() && reader.HasRows)
+                {
+                    return reader.GetDouble(0);
+                }
+
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Artikel Preis konnte nicht gefunden werden\n" +
+                                "========");
+                return 0;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Ein unbekannter Fehler ist Aufgetreten\n" +
+                                "========");
+            }
+            
+            return 0;
+        }
     }
 }
