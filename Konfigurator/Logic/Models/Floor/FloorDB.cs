@@ -17,7 +17,7 @@ namespace Konfigurator.Logic.Models.Floor
             try
             {
                 /* Select the ID by searching with the Name */
-                var cmd = new OleDbCommand($"Select Etage_ID from Etage where Etage_Name = {Name}"
+                var cmd = new OleDbCommand($"Select Etage_ID from Etage where Etage_Name = '{Name}'"
                     , db.Connection);
                 return Int32.Parse(cmd.ToString());
             }
@@ -63,7 +63,7 @@ namespace Konfigurator.Logic.Models.Floor
         /* ======================================================================================================================================================= */
         
         // Returns "Etage" by ID
-        public static Floor GiveFlooreBack(int id)
+        public static Floor GiveFloorBack(int id)
         {
             // Open the connection to the database
             var db = new DataBase.DataBase();
@@ -104,7 +104,7 @@ namespace Konfigurator.Logic.Models.Floor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Etage (Etage_ID, Etage_Name) values ({floor.ID}, {floor.Name})"
+                    $"INSERT INTO Etage (Etage_ID, Etage_Name) VALUES ({floor.ID}, '{floor.Name}')"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

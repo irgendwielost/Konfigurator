@@ -26,7 +26,7 @@
                 FontSize="15" Content="Löschen" />
         <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 "
                 FontSize="15" Content="Bearbeiten" />
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 "
+        <Button Click="CreatePhase" Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 "
                 FontSize="15" Content="Hinzufügen..." />
 
 

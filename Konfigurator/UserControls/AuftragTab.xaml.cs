@@ -39,8 +39,8 @@ namespace Konfigurator.UserControls
             //Selected Item | date
             string date = (DataGridOrder.SelectedCells[1].Column.GetCellContent(item) as TextBlock)?.Text;
             
-            //Selected Item | "Neu" or "Bestand"
-            string nOrB = (DataGridOrder.SelectedCells[2].Column.GetCellContent(item) as TextBlock)?.Text;
+            //Selected Item | new or stock
+            bool? newOrStock = (DataGridOrder.SelectedCells[2].Column.GetCellContent(item) as RadioButton)?.IsChecked;
             
             //Selected Item | phase
             string customerId = (DataGridOrder.SelectedCells[3].Column.GetCellContent(item) as TextBlock)?.Text;
@@ -54,6 +54,8 @@ namespace Konfigurator.UserControls
             //Selected Item | total
             string total = (DataGridOrder.SelectedCells[5].Column.GetCellContent(item) as TextBlock)?.Text;
             
+            
+            
             //Display Items in Textbox
             IDText.Text = id;
             dateText.Text = date;
@@ -61,8 +63,21 @@ namespace Konfigurator.UserControls
             housingCombo.SelectedValue = housingId;
             phaseCombo.SelectedValue = phaseId;
             totalText.Text = total;
+            newRadio.IsChecked = newOrStock;
+            NewOrStock();
         }
 
+        private void NewOrStock()
+        {
+            if (newRadio.IsChecked == true)
+            {
+                stockRadio.IsChecked = false;
+            }
+            else
+            {
+                stockRadio.IsChecked = true;
+            }
+        }
         
         //Show Package by selected ID
         public void GetPackageById()

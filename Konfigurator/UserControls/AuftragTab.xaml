@@ -102,10 +102,10 @@
 
                 <!-- Neu -->
                 <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,134.333,0" FontSize="20" Grid.ColumnSpan="2">Neu:</Label>
-                <RadioButton x:Name="newRadio" Grid.Row="5" Grid.Column="1" Margin="46.667,12,112.333,10" FontSize="15"/>
+                <RadioButton GroupName="nosRadio" x:Name="newRadio" Grid.Row="5" Grid.Column="1" Margin="46.667,12,112.333,10" FontSize="15"/>
                 <!-- Bestand -->
                 <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,11.583,0" FontSize="20">Bestand:</Label>
-                <RadioButton x:Name="stockRadio" Grid.Row="5" Grid.Column="1" Margin="169.417,12,10.5,10" FontSize="15" Grid.ColumnSpan="2"/>
+                <RadioButton  x:Name="stockRadio" Grid.Row="5" Grid.Column="1" Margin="169.417,12,10.5,10" FontSize="15" Grid.ColumnSpan="2"/>
 
                 <!-- total -->
                 <TextBlock x:Name="totalText" HorizontalAlignment="Left" Height="45" Margin="100,86,0,0" Grid.Row="2" TextWrapping="Wrap" Text="0,00€" VerticalAlignment="Top" Width="200" TextAlignment="Center" LineHeight="48"/>

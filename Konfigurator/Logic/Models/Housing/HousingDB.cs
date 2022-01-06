@@ -117,7 +117,7 @@ namespace Konfigurator.Logic.Models.Housing
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Gebaude (Gebaude_ID, Gebaude_Name) values ({housing.ID}, {housing.ID})"
+                    $"INSERT INTO Gebaude (Gebaude_ID, Gebaude_Art) VALUES ({housing.ID}, '{housing.Name}')"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

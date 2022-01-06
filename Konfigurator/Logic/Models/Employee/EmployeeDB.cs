@@ -81,19 +81,10 @@ namespace Konfigurator.Logic.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Mitarbeiter (Mitarbeiter_ID, Mitarbeiter_Name, Mitarbeiter_Passwort," +
-                    $" Mitarbeiter_Angestellt, Mitarbeiter_Angefangen, Mitarbeiter_Kuendigung) values (?, ?, ?, ?, ?, ?)"
+                    $"INSERT INTO Mitarbeiter (Mitarbeiter_ID, Mitarbeiter_Name, Mitarbeiter_Passwort," +
+                    $" Mitarbeiter_Angestellt, Mitarbeiter_Angefangen) VALUES ({employee.ID}, \"{employee.Name}\" ," +
+                    $" \"{employee.Password}\", {employee.Working}, '{employee.Started}')"
                     , db.Connection);
-                // gives the Values to the "?" 
-                cmd.Parameters.AddRange( new[]
-                {
-                    new OleDbParameter("Mitarbeiter_ID",employee.ID),
-                    new OleDbParameter("Mitarbeiter_Name",employee.Name),
-                    new OleDbParameter("Mitarbeiter_Passwort",employee.Password),
-                    new OleDbParameter("Mitarbeiter_Angestellt",employee.Working),
-                    new OleDbParameter("Mitarbeiter_Angefangen",employee.Started),
-                    new OleDbParameter("Mitarbeiter_Kuendigung",employee.Ended)
-                });
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -102,23 +93,23 @@ namespace Konfigurator.Logic.Models.Employee
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
+                
             }
         }
         
         /* ======================================================================================================================================================= */
         
-        // Whether the Employee is still working or not (SQL command needs to be changed!)
-        public static void DeleteEmployee(int ID)
+        public static void KillEmployee(int ID, DateTime Date)
         {
             // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 // Change this!
                 var cmd = new OleDbCommand(
-                    $"Update Mitarbeiter set Mitarbeiter_Angestellt={false} where Mitarbeiter_ID={ID}"
+                    $"UPDATE Mitarbeiter SET Mitarbeiter_Angestellt={false}, Mitarbeiter_Kuendigung='{Date}' WHERE Mitarbeiter_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -130,7 +121,7 @@ namespace Konfigurator.Logic.Models.Employee
                                 "========");
             }
         }
-        
+
         /* ======================================================================================================================================================= */
         
         // Update the data on "Mitarbeiter" except ID

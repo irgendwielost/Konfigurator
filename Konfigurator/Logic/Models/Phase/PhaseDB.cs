@@ -77,7 +77,7 @@ namespace Konfigurator.Logic.Models.Phase
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Phasen (Phase_ID, Phase_Name) Values ({phase.ID}, {phase.Name})"
+                    $"INSERT INTO Phasen (Phase_ID, Phase_Name) VALUES ({phase.ID}, '{phase.Name}')"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

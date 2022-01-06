@@ -128,7 +128,7 @@ namespace Konfigurator.Logic.Models.Customer
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Kunde set Kunde_Aktuell = {false} where Kunde_ID={ID}"
+                    $"UPDATE Kunde SET Kunde_Aktuell = {false} WHERE Kunde_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -138,6 +138,7 @@ namespace Konfigurator.Logic.Models.Customer
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Kunde wurde nicht gefunden\n" +
                                 "========");
+                throw e;
             }
         }
         

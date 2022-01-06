@@ -22,10 +22,10 @@
         <Button Grid.Row="0" Grid.Column="0" Margin="270, 10, 40, 257" Content="Go" FontSize="15" Background="DarkGray" />
 
         <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_OnSelectionChanged" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10"/>
-            <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 " FontSize="15" Content="Löschen" />
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten" />
+        <Button Click="KillCustomer" Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 " FontSize="15" Content="Löschen" />
+        <Button Click="EditCustomer" Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten" />
         <Button Click="AddCustomer" Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen" />
-       
+
         <!--
         <Button Grid.Row="2" Grid.Column="1" Margin="50, 50, 20,10 " Content="Hinzufügen" Background="#586096" />
         -->
@@ -50,31 +50,37 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
 
-                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0" FontSize="20">ID:</Label>
+                <Label Grid.Column="0" HorizontalAlignment="Right" Margin="0,1.875,62.816,45.25" FontSize="20" Grid.RowSpan="2" Grid.Row="1">ID:</Label>
                 <TextBox x:Name="IdText" Grid.Row="1" Grid.Column="1" Margin="5,5,-25,5" FontSize="15"/>
 
-                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0" FontSize="20">Name:</Label>
+                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="-0.66,46.125,31.5,1" FontSize="20" Grid.RowSpan="2">Name:</Label>
                 <TextBox x:Name="NameText" Grid.Row="2" Grid.Column="1" Margin="5,5,-25,5" FontSize="15"/>
 
-                <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0" FontSize="20">PLZ:</Label>
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,46.875,49.566,0.25" FontSize="20" Grid.RowSpan="2">PLZ:</Label>
                 <TextBox x:Name="PlzText" Grid.Row="3" Grid.Column="1" Margin="5,5,-25,5" FontSize="15"/>
 
-                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="0" FontSize="20">Ort:</Label>
+                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="-1.644,0.5,56.5,46.625" FontSize="20" Grid.RowSpan="2">Ort:</Label>
                 <TextBox x:Name="PlaceText" Grid.Row="4" Grid.Column="1" Margin="5,5,-25,5" FontSize="15"/>
 
-                <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="0" FontSize="20">Straße:</Label>
+                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="-3.064,46.125,31.5,1" FontSize="20" Grid.RowSpan="2">Straße:</Label>
                 <TextBox x:Name="StreetText" Grid.Row="5" Grid.Column="1" Margin="5,5,-25,5" FontSize="15"/>
 
-                <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Margin="0" FontSize="20">Tel:</Label>
+                <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Margin="-1.667,1.25,61.5,45.875" FontSize="20" Grid.RowSpan="2">Tel:</Label>
                 <TextBox x:Name="TelText" Grid.Row="6" Grid.Column="1" Margin="5,5,-25,5" FontSize="15"/>
 
-                <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" Margin="0" FontSize="20">E-Mail:</Label>
+                <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Margin="-3.774,46.125,31.5,1" FontSize="20" Grid.RowSpan="2">E-Mail:</Label>
                 <TextBox x:Name="EmailText" Grid.Row="7" Grid.Column="1" Margin="5,5,-25,5" FontSize="15"/>
-
+                
+                <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" Margin="0,2,26.5,-2" FontSize="20" Content="Aktuell"/>
+                <TextBox x:Name="currentText" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="28.5,9.125,-2.5,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" IsReadOnlyCaretVisible="True"/>
+                <CheckBox x:Name="currentCheck" Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Height="15" Margin="102.5,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="20"/>
+                
             </Grid>
         </Border>
+        
     </Grid>
 </UserControl>

@@ -79,10 +79,10 @@ namespace Konfigurator.Logic.Models.Factor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"insert into Faktor (Faktor_ID, Faktor_Name," +
-                    $" Faktor_Angestellt, Faktor_Angefangen) values ({factor.ID}, {factor.Name}, {factor.Mult}, {factor.Grosse}, {factor.Used})"
+                    $"INSERT INTO Faktor (Faktor_ID, Faktor_Name, Faktor_Mult," +
+                    $" Faktor_Grosse, Faktor_Benutzung) VALUES ({factor.ID}, \"{factor.Name}\", " +
+                    $"{factor.Mult}, {factor.Grosse}, {factor.Used})"
                     , db.Connection);
-                cmd.Parameters.Add(factor.Name);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -90,7 +90,7 @@ namespace Konfigurator.Logic.Models.Factor
                 // If the above failed show following Error Message: 
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
-                                "========");
+                                "========"); 
             }
         }
         

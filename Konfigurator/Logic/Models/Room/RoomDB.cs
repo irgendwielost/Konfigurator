@@ -100,7 +100,7 @@ namespace Konfigurator.Logic.Models.Room
                 try
                 {
                     var cmd = new OleDbCommand(
-                        $"insert into Raum (Raum_ID = {room.ID}, Raum_Name = {room.Name}"
+                        $"INSERT INTO Raum (Raum_ID, Raum_Name) VALUES ({room.ID}, '{room.Name}')"
                         , db.Connection);
                     cmd.ExecuteNonQuery();
                 }

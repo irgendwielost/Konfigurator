@@ -5,6 +5,7 @@ using System.Data;
 using System.IO.Packaging;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Konfigurator.Annotations;
 using Konfigurator.Logic.Models.Package;
 using Package = System.IO.Packaging.Package;
@@ -23,8 +24,15 @@ namespace Konfigurator.UserControls
         public void UpdateDataGrid()
         {
             //Fill DataGridView
-            var dataset = PackageDB.GetDataSetPackage();
-            DataGrid.ItemsSource = dataset.Tables["Paket"].DefaultView;
+            try
+            {
+                var dataset = PackageDB.GetDataSetPackage();
+                DataGrid.ItemsSource = dataset.Tables["Paket"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
         
         
@@ -40,18 +48,37 @@ namespace Konfigurator.UserControls
             //Selected Item | name
             string name = (DataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock)?.Text;
             
+            //Selected Item | Available
+            bool? available = (DataGrid.SelectedCells[2].Column.GetCellContent(item) as CheckBox)?.IsChecked;
            
             //Display Items in Textbox
-            IdText.Text = id;
-            NameText.Text = name;
-            //isAvailableText.SelectedText = isAvailable;
+            if (id != null) IdText.Text = id;
+            if (name != null) NameText.Text = name;
+            AvailableCheck.IsChecked = available;
+            IsItAvailable();
+        }
+
+        public void IsItAvailable()
+        {
+            bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
+
+            if (available)
+            {
+                AvailableText.Text = "Verfügbar";
+                AvailableText.Foreground = Brushes.Green;
+            }
+            else
+            {
+                AvailableText.Text = "Nicht Verfügbar";
+                AvailableText.Foreground = Brushes.Red;
+            }
         }
 
         private void AddPackage(object sender, RoutedEventArgs e)
         {
             var id = IdText.Text;
             var name = NameText.Text;
-            bool available = (bool)AvailableCheck.IsChecked;
+            bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
             
             PackageDB.CreatePackage(new Logic.Models.Package.Package(Int32.Parse(id), name, available));
             System.Threading.Thread.Sleep(1000);

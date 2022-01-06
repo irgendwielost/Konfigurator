@@ -13,9 +13,6 @@ namespace Konfigurator.UserControls
     {
         public ArtikelTab()
         {
-            //TextBoxes
-            
-            
             InitializeComponent();
             UpdateDataGrid();
         }
@@ -23,45 +20,52 @@ namespace Konfigurator.UserControls
         public void UpdateDataGrid()
         {
             //Fill DataGridView
-            var dataset = ArticleDB.GetDataSetArticle();
-            DataGrid.ItemsSource = dataset.Tables["Artikel"].DefaultView;
-            
-            isItAvailable();
+            try
+            {
+                var dataset = ArticleDB.GetDataSetArticle();
+                DataGrid.ItemsSource = dataset.Tables["Artikel"].DefaultView;
+                isItAvailable();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
+
         //On Selected Datagrid Row
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Selected Item
-            object item = DataGrid.SelectedItem; 
-            
+            object item = DataGrid.SelectedItem;
+
             //Selected Item | id
             string id = (DataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock)?.Text;
-            
+
             //Selected Item | name
             string name = (DataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock)?.Text;
-            
-            //Selected Item | id
+
+            //Selected Item | price
             string price = (DataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock)?.Text;
-           
-           
+
+            //Selected Item | Available
+            bool? available = (DataGrid.SelectedCells[3].Column.GetCellContent(item) as CheckBox)?.IsChecked;
+
             //Display Items in Textbox
-            IdText.Text = id;
-            NameText.Text = name;
-            PriceText.Text = price;
-            //isAvailableText.SelectedText = isAvailable;
+            if (id != null) IdText.Text = id;
+            if (name != null) NameText.Text = name;
+            if (price != null) PriceText.Text = price;
+            AvailableCheck.IsChecked = available;
+            isItAvailable();
         }
 
-       
-       
 
-        
         public void isItAvailable()
         {
-            bool available = (bool)AvailableCheck.IsChecked;
-            
+            bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
+
             if (available)
             {
-                isAvailableText.Text = "Verügbar";
+                isAvailableText.Text = "Verfügbar";
                 isAvailableText.Foreground = Brushes.Green;
             }
             else
@@ -70,7 +74,7 @@ namespace Konfigurator.UserControls
                 isAvailableText.Foreground = Brushes.Red;
             }
         }
-      
+
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
@@ -79,7 +83,8 @@ namespace Konfigurator.UserControls
             var priceTextBox = PriceText.Text;
             bool available = (bool)AvailableCheck.IsChecked;
 
-            ArticleDB.CreateArticle(new Article(Int32.Parse(idTextBox), nameTextBox.ToString(), Double.Parse(priceTextBox), available ));
+            ArticleDB.CreateArticle(new Article(Int32.Parse(idTextBox), nameTextBox, Double.Parse(priceTextBox),
+                available));
             System.Threading.Thread.Sleep(1000);
             UpdateDataGrid();
         }

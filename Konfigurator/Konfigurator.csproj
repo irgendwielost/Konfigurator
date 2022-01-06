@@ -136,6 +136,9 @@
     <Compile Include="Windows\Auftrag\AuftragDetailsWindow.xaml.cs">
       <DependentUpon>AuftragDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\KillEmployee.xaml.cs">
+      <DependentUpon>KillEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,7 @@
     <Page Include="UserControls\PasswortAendern.xaml" />
     <Page Include="UserControls\PhasenTab.xaml" />
     <Page Include="Windows\Auftrag\AuftragDetailsWindow.xaml" />
+    <Page Include="Windows\KillEmployee.xaml" />
     <Page Include="Windows\LogIn.xaml" />
     <Page Include="Windows\PaketDetailsWindow.xaml" />
     <Page Include="Windows\PasswortAendern.xaml" />

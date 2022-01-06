@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using Konfigurator.Logic.Models.Floor;
 using Konfigurator.Logic.Models.Housing;
 using Konfigurator.Logic.Models.Room;
@@ -13,17 +15,57 @@ namespace Konfigurator.UserControls
             //Fill DataGridView
             
             //Housing
-            var dataSetHousing = HousingDB.GetDataSetHousing();
-            DataGridHousing.ItemsSource = dataSetHousing.Tables["Gebaude"].DefaultView;
+            UpdateHousingDataGrid();
             
             //Floor
-            var datasetFloor = FloorDB.GetDataSetFloor();
-            DataGridFloor.ItemsSource = datasetFloor.Tables["Etage"].DefaultView;
+            UpdateFloorDataGrid();
             
             //Room
-            var datasetRoom = RoomDB.GetDataSetRoom();
-            DataGridRoom.ItemsSource = datasetRoom.Tables["Raum"].DefaultView;
+            UpdateRoomDataGrid();
         }
+
+        private void UpdateHousingDataGrid()
+        {
+            //Fill DataGridView
+            try
+            {
+                var dataSetHousing = HousingDB.GetDataSetHousing();
+                DataGridHousing.ItemsSource = dataSetHousing.Tables["Gebaude"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private void UpdateFloorDataGrid()
+        {
+            //Fill DataGridView
+            try
+            {
+                var datasetFloor = FloorDB.GetDataSetFloor();
+                DataGridFloor.ItemsSource = datasetFloor.Tables["Etage"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private void UpdateRoomDataGrid()
+        {
+            //Fill DataGridView
+            try
+            {
+                var datasetRoom = RoomDB.GetDataSetRoom();
+                DataGridRoom.ItemsSource = datasetRoom.Tables["Raum"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        
         
         //On Selected Datagrid Row | Room
         private void DataGridRoom_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,9 +81,8 @@ namespace Konfigurator.UserControls
             
            
             //Display Items in Textbox
-            RoomIdText.Text = id;
-            RoomNameText.Text = name;
-
+            if (id != null) RoomIdText.Text = id;
+            if (name != null) RoomNameText.Text = name;
         }
         
         
@@ -78,9 +119,51 @@ namespace Konfigurator.UserControls
             
            
             //Display Items in Textbox
-            HousingIdText.Text = id;
-            HousingNameText.Text = name;
-
+            if (id != null) HousingIdText.Text = id;
+            if (name != null) HousingNameText.Text = name;
         }
+
+        //Add to DataBase Functions
+        
+        
+        //Add Housing to DataBase 
+        private void AddHousing(object sender, RoutedEventArgs e)
+        {
+            //Variables
+            var id = HousingIdText.Text;
+            var name = HousingNameText.Text;
+            
+            //Create Housing Method
+            HousingDB.CreateHousing(new Housing(Int32.Parse(id), name));
+            System.Threading.Thread.Sleep(1000);
+            UpdateHousingDataGrid();
+        }
+        
+        //Add Floor to DataBase
+        private void AddFloor(object sender, RoutedEventArgs e)
+        {
+            //Variables
+            var id = FloorIdText.Text;
+            var name = FloorNameText.Text;
+            
+            //Create Floor Method
+            FloorDB.CreateFloor(new Floor(Int32.Parse(id), name));
+            System.Threading.Thread.Sleep(1000);
+            UpdateFloorDataGrid();
+        }
+
+        private void AddRoom(object sender, RoutedEventArgs e)
+        {
+            //Variables
+            var id = RoomIdText.Text;
+            var name = RoomNameText.Text;
+            
+            //Create Room Method
+            RoomDB.CreateRaum(new Room(Int32.Parse(id), name));
+            System.Threading.Thread.Sleep(1000);
+            UpdateRoomDataGrid();
+        }
+        
     }
+    
 }

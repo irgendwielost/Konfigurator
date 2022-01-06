@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using Konfigurator.Logic.Models.Factor;
 
 namespace Konfigurator.UserControls
@@ -8,11 +10,23 @@ namespace Konfigurator.UserControls
         public FaktorTab()
         {
             InitializeComponent();
-            //Fill DataGridView
-            var dataset = FactorDB.GetDataSetFactor();
-            DataGrid.ItemsSource = dataset.Tables["Faktor"].DefaultView;
+            UpdateDataGrid();   
         }
-        
+
+
+        private void UpdateDataGrid()
+        {
+            //Fill DataGridView
+            try
+            {
+                var dataset = FactorDB.GetDataSetFactor();
+                DataGrid.ItemsSource = dataset.Tables["Faktor"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
         //On Selected Datagrid Row
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -32,11 +46,23 @@ namespace Konfigurator.UserControls
             string size = (DataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock)?.Text;
            
             //Display Items in Textbox
-            IdText.Text = id;
-            NameText.Text = name;
-            MultText.Text = mult;
-            SizeText.Text = size;
-            
+            if (id != null) IdText.Text = id;
+            if (name != null) NameText.Text = name;
+            if (mult != null) MultText.Text = mult;
+            if (size != null) SizeText.Text = size;
         }
+
+        private void AddFactor(object sender, RoutedEventArgs e)
+        {
+            var id = IdText.Text;
+            var name = NameText.Text;
+            var mult = MultText.Text;
+            var size = SizeText.Text;
+            
+            FactorDB.CreateFactor(new Factor(Int32.Parse(id), name, Double.Parse(mult), Double.Parse(size), true));
+            System.Threading.Thread.Sleep(1000);
+            UpdateDataGrid();
+            
+        } 
     }
 }

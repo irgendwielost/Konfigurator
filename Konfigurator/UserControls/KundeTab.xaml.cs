@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Konfigurator.Logic.Models.Customer;
 
 namespace Konfigurator.UserControls
@@ -11,42 +13,38 @@ namespace Konfigurator.UserControls
         public KundeTab()
         {
             InitializeComponent();
-            
-            //Fill DataGridView
-            var dataset = CustomerDB.GetDataSetCustomer();
-            DataGrid.ItemsSource = dataset.Tables["Kunde"].DefaultView;
-            
+            UpdateDataGrid();
         }
 
-        /* Maybe dont use?
-        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+
+        private void UpdateDataGrid()
         {
-            PropertyDescriptor propertyDescriptor = (PropertyDescriptor)e.PropertyDescriptor;
-            e.Column.Header = propertyDescriptor.DisplayName;
-            if (propertyDescriptor.DisplayName == "Kunde_PLZ")
+            //Fill DataGridView
+            try
             {
-                e.Cancel = true;
+                var dataset = CustomerDB.GetDataSetCustomer();
+                DataGrid.ItemsSource = dataset.Tables["Kunde"].DefaultView;
             }
-            if (propertyDescriptor.DisplayName == "Kunde_Ort")
+            catch (Exception e)
             {
-                e.Cancel = true;
+                Console.WriteLine(e);
             }
-            if (propertyDescriptor.DisplayName == "Kunde_Strasse")
-            {
-                e.Cancel = true;
-            }
-            if (propertyDescriptor.DisplayName == "Kunde_Tel")
-            {
-                e.Cancel = true;
-            }
-            if (propertyDescriptor.DisplayName == "Kunde_Email")
-            {
-                e.Cancel = true;
-            }
+            
         }
-        */
-
         
+        //Mark Customer as not current (old)
+        private void KillCustomer(object sender, RoutedEventArgs e)
+        {
+            CustomerDB.KillCustomer(Int32.Parse(IdText.Text));
+            System.Threading.Thread.Sleep(1000);
+            UpdateDataGrid();
+        }
+
+        private void EditCustomer(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGrid();
+        }
+        //Add new Customer to DataBase
         public void AddCustomer(object sender, RoutedEventArgs e)
         {
             var id = IdText.Text;
@@ -59,7 +57,10 @@ namespace Konfigurator.UserControls
 
             CustomerDB.CreateCustomer(new Customer(Int32.Parse(id), name, Int32.Parse(plz), region, street,
                 tel, email, true));
-
+            
+            System.Threading.Thread.Sleep(1000);
+            UpdateDataGrid();
+            
         }
         
         //On Selected Datagrid Row
@@ -69,39 +70,57 @@ namespace Konfigurator.UserControls
             object item = DataGrid.SelectedItem; 
             
             //Selected Item | id
-            string id = (DataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock)?.Text;
+            var id = (DataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock)?.Text;
             
             //Selected Item | name
-            string name = (DataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock)?.Text;
+            var name = (DataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock)?.Text;
             
             //Selected Item | postalcode
-            string plz = (DataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock)?.Text;
+            var plz = (DataGrid.SelectedCells[2].Column.GetCellContent(item) as TextBlock)?.Text;
             
             //Selected Item | place
-            string place = (DataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock)?.Text;
+            var place = (DataGrid.SelectedCells[3].Column.GetCellContent(item) as TextBlock)?.Text;
             
             //Selected Item | street
-            string street = (DataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock)?.Text;
+            var street = (DataGrid.SelectedCells[4].Column.GetCellContent(item) as TextBlock)?.Text;
             
             //Selected Item | telephone
-            string tel = (DataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock)?.Text;
+            var tel = (DataGrid.SelectedCells[5].Column.GetCellContent(item) as TextBlock)?.Text;
             
             //Selected Item | email
-            string email = (DataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock)?.Text;
+            var email = (DataGrid.SelectedCells[6].Column.GetCellContent(item) as TextBlock)?.Text;
             
-            
+            //Selected Item | Current
+            bool? isCurrent = (DataGrid.SelectedCells[7].Column.GetCellContent(item) as CheckBox)?.IsChecked;
+
             //Display Items in Textbox
-            IdText.Text = id;
-            NameText.Text = name;
-            PlzText.Text = plz;
-            PlaceText.Text = place;
-            StreetText.Text = street;
-            TelText.Text = tel;
-            EmailText.Text = email;
+            if (id != null) IdText.Text = id;
+            if (name != null) NameText.Text = name;
+            if (plz != null) PlzText.Text = plz;
+            if (place != null) PlaceText.Text = place;
+            if (street != null) StreetText.Text = street;
+            if (tel != null) TelText.Text = tel;
+            if (email != null) EmailText.Text = email;
+            currentCheck.IsChecked = isCurrent;
             
-            //isAvailableText.SelectedText = isAvailable;
+            IsCurrent();
         }
 
+        public void IsCurrent()
+        {
+            bool available = currentCheck.IsChecked != null && (bool)currentCheck.IsChecked;
+
+            if (available)
+            {
+                currentText.Text = "Aktuell";
+                currentText.Foreground = Brushes.Green;
+            }
+            else
+            {
+                currentText.Text = "Nicht Aktuell";
+                currentText.Foreground = Brushes.Red;
+            }
+        }
        
     }
 }
