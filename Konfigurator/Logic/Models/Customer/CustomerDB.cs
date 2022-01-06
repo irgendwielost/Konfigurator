@@ -177,8 +177,7 @@ namespace Konfigurator.Logic.Models.Customer
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Kunde set Kunde_Name = {customer.Name}, Kunde_Plz = {customer.Plz}, Kunde_Strasse = {customer.Street}, Kunde_Ort = {customer.Region}, " +
-                    $"Kunde_Tel = {customer.Tel}, Kunde_Email = {customer.Email}, Kunde_Aktuell = {customer.Recent} where Kunde_ID =  = {customer.ID}"
+                    $"UPDATE Kunde SET Kunde_Name = '{customer.Name}', Kunde_Plz = {customer.Plz}, Kunde_Strasse = '{customer.Street}', Kunde_Ort = '{customer.Region}', Kunde_Tel = '{customer.Tel}', Kunde_Email = '{customer.Email}', Kunde_Aktuell = {customer.Recent} WHERE  Kunde_ID  = {customer.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -190,6 +189,7 @@ namespace Konfigurator.Logic.Models.Customer
                                 "2: Der Kunde konnte nicht gefunden werden\n" +
                                 "3: Die Tabelle konnte nicht gefunden werden\n" +
                                 "========");
+                
             }
         }
     }

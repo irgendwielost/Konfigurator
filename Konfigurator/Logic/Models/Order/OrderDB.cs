@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Windows;
+using Konfigurator.Logic.Models.Factor;
 
 namespace Konfigurator.Logic.Models.Order
 {
@@ -125,21 +126,26 @@ namespace Konfigurator.Logic.Models.Order
             }
         }
         
+
+        
+        // gets the Price of the order Without the Factor
         public static double GetPriceForOrder(int OrderID)
         {
             var db = new DataBase.DataBase();
             db.Connection.Open();
             double totalPrice = 0;
-            // Get the Price so far calculated for the "Auftrag"
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Select Auftrag_PreisGesamt from Auftrag where Auftrag_ID {OrderID}"
+                    $"Select Paket_Preis from EtageUndRaum where Auftrag_ID = {OrderID}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
-                if (reader.Read() && reader.HasRows /*|| reader.Read() != null*/)
+                if (reader.HasRows && reader.Read())
                 {
-                    totalPrice += reader.GetDouble(0);
+                    while (reader.Read())
+                    {
+                        totalPrice += reader.GetDouble(0);
+                    }
                 }
 
                 return totalPrice;
@@ -147,11 +153,22 @@ namespace Konfigurator.Logic.Models.Order
             catch (Exception e)
             {
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
+                                "1: Der Auftrag konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
             }
-
             return 0;
+        }
+
+        
+        
+        // gets the Full price of the order
+        public static double GetFullOrderPrice(int orderId)
+        {
+            double OrderPrice = GetPriceForOrder(orderId);
+            double finalPrice = OrderPrice * FactorDB.GetMultOfFactor(OrderPrice);
+            return finalPrice;
         }
     }
 }

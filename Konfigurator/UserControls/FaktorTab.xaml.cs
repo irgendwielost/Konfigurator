@@ -52,6 +52,31 @@ namespace Konfigurator.UserControls
             if (size != null) SizeText.Text = size;
         }
 
+        //Edit factor
+        private void EditFactor(object sender, RoutedEventArgs e)
+        {
+            //Variables
+            var id = IdText.Text;
+            var name = NameText.Text;
+            var mult = MultText.Text;
+            var size = SizeText.Text;
+            
+            FactorDB.UpdateFaktor(new Factor(Int32.Parse(id), name, Double.Parse(mult), Double.Parse(size), true ));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateDataGrid();
+        }
+
+        //Set factor as not used 
+        private void KillFactor(object sender, RoutedEventArgs e)
+        {
+            var id = IdText.Text;
+            
+            FactorDB.KillFactor(Int32.Parse(id));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateDataGrid();
+        }
         private void AddFactor(object sender, RoutedEventArgs e)
         {
             var id = IdText.Text;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using Konfigurator.Logic.Models.Employee;
+using Konfigurator.UserControls;
 
 namespace Konfigurator.Windows
 {
@@ -15,11 +17,18 @@ namespace Konfigurator.Windows
         
         private int EmployeeID;
         
+        private MitarbeiterTab _mitarbeiterTab = new MitarbeiterTab();
         private void killEmployee(object sender, RoutedEventArgs e)
         {
-            string employeeDateOfDeath = this.EmployeeDateOfDeath.SelectedDate.Value.ToShortDateString();
-            EmployeeDB.KillEmployee(Int32.Parse(this.EmployeeId.Text), DateTime.Parse(employeeDateOfDeath));
-            System.Threading.Thread.Sleep(1000);
+            var selectedDate = this.EmployeeDateOfDeath.SelectedDate;
+            if (selectedDate != null)
+            {
+                string employeeDateOfDeath = selectedDate.Value.ToShortDateString();
+                EmployeeDB.KillEmployee(Int32.Parse(this.EmployeeId.Text), DateTime.Parse(employeeDateOfDeath));
+            }
+
+            System.Threading.Thread.Sleep(100);
+            this.Close();
         }
     }
 }

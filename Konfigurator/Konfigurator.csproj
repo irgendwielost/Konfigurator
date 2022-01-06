@@ -221,6 +221,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="propchange.snippet" />
+    <Resource Include="Properties\password.ttf">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Resource>
     <Resource Include="img\settingGray.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

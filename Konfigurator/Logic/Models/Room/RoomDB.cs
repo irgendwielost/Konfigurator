@@ -111,30 +111,7 @@ namespace Konfigurator.Logic.Models.Room
                                     "========");
                 }
             }
-            
-            /* ======================================================================================================================================================= */
-            
-            
-            /*public static void DeleteRoom(int ID)
-            {
-                var db = new DataBase.DataBase();
-                db.Connection.Open();
-                
-                try
-                {
-                    var cmd = new OleDbCommand(
-                        $"Delete * from Raum where Raum_ID={ID}"
-                        , db.Connection);
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Die Raum wurde nicht gefunden\n" +
-                                    "========");
-                }
-            }*/
-            
-            /* ======================================================================================================================================================= */
+    
             
             // Updates a "Room" in the Database using Id to find it
 
@@ -146,7 +123,7 @@ namespace Konfigurator.Logic.Models.Room
                 try
                 {
                     var cmd = new OleDbCommand(
-                        $"Update Raum set Raum_Name={room.Name} where Raum_ID = {room.ID}"
+                        $"Update Raum set Raum_Name= '{room.Name}' where Raum_ID = {room.ID}"
                         , db.Connection);
                     cmd.ExecuteNonQuery();
                 }

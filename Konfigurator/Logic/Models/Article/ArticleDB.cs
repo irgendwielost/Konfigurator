@@ -115,7 +115,7 @@ namespace Konfigurator.Logic.Models.Article
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
-                throw e;
+                
             }
             
         }
@@ -132,7 +132,7 @@ namespace Konfigurator.Logic.Models.Article
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Artikel set Artikel_Verfuegbar={false} where Artikel_ID={ID}"
+                    $"UPDATE Artikel SET Artikel_Verfugbar={false} WHERE Artikel_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -180,8 +180,7 @@ namespace Konfigurator.Logic.Models.Article
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Artikel set Artikel_Name = {article.Name}" +
-                    $" Artikel_Preis = {article.Price}, Artikel_Verfuegabar = {article.Available} where Artikel_ID = {article.ID}"
+                    $"Update Artikel set Artikel_Name = '{article.Name}', Artikel_Preis = {article.Price}, Artikel_Verfugbar = {article.Available} where Artikel_ID = {article.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

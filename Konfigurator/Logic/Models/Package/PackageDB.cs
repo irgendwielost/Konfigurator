@@ -126,7 +126,7 @@ namespace Konfigurator.Logic.Models.Package
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Paket set Paket_Verfuegbar = {false} where Paket_ID={ID}"
+                    $"Update Paket set Paket_Verfugbar = {false} where Paket_ID={ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -168,8 +168,7 @@ namespace Konfigurator.Logic.Models.Package
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Paket set Paket_Name = {package.Name},Paket_Verfuegbar = {package.Available}," +
-                    $"where Paket_ID = {package.ID}"
+                    $"Update Paket set Paket_Name = '{package.Name}',Paket_Verfugbar = {package.Available} where Paket_ID = {package.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

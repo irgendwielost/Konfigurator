@@ -134,8 +134,7 @@ namespace Konfigurator.Logic.Models.Employee
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Mitarbeiter set Mitarbeiter_Name = {employee.Name},Mitarbeiter_Passwort = {employee.Password}," +
-                    $" Mitarbeiter_Angestellt = {employee.Working},Mitarbeiter_Angefangen = {employee.Started}, Mitarbeiter_Kuendigung = {employee.Ended} where Mitarbeiter_ID = {employee.ID}"
+                    $"Update Mitarbeiter set Mitarbeiter_Name = '{employee.Name}',Mitarbeiter_Passwort = '{employee.Password}', Mitarbeiter_Angestellt = {employee.Working},Mitarbeiter_Angefangen = '{employee.Started}'  where Mitarbeiter_ID = {employee.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -147,6 +146,7 @@ namespace Konfigurator.Logic.Models.Employee
                                 "2: Der Mitarbeiter konnte nicht gefunden werden\n" +
                                 "3: Die Tabelle konnte nicht gefunden werden\n" +
                                 "========");
+                throw e;
             }
         }
     }

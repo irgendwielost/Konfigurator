@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <Label Content="ID:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,8,-26.875,134.233" Width="28.875" Height="26.167" Grid.ColumnSpan="2" Grid.Row="2"/>
         <TextBox x:Name="EmployeeId" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="64.5" HorizontalAlignment="Center" Margin="24,13,-87.5,135.9" Height="19.5"/>
-        <DatePicker x:Name="EmployeeDateOfDeath" HorizontalAlignment="Center" Margin="74,43,-213.007,104.472" Grid.Column="1" Grid.Row="2" Width="140.007" RenderTransformOrigin="0.5,0.5" IsTodayHighlighted="True">
+        <DatePicker x:Name="EmployeeDateOfDeath" HorizontalAlignment="Center" Margin="79.04,48,-238,85.342" Grid.Column="1" Grid.Row="2" Width="159.96" RenderTransformOrigin="0.5,0.5" IsTodayHighlighted="True">
             <DatePicker.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

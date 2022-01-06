@@ -46,15 +46,26 @@ namespace Konfigurator.UserControls
             if (name != null) NameText.Text = name;
         }
 
+        private void EditPhase(object sender, RoutedEventArgs e)
+        {
+            //Variables
+            var id = IdText.Text;
+            var name = NameText.Text;
+            
+            PhaseDB.UpdatePhase(new Phase(Int32.Parse(id), name));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateDataGrid();
+        }
         private void CreatePhase(object sender, RoutedEventArgs e)
         {
             //Variables
             var id = IdText.Text;
             var name = NameText.Text;
             
-            //Create phase Method
+            //Create phase Method 
             PhaseDB.CreatePhase(new Phase(Int32.Parse(id), name));
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(100);
             UpdateDataGrid();
         }
     }

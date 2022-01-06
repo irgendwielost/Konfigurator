@@ -26,11 +26,10 @@ namespace Konfigurator.Windows
 
         //Log In
         private string pw;
-        private string name;
-
+        public static string name;
         private void LogIn_Onclick(object sender, RoutedEventArgs e)
         {
-            pw = Password.Text;
+            pw = Password.Password;
             name = Mitarbeiter.Text;
 
             var db = new DataBase();

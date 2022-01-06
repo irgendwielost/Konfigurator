@@ -79,12 +79,38 @@ namespace Konfigurator.UserControls
             }
             
         }
-        
+        //Edit Employee
+        private void EditEmployee(object sender, RoutedEventArgs e)
+        {
+            var id = IdText.Text;
+            var name = NameText.Text;
+            bool employed = employedCheck.IsChecked != null && (bool)employedCheck.IsChecked;
+            var employedDateSelectedDate = this.employedDate.SelectedDate;
+            
+            if (employedDateSelectedDate != null)
+            {
+                var employedDate = employedDateSelectedDate.Value.ToShortDateString();
+            
+                EmployeeDB.UpdateEmployee(new Employee(Int32.Parse(id), name, name, employed, 
+                    DateTime.Parse(employedDate), null));
+                
+                System.Threading.Thread.Sleep(100);
+                UpdateDataGrid();
+            }
+            else
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Das Datum wurde nicht  eingegeben\n" +
+                                "========");;
+            }
+            
+            
+        }
         private void AddEmployee(object sender, RoutedEventArgs e)
         {
             var id = IdText.Text;
             var name = NameText.Text;
-            bool employed = (bool)employedCheck.IsChecked;
+            bool employed = employedCheck.IsChecked != null && (bool)employedCheck.IsChecked;
             var employedDateSelectedDate = this.employedDate.SelectedDate;
             if (employedDateSelectedDate != null)
             {

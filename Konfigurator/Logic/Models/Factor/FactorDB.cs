@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Linq;
 using System.Windows;
 
 namespace Konfigurator.Logic.Models.Factor
@@ -159,8 +161,7 @@ namespace Konfigurator.Logic.Models.Factor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Faktor set Faktor_Name = {factor.Name}" +
-                    $" Faktor_Angestellt = {factor.Mult}, Faktor_Angefangen = {factor.Grosse}, Faktor_Benutzung = {factor.Used} where Faktor_ID = {factor.ID}"
+                    $"Update Faktor set Faktor_Name = '{factor.Name}', Faktor_Mult = {factor.Mult}, Faktor_Grosse = {factor.Grosse}, Faktor_Benutzung = {factor.Used} where Faktor_ID = {factor.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -172,7 +173,77 @@ namespace Konfigurator.Logic.Models.Factor
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
+                throw e;
             }
+        }
+        
+        // gets the Multiplier for the Order
+        public static double GetMultOfFactor(double currentPrice)
+        {
+            // Opening a Connection to the Database
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+
+            List<double> allGrosse = new List<double>();
+
+            try
+            {
+                // get all the Fakto_Grosse which are used 
+                var cmd = new OleDbCommand($"select Faktor_Grosse from Faktor where Faktor_Grosse={true}"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                // put all the Grosse in a list
+                if (reader.Read() && reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        allGrosse.Add(reader.GetDouble(0));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Kein Faktor konnte gefunden werden\n" +
+                                    "========");
+                }
+                // sort the list small to big
+                allGrosse.OrderBy(d => d);
+                double currentGrosse = 0;
+                // get the smallest number closest to the actual price
+                foreach (var grosse in allGrosse)
+                {
+                    if (grosse <= currentPrice)
+                    {
+                        currentGrosse = grosse;
+                    }
+                }
+
+                try
+                {
+                    // search for the Multiplier
+                    var cmd2 = new OleDbCommand(
+                        $"select Faktor_Mult from Faktor where Faktor_Grosse={currentGrosse} and Faktor_Benutzung={true}"
+                        , db.Connection);
+                    var readerMult = cmd2.ExecuteReader();
+                    return readerMult.GetDouble(0);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Ein unbekannter Fehler ist aufgetreten\n" +
+                                    "========");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "1: Der Faktor konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                "========");
+            }
+
+            return 0;
         }
     }
 }

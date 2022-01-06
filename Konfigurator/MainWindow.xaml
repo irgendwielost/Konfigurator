@@ -51,10 +51,10 @@
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
-                
-               
+
+
             </Grid.RowDefinitions>
-           
+
             <Button Grid.Row="0" x:Name="Auftrag" Content="Auftrag"  Style="{StaticResource ButtonStyle}" Click="AuftragButton_OnClick"></Button>
             <Button  Grid.Row="1" x:Name="Kunde" Content="Kunde" Style="{StaticResource ButtonStyle}"  Click="KundeButton_OnClick"></Button>
             <Button Grid.Row="2" x:Name="Paket" Content="Paket" Style="{StaticResource ButtonStyle}"   Click="PaketButton_OnClick" ></Button>
@@ -63,8 +63,8 @@
             <Button Grid.Row="5" x:Name="Mitarbeiter" Content="Mitarbeiter" Style="{StaticResource ButtonStyle}"   Click="MitarbeiterButton_OnClick" ></Button>
             <Button Grid.Row="6" x:Name="Haus" Content="Haus" Style="{StaticResource ButtonStyle}"  Click="HausButton_OnClick"></Button>
             <Button Grid.Row="7" x:Name="Phasen" Content="Phasen" Style="{StaticResource ButtonStyle}"  Click="PhasenButton_OnClick" ></Button>
-            
-            
+
+
 
         </Grid>
         <!-- 
@@ -73,20 +73,22 @@
             2 #283373
             3 #181c34
         -->
-        
+
         <!-- User Controls -->
-        <Grid Grid.Column="1" Grid.Row="2" Background="Gray"><ContentControl x:Name="ContentControl"></ContentControl> </Grid>
-        
-        
-        
+        <Grid Grid.Column="1" Grid.Row="2" Background="Gray">
+            <ContentControl x:Name="ContentControl"></ContentControl>
+        </Grid>
+
+
+
         <!-- Header -->
         <Grid Grid.Column="1" Grid.Row="0" Background="#283373" Grid.RowSpan="2">
-            <TextBlock Name="TabHeaderBlock" Text="" Margin="25,45,435,7" Foreground="White" FontSize="36"></TextBlock>   
+            <TextBlock Name="TabHeaderBlock" Text="" Margin="25,45,435,7" Foreground="White" FontSize="36"></TextBlock>
             <Button Style="{StaticResource CloseButton}" Click="Closebutton1_OnClick" BorderThickness="0" x:Name="Closebutton1" Content="" HorizontalAlignment="Left" Height="32" Margin="733,5.083,0,0" VerticalAlignment="Top" Width="32">
-                
+
             </Button>
         </Grid>
-        
+
         <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Background="#283373">
             <!-- Footer Columndefinitions -->
             <Grid.ColumnDefinitions>
@@ -105,6 +107,9 @@
             <TextBlock Name="CurrentDate" Grid.Column="3" Grid.Row="2"  Text="01.01.2021" Foreground="White"></TextBlock>
             <Button Style="{StaticResource SettingsButton}" Click="SettingsButton_OnClick" Grid.Row="0" Grid.Column="3" BorderThickness="0" x:Name="SettingsButton" Content="" HorizontalAlignment="Right" Height="32" VerticalAlignment="Top" Width="32" Margin="0,2,3,0" Grid.RowSpan="2"></Button>
             <TextBlock Text="Elektromasters PRIEWE SICKORA GbR" FontSize="10px" Foreground="White" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="3, 0, 0, 3px" />
+           
+            <!-- Username -->
+            <TextBlock x:Name="UsernameText" HorizontalAlignment="Left" Height="20" Margin="5,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Text="Benutzername" Foreground="White" TextAlignment="Center"/>
         </Grid>
     </Grid>
 

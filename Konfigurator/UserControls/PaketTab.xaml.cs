@@ -18,7 +18,6 @@ namespace Konfigurator.UserControls
         {
             InitializeComponent();
             UpdateDataGrid();
-            
         }
 
         public void UpdateDataGrid()
@@ -74,6 +73,17 @@ namespace Konfigurator.UserControls
             }
         }
 
+        //Edit Package 
+        private void EditPackage(object sender, RoutedEventArgs e)
+        {
+            var id = IdText.Text;
+            var name = NameText.Text;
+            
+            PackageDB.UpdatePackage(new Logic.Models.Package.Package(Int32.Parse(id), name, true));
+            System.Threading.Thread.Sleep(100);
+            UpdateDataGrid();
+        }
+        
         private void AddPackage(object sender, RoutedEventArgs e)
         {
             var id = IdText.Text;
@@ -81,10 +91,18 @@ namespace Konfigurator.UserControls
             bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
             
             PackageDB.CreatePackage(new Logic.Models.Package.Package(Int32.Parse(id), name, available));
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(100);
             UpdateDataGrid();
         }
 
+        private void KillPackage(object sender, RoutedEventArgs e)
+        {
+            var id = IdText.Text;
+            PackageDB.KillPackage(Int32.Parse(id));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateDataGrid();
+        }
   
     }
 

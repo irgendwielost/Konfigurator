@@ -128,7 +128,7 @@ namespace Konfigurator.Logic.Models.Floor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Etage set Etage_Name = {floor.Name} where Etage_ID = {floor.ID}"
+                    $"Update Etage set Etage_Name = '{floor.Name}' where Etage_ID = {floor.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

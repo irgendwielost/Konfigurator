@@ -165,7 +165,7 @@ namespace Konfigurator.Logic.Models.Housing
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Gebaude set Gebaude_Name = {housing.Name}" +
+                    $"Update Gebaude set Gebaude_Art = '{housing.Name}'" +
                     $"where Gebaude_ID = {housing.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();

@@ -65,7 +65,7 @@
 
         <!-- Links Unten -->
         <Button Click="KillEmployee" Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="30,22.538,200,210.462" FontSize="15" Content="Löschen"  />
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="200,25.538,30,210.462" FontSize="15" Content="Bearbeiten..."  />
+        <Button Click="EditEmployee" Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="200,25.538,30,210.462" FontSize="15" Content="Bearbeiten..."  />
         <Button Click="AddEmployee" Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="96,111.5,94,121.5" FontSize="15" Content="Hinzufügen"  />
     </Grid>
 </UserControl>

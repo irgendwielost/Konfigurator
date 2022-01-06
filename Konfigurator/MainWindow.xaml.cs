@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
@@ -8,6 +9,8 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using Konfigurator.Logic;
+using Konfigurator.Logic.DataBase;
+using Konfigurator.Logic.Models.Employee;
 using Konfigurator.UserControls;
 using Konfigurator.Windows;
 using MaterialDesignColors.Recommended;
@@ -27,13 +30,40 @@ namespace Konfigurator
             InitializeComponent();
             CurrentTime.Text = localTime.ToString("t")+ " Uhr";
             CurrentDate.Text = localDate.ToString("d") ;
+            GetNameByID();
         }
 
 
-        private void ImageButton_Enter(object sender, MouseEventArgs e)
+        private void GetNameByID()
         {
+            var id = LogIn.name;
             
+            var db = new DataBase();
+
+            db.Connection.Open();
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Select Mitarbeiter_Name from Mitarbeiter where Mitarbeiter_ID = {id}"
+                    , db.Connection);
+                var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    UsernameText.Text = reader.GetString(reader.GetOrdinal("Mitarbeiter_Name"));
+                }
+                
+                
+            }
+            catch (Exception)
+            {
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Ein Unbekannter Fehler ist Aufgetreten\n" +
+                                "========");
+            }
+        
         }
+       
        
         private void Closebutton1_OnClick(object sender, RoutedEventArgs e)
         {

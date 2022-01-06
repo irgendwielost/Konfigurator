@@ -31,18 +31,33 @@ namespace Konfigurator.UserControls
             }
             
         }
-        
+
         //Mark Customer as not current (old)
         private void KillCustomer(object sender, RoutedEventArgs e)
         {
             CustomerDB.KillCustomer(Int32.Parse(IdText.Text));
+            
             System.Threading.Thread.Sleep(1000);
             UpdateDataGrid();
         }
 
         private void EditCustomer(object sender, RoutedEventArgs e)
         {
+            //Variables
+            var id = IdText.Text;
+            var name = NameText.Text;
+            var plz = PlzText.Text;
+            var region = PlaceText.Text;
+            var street = StreetText.Text;
+            var tel = TelText.Text;
+            var email = EmailText.Text;
+            
+            CustomerDB.UpdateCustomer(new Customer(Int32.Parse(id), name, Int32.Parse(plz),
+                region, street, tel, email, true) );
+            
+            System.Threading.Thread.Sleep(100);
             UpdateDataGrid();
+            
         }
         //Add new Customer to DataBase
         public void AddCustomer(object sender, RoutedEventArgs e)

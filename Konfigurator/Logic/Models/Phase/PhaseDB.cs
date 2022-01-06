@@ -123,7 +123,7 @@ namespace Konfigurator.Logic.Models.Phase
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Phasen set Phase_Name = {phase.Name} where Phase_ID = {phase.ID}"
+                    $"Update Phasen set Phase_Name = '{phase.Name}' where Phase_ID = {phase.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

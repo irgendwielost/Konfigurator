@@ -123,10 +123,55 @@ namespace Konfigurator.UserControls
             if (name != null) HousingNameText.Text = name;
         }
 
+        //Edit Database entrys
+        
+        //Housing
+        private void EditHousing(object sender, RoutedEventArgs e)
+        {
+            //Variables
+            var id = HousingIdText.Text;
+            var name = HousingNameText.Text;
+            
+            HousingDB.UpdateHousing(new Housing(Int32.Parse(id), name));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateHousingDataGrid();
+        }
+        
+        //Floor
+        private void EditFloor(object sender, RoutedEventArgs e)
+        {
+            //Variables
+            var id = FloorIdText.Text;
+            var name = FloorNameText.Text;
+            
+            FloorDB.UpdateFloor(new Floor(Int32.Parse(id), name));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateFloorDataGrid();
+        }
+        
+        //Room
+        private void EditRoom(object sender, RoutedEventArgs e)
+        {
+            //Variables
+            var id = RoomIdText.Text;
+            var name = RoomNameText.Text;
+
+            RoomDB.UpdateRoom(new Room(Int32.Parse(id), name));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateRoomDataGrid();
+        }
+
+        
         //Add to DataBase Functions
-        
-        
-        //Add Housing to DataBase 
+
+        /// <summary>
+        /// Add Housing to DataBase 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddHousing(object sender, RoutedEventArgs e)
         {
             //Variables
@@ -139,7 +184,11 @@ namespace Konfigurator.UserControls
             UpdateHousingDataGrid();
         }
         
-        //Add Floor to DataBase
+        /// <summary>
+        ///  Add Floor to DataBase
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddFloor(object sender, RoutedEventArgs e)
         {
             //Variables
@@ -152,6 +201,11 @@ namespace Konfigurator.UserControls
             UpdateFloorDataGrid();
         }
 
+        /// <summary>
+        /// Add Room to DataBase
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddRoom(object sender, RoutedEventArgs e)
         {
             //Variables

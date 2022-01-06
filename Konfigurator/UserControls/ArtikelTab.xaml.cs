@@ -74,18 +74,40 @@ namespace Konfigurator.UserControls
                 isAvailableText.Foreground = Brushes.Red;
             }
         }
-
-
+        //Edit Article
+        private void EditArticle(object sender, RoutedEventArgs e)
+        {
+            var idTextBox = IdText.Text;
+            var nameTextBox = NameText.Text;
+            var priceTextBox = PriceText.Text;
+            bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
+            
+            ArticleDB.UpdateArticle(new Article(Int32.Parse(idTextBox), nameTextBox, Double.Parse(priceTextBox), available));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateDataGrid();
+        }
+        private void KillArticle(object sender, RoutedEventArgs e)
+        {
+            var id = IdText.Text;
+            
+            ArticleDB.KillArticle(Int32.Parse(id));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateDataGrid();
+        }
+        
+        //Add Article to DataBase
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             var idTextBox = IdText.Text;
             var nameTextBox = NameText.Text;
             var priceTextBox = PriceText.Text;
-            bool available = (bool)AvailableCheck.IsChecked;
+            bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
 
             ArticleDB.CreateArticle(new Article(Int32.Parse(idTextBox), nameTextBox, Double.Parse(priceTextBox),
                 available));
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(100);
             UpdateDataGrid();
         }
     }
