@@ -74,13 +74,13 @@
 
                 <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Margin="-3.774,46.125,31.5,1" FontSize="20" Grid.RowSpan="2">E-Mail:</Label>
                 <TextBox x:Name="EmailText" Grid.Row="7" Grid.Column="1" Margin="5,5,-25,5" FontSize="15"/>
-                
+
                 <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" Margin="0,2,26.5,-2" FontSize="20" Content="Aktuell"/>
                 <TextBox x:Name="currentText" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="28.5,9.125,-2.5,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" IsReadOnlyCaretVisible="True"/>
-                <CheckBox x:Name="currentCheck" Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Height="15" Margin="102.5,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="20"/>
-                
+                <CheckBox x:Name="currentCheck" Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Height="15" Margin="6,15.792,0,0" Grid.Row="8" VerticalAlignment="Top" Width="17.5"/>
+
             </Grid>
         </Border>
-        
+
     </Grid>
 </UserControl>

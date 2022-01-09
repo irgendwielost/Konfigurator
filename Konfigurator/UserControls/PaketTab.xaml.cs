@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.IO.Packaging;
 using System.Windows;
@@ -8,6 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Konfigurator.Annotations;
 using Konfigurator.Logic.Models.Package;
+using Konfigurator.Logic.Models.PackageDetails;
+using Konfigurator.Windows;
 using Package = System.IO.Packaging.Package;
 
 namespace Konfigurator.UserControls
@@ -34,7 +37,19 @@ namespace Konfigurator.UserControls
             }
         }
         
-        
+        public void UpdateArticleInPackageDataGrid()
+        {
+            //Fill DataGridView
+            try
+            {
+                var dataset = PackageDetailsDB.GetDataSetPackageDetails(Int32.Parse(IdText.Text));
+                ArticleInPackageDataGrid.ItemsSource = dataset.Tables["PaketDetails"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
         //On Selected Datagrid Row
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -55,8 +70,20 @@ namespace Konfigurator.UserControls
             if (name != null) NameText.Text = name;
             AvailableCheck.IsChecked = available;
             IsItAvailable();
+            UpdateArticleInPackageDataGrid();
         }
+        
+        //Hides the password Column 
+        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            PropertyDescriptor propertyDescriptor = (PropertyDescriptor)e.PropertyDescriptor;
+            e.Column.Header = propertyDescriptor.DisplayName;
+            if (propertyDescriptor.DisplayName == "Paket_ID")
+            {
+                e.Cancel = true;
+            }
 
+        }
         public void IsItAvailable()
         {
             bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
@@ -78,8 +105,9 @@ namespace Konfigurator.UserControls
         {
             var id = IdText.Text;
             var name = NameText.Text;
+            bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
             
-            PackageDB.UpdatePackage(new Logic.Models.Package.Package(Int32.Parse(id), name, true));
+            PackageDB.UpdatePackage(new Logic.Models.Package.Package(Int32.Parse(id), name, available));
             System.Threading.Thread.Sleep(100);
             UpdateDataGrid();
         }
@@ -95,6 +123,13 @@ namespace Konfigurator.UserControls
             UpdateDataGrid();
         }
 
+        //Opens PackageDetailsWindow
+        private void AddArticleToPackage(object sender, RoutedEventArgs e)
+        {
+            PaketDetails packageDetails = new PaketDetails(Int32.Parse(IdText.Text));
+            packageDetails.Show();
+        }
+        
         private void KillPackage(object sender, RoutedEventArgs e)
         {
             var id = IdText.Text;

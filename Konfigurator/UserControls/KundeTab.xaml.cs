@@ -37,10 +37,18 @@ namespace Konfigurator.UserControls
         {
             CustomerDB.KillCustomer(Int32.Parse(IdText.Text));
             
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(100);
             UpdateDataGrid();
         }
 
+        //Marks Customer as current
+        private void ReviveCustomer(object sender, RoutedEventArgs e)
+        {
+            CustomerDB.ReviveCustomer((Int32.Parse(IdText.Text)));
+            
+            System.Threading.Thread.Sleep(100);
+            UpdateDataGrid();
+        }
         private void EditCustomer(object sender, RoutedEventArgs e)
         {
             //Variables
@@ -51,9 +59,10 @@ namespace Konfigurator.UserControls
             var street = StreetText.Text;
             var tel = TelText.Text;
             var email = EmailText.Text;
+            bool current =  currentCheck.IsChecked != null && (bool)currentCheck.IsChecked;
             
             CustomerDB.UpdateCustomer(new Customer(Int32.Parse(id), name, Int32.Parse(plz),
-                region, street, tel, email, true) );
+                region, street, tel, email, current) );
             
             System.Threading.Thread.Sleep(100);
             UpdateDataGrid();
@@ -69,9 +78,10 @@ namespace Konfigurator.UserControls
             var street = StreetText.Text;
             var tel = TelText.Text;
             var email = EmailText.Text;
+            bool current =  currentCheck.IsChecked != null && (bool)currentCheck.IsChecked;
 
             CustomerDB.CreateCustomer(new Customer(Int32.Parse(id), name, Int32.Parse(plz), region, street,
-                tel, email, true));
+                tel, email, current));
             
             System.Threading.Thread.Sleep(1000);
             UpdateDataGrid();

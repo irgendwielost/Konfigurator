@@ -13,7 +13,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
     {
         
         /* DataSet to fill DataGrids and such */
-        public static DataSet GetDataSetPackageDetails()
+        public static DataSet GetDataSetPackageDetails(int id)
         {
             /* Database Connection being opened */
             using (var db = new DataBase.DataBase())
@@ -25,7 +25,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 try
                 {
                     /* in the PacketDetails all entries will be selected and added to the DataSet (consider changing this for not all but just all recently) */
-                    var cmd = new OleDbDataAdapter("select * from PaketDetails"
+                    var cmd = new OleDbDataAdapter($"SELECT * FROM PaketDetails WHERE Paket_ID  = {id}"
                         , db.Connection);
                     DataSet dataSet = new DataSet();
                     cmd.Fill(dataSet, "PaketDetails");
@@ -34,8 +34,10 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 catch (Exception e)
                 {
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n"+
-                                    "Die PaketDetails-Tabelle Konnte nicht gefunden werden\n" +
+                                    "Die PaketDetails-Tabelle Konnte nicht gefunden werden :(\n" +
                                     "========");
+                    Console.WriteLine(e);
+                    throw e;
                 }
             }
 
@@ -112,7 +114,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 if (reader.Read())
                 {
                     return new PackageDetails(ID, reader.GetInt32(1), reader.GetInt32(2), reader.GetDouble(3),
-                        reader.GetBoolean(4));
+                        reader.GetString(4) ,reader.GetBoolean(5));
                 }
             }
             catch (Exception e)
@@ -128,7 +130,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
         }
 
         /* Gives back PackageDetails with the ArticleID */
-        public static PackageDetails GivePackageDetialsBackByArticle(int id)
+        public static PackageDetails GivePackageDetailsBackByArticle(int id)
         {
             /* Database Connection being opened */
             var db = new DataBase.DataBase();
@@ -144,7 +146,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 if (reader.Read())
                 {
                     return new PackageDetails(reader.GetInt32(0), id, reader.GetInt32(2), reader.GetDouble(3),
-                        reader.GetBoolean(4));
+                        reader.GetString(4) ,reader.GetBoolean(5));
                 }
             }
             catch (Exception e)
@@ -173,8 +175,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 double articlePrice = ArticleDB.PriceOfArticle(packageDetails.Article_ID);
                 /* SQL-Command to insert everything into PackageDetails */
                 var cmd = new OleDbCommand(
-                    $"insert into PaketDetails (Paket_ID,Artikel_ID, Artikel_Menge, Artikel_Preis, Preis_Aktuell)" +
-                    $" Values({packageDetails.Package_ID}, {packageDetails.Article_ID}, {packageDetails.ArtMenge}, {articlePrice}, {packageDetails.Recent})"
+                    $"insert into PaketDetails (Paket_ID,Artikel_ID, Artikel_Menge, Artikel_Preis, Artikel_Name, Preis_Aktuell) Values({packageDetails.Package_ID}, {packageDetails.Article_ID}, {packageDetails.ArtMenge},  {packageDetails.Price},'{packageDetails.ArticleName}', {packageDetails.Recent})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

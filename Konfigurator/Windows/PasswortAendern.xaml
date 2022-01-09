@@ -20,7 +20,7 @@
 
         </Grid.ColumnDefinitions>
 
-        <TextBox HorizontalAlignment="Center" Margin="294.254,215.283,299.651,320.617" Width="174.695" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Height="23.5">
+        <TextBox HorizontalAlignment="Center" Margin="298.371,95.75,293.934,438.75" Width="174.695" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Height="23.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -30,7 +30,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox HorizontalAlignment="Center" Margin="239.405,260.117,235.195,267.283" Width="294" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Height="32">
+        <TextBox HorizontalAlignment="Center" Margin="234.355,159.917,238.645,366.083" Width="294" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Height="32">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -40,7 +40,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox HorizontalAlignment="Center" Margin="238.493,321.95,236.107,207.95" Width="294" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Height="29.5">
+        <TextBox HorizontalAlignment="Center" Margin="233.443,221.75,239.557,306.75" Width="294" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Height="29.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -50,7 +50,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox HorizontalAlignment="Center" Margin="236.243,375.117,238.357,154.45" Width="294" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Height="29.833">
+        <TextBox HorizontalAlignment="Center" Margin="231.193,274.917,241.807,253.25" Width="294" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" Height="29.833">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -60,12 +60,13 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="295.083,198.833,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Foreground="White"><Run Text="Mitarbeiter-Nummer"/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="239.25,244.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52.5" Foreground="White"><Run Text="Passwor"/><Run Text="t"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="239.25,303.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Foreground="White" Text="Neues Passwort"/>
-        <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="239.25,357.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Foreground="White" Text="Passwort wiederholen"/>
+        <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="300,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Foreground="White"><Run Text="Mitarbeiter-Nummer"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="235,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52.5" Foreground="White"><Run Text="Passwor"/><Run Text="t"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="235,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Foreground="White" Text="Neues Passwort"/>
+        <TextBlock HorizontalAlignment="Left" Height="14.5" Margin="235,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Foreground="White" Text="Passwort wiederholen"/>
 
-        <Button Style="{StaticResource UcButtonStyle}" Content="Passwort ändern" HorizontalAlignment="Left" Height="21" Margin="272,423.5,0,0" VerticalAlignment="Top" Width="245" BorderThickness="0" Background="#FF414A87"/>
+        <Button Style="{StaticResource UcButtonStyle}" Content="Passwort ändern" HorizontalAlignment="Left" Height="21" Margin="267.75,324,0,0" VerticalAlignment="Top" Width="245" BorderThickness="0" Background="#FF414A87"/>
+        <TextBlock HorizontalAlignment="Left" Height="65" Margin="170,15,0,0" TextWrapping="Wrap" Text="Passwort Ändern" VerticalAlignment="Top" Width="420" TextAlignment="Center" FontSize="36"/>
 
     </Grid>
 </Window>

@@ -25,7 +25,7 @@
         <DataGrid Grid.Row="0" Grid.Column="0" Margin="10, 50, 10, -10" />
         <Button Grid.Row="1" Grid.Column="0" Width="100" Height="40" Margin="0, 40, 130,0 " FontSize="15" Content="Löschen" Background="#586096" />
         <Button Grid.Row="1" Grid.Column="0" Width="100"  Height="40" Margin="130, 40, 0,0 " FontSize="15" Content="Hinzufügen" Background="#586096" />
-        <DataGrid Grid.Row="0" Grid.Column="0" Margin="10, 50, 10, -10" />
+        <DataGrid x:Name="ArticleDataGrid" Grid.Row="0" Grid.Column="0" Margin="10, 50, 10, -10" />
         
         <Button Grid.Row="2" Grid.Column="1" Width="200"  Height="40" Margin="0, 40, 0,0 " FontSize="15" Content="Speicher und Schließen" Background="#586096" />
 
@@ -51,7 +51,7 @@
 
 
                 <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,0,0" FontSize="15">ID:</Label>
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" FontSize="10"/>
+                <TextBox x:Name="NameText" Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" FontSize="10"/>
 
                 <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,0,0" FontSize="15">Name:</Label>
                 <TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,5,5" FontSize="10"/>

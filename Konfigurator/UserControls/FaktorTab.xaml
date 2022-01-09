@@ -45,19 +45,23 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                
-                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">ID:</Label>
+
+                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="-2.184,0.4,66.5,41.2" FontSize="20" Grid.RowSpan="2">ID:</Label>
                 <TextBox x:Name="IdText" Grid.Row="1" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
 
-                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Name:</Label>
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="-0.66,0.4,31.5,41.2" FontSize="20" Grid.RowSpan="2">Name:</Label>
                 <TextBox x:Name="NameText" Grid.Row="2" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
 
-                <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Mult:</Label>
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="-3.5,40.4,46.263,1.2" FontSize="20" Grid.RowSpan="2">Mult:</Label>
                 <TextBox x:Name="MultText" Grid.Row="3" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
 
-                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-12,0" FontSize="20">Größe:</Label>
+                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="-3.5,0.6,33.43,41" FontSize="20" Grid.RowSpan="2">Größe:</Label>
                 <TextBox x:Name="SizeText" Grid.Row="4" Grid.Column="1" Margin="13,5,-32,5" FontSize="15" />
                 
+                <CheckBox x:Name="InUseCheck" Content="CheckBox" Grid.Column="1" HorizontalAlignment="Left" Height="15" Margin="13.5,13.35,0,0" Grid.Row="5" VerticalAlignment="Top" Width="20"/>
+                <TextBox x:Name="InUseText" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="38.5,5.6,-32.5,0" Grid.Row="5" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="190"/>
+                <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="-3.5,0.6,189.93,-0.6" FontSize="20" Content="Benutzung" Grid.ColumnSpan="2" Width="107.57"/>
+
             </Grid>
         </Border>
     </Grid>

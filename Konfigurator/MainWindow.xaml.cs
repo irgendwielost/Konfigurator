@@ -79,8 +79,8 @@ namespace Konfigurator
 
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
         {
-            PasswortAendern pw = new PasswortAendern();
-            pw.Show();
+            PackageDetailsWindow changePassword = new PackageDetailsWindow();
+            changePassword.Show();
         }
         
         

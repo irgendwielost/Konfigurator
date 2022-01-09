@@ -89,6 +89,7 @@
         </Border>
 
         <!-- DataGridView for articles currently in the Package -->
-        <DataGrid Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
+        <DataGrid AutoGeneratingColumn="OnAutoGeneratingColumn" x:Name="ArticleInPackageDataGrid" Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
+        <Button Click="AddArticleToPackage" Style="{StaticResource UcButtonStyle}" Content="Artikel Hinzufügen" Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="22.5,136,0,0" Grid.Row="2" VerticalAlignment="Top" Width="320"/>
     </Grid>
 </UserControl>
