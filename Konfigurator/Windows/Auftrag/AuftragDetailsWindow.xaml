@@ -28,7 +28,7 @@
                 Background="DarkGray" />
 
         <!-- DataGridView which shows the 10 latest changed entries -->
-        <DataGrid Grid.Row="0" Grid.Column="0" Margin="10,27,15,13" />
+        <DataGrid x:Name="PackageDataGrid" Grid.Row="0" Grid.Column="0" Margin="10,27,15,13" />
 
 
         <!-- **Buttons to Manipulate the Database** -->
@@ -133,6 +133,6 @@
         </Border>
 
         <!-- DataGridView for articles currently in the Package -->
-        <DataGrid Grid.Row="1" Grid.Column="1" Margin="0,0,18,49.6" Grid.RowSpan="2" />
+        <DataGrid x:Name="ArticlesDataGrid" Grid.Row="1" Grid.Column="1" Margin="0,0,18,49.6" Grid.RowSpan="2" />
     </Grid>
 </Window>

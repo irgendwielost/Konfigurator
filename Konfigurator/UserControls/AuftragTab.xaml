@@ -31,11 +31,11 @@
         <!-- **Buttons to Manipulate the Database** -->
 
         <!-- Button to delete -->
-        <Button Grid.Row="1" Grid.Column="0"  Style="{StaticResource UcButtonStyle}" Command="{Binding DeleteCommand}" Margin="40, 35, 220,10 " Content="Löschen"  />
+        <Button Grid.Row="1" Grid.Column="0"  Style="{StaticResource UcButtonStyle}"  Margin="40, 35, 220,10 " Content="Löschen"  />
         <!-- Button to edit (Opens new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Command="{Binding EditCommand }" Click="OpenDetailsWindow" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..."/>
+        <Button Style="{StaticResource UcButtonStyle}"  Click="GetPhaseIDByName" Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..."/>
         <!-- Button to add (open new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Command="{Binding AddCommand }" Click="OpenDetailsWindow" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen..."  />
+        <Button  Style="{StaticResource UcButtonStyle}"  Click="OpenDetailsWindow" Grid.Row="2" Grid.Column="0" Margin="100, 10, 90,130 " FontSize="15" Content="Hinzufügen..."  />
 
 
         <!-- **Area to change the variables of the Package** -->
@@ -93,12 +93,12 @@
 
                 <!-- GebäudeArt -->
                 <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,1,134.333,48" FontSize="20" Grid.ColumnSpan="2" Width="126.834" Grid.RowSpan="2">Gebäude Art:</Label>
-                <ComboBox x:Name="housingCombo" Grid.Row="3" Grid.Column="1"  Margin="41.667,5,-40.667,5" FontSize="22" Height="37" Grid.ColumnSpan="2">
+                <ComboBox x:Name="housingCombo" DisplayMemberPath="Gebaude_Art" SelectedValuePath="Gebaude_ID" Grid.Row="3" Grid.Column="1"  Margin="41.667,5,-40.667,5" FontSize="22" Height="37" Grid.ColumnSpan="2">
                 </ComboBox>
 
                 <!-- Phasen -->
                 <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,134.333,0" FontSize="20" Width="76.833" Grid.ColumnSpan="2">Phasen:</Label>
-                <ComboBox x:Name="phaseCombo" ItemsSource="{Binding}" Grid.Row="4" Grid.Column="1"  Margin="41.667,5,-40.667,5" FontSize="22" Height="37" Grid.ColumnSpan="2"/>
+                <ComboBox x:Name="phaseCombo" DisplayMemberPath = "Phase_Name"  SelectedValuePath="Phase_ID" Grid.Row="4" Grid.Column="1"  Margin="41.667,5,-40.667,5" FontSize="22" Height="37" Grid.ColumnSpan="2"/>
 
                 <!-- Neu -->
                 <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,134.333,0" FontSize="20" Grid.ColumnSpan="2">Neu:</Label>

@@ -45,9 +45,9 @@ namespace Konfigurator.Logic.Models.Order
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Order(id, reader.GetDateTime(1), reader.GetBoolean(2), reader.GetDouble(3),
-                        reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6),
-                        reader.GetDouble(7), reader.GetDouble(8));
+                    return new Order(id, reader.GetDateTime(1), reader.GetBoolean(2), reader.GetInt32(3),
+                        reader.GetInt32(4), reader.GetInt32(5),
+                        reader.GetDouble(6), reader.GetDouble(7));
                 }
             }
             catch (Exception e)
@@ -86,8 +86,8 @@ namespace Konfigurator.Logic.Models.Order
             {
                 var cmd = new OleDbCommand(
                     $"insert into Auftrag (Auftrag_ID, Auftrag_Datum, Auftrag_NeuBesta," +
-                    $" Auftrag_Grosse, Kunde_ID, Gebaude_ID, Phase_ID," +
-                    $" Faktor_Mult, Auftrag_PreisGesamt) Values ({order.Id}, {order.Datum}, {order.NeuOrBestand}, {order.Size}, {order.CustomerId}," +
+                    $"  Kunde_ID, Gebaude_ID, Phase_ID," +
+                    $" Faktor_Mult, Auftrag_Endpreis) VALUES ({order.Id}, {order.Datum}, {order.NeuOrBestand}, {order.CustomerId}," +
                     $" {order.HousingId}, {order.PhaseId}, {order.FactorMult}, {order.OverallPrice})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
@@ -111,7 +111,7 @@ namespace Konfigurator.Logic.Models.Order
             {
                 var cmd = new OleDbCommand(
                     $"Update Auftrag set Auftrag_Datum = {order.Datum}, Auftrag_NeuBesta = {order.NeuOrBestand}," +
-                    $" Auftrag_Grosse = {order.Size}, Kunde_ID= {order.CustomerId}, Gebaude_ID= {order.HousingId}, Phase_ID = {order.PhaseId}," +
+                    $"  Kunde_ID= {order.CustomerId}, Gebaude_ID= {order.HousingId}, Phase_ID = {order.PhaseId}," +
                     $" Faktor_Mult = {order.FactorMult}, Auftrag_PreisGesamt = {order.OverallPrice} where Order_ID = {order.Id}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();

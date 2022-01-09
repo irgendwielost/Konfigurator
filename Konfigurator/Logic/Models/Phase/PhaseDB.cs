@@ -136,5 +136,60 @@ namespace Konfigurator.Logic.Models.Phase
                                 "========");
             }
         }
+        
+        // Returns a Dataset filled with all Phase names
+        public static DataSet GetDataSetPhasenName()
+        {
+            // opening the Database
+            using (var db = new DataBase.DataBase())
+            {
+                db.Connection.Open();
+
+                try
+                {
+                    var cmd = new OleDbDataAdapter("SELECT Phase_Name FROM Phasen"
+                        , db.Connection);
+                    DataSet dataSet = new DataSet();
+                    cmd.Fill(dataSet, "Phasen");
+                    return dataSet;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Die Phasen-Tabelle Konnte nicht gefunden werden\n" +
+                                    "========");
+                }
+            }
+
+            return null;
+        }
+        
+        // Returns a Phase looking with the ID
+        /* Find  the "Etage_ID" in "Etage" with the Name */
+        public static int PhaseIdByName(string name)
+        {
+            /* Open the connection to the DataBase */
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+
+            try
+            {
+                /* Select the ID by searching with the Name */
+                var cmd = new OleDbCommand($"Select Phase_ID from Phasen where Phase_Name = '{name}'"
+                    , db.Connection);
+                return Int32.Parse(cmd.ToString());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "1: Die Etage konnte nicht gefunden werden\n" +
+                                "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                "========");
+                throw e;
+            }
+            
+        }
+
+
     }
 }

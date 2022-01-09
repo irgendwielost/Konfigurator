@@ -7,7 +7,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Konfigurator.Logic.Models.FloorAndRoom;
+using Konfigurator.Logic.Models.Housing;
 using Konfigurator.Logic.Models.Order;
+using Konfigurator.Logic.Models.Package;
 using Konfigurator.Logic.Models.Phase;
 using Konfigurator.Windows.Auftrag;
 
@@ -15,19 +17,61 @@ namespace Konfigurator.UserControls
 {
     public partial class AuftragTab : UserControl
     {
-        //this is the new file 
         public AuftragTab()
         {
             InitializeComponent();
-            //Fill DataGridView
-            
-            //Orders
-            var dataset = OrderDB.GetDataSetOrder();
-            DataGridOrder.ItemsSource = dataset.Tables["Auftrag"].DefaultView;
+            UpdateDataGrid();
             
             GetPackageById();
+            UpdatePhaseCombobox();
+            UpdateHousingCombobox();
         }
 
+        private void UpdateDataGrid()
+        {
+            try
+            {
+                //Fill DataGridView
+                //Orders
+                var dataset = OrderDB.GetDataSetOrder();
+                DataGridOrder.ItemsSource = dataset.Tables["Auftrag"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                
+            }
+        }
+        
+        //Update Phase Combobox
+        private void UpdateHousingCombobox()
+        {
+            try
+            {
+                var dataset = HousingDB.GetDataSetHousing();
+                housingCombo.ItemsSource = dataset.Tables["Gebaude"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        
+        
+        //Update Phase Combobox
+        private void UpdatePhaseCombobox()
+        {
+            try
+            {
+                var dataset = PhaseDB.GetDataSetPhasen();
+                this.phaseCombo.ItemsSource = dataset.Tables["Phasen"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        
         //On Selected Datagrid Row
         private void DataGridOrder_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -80,6 +124,47 @@ namespace Konfigurator.UserControls
             }
         }
         
+        //Add Package to Database
+        private void AddOrder(object sender, RoutedEventArgs e)
+        {
+            var id = IDText.Text; ;
+            var customerID = customerIdText.Text;
+            var housing = housingCombo.SelectedValue;
+            var phase = phaseCombo.SelectedValue;
+            var phaseId = PhaseDB.PhaseIdByName(phase.ToString());
+            
+            var selectedDate = this.dateText.SelectedDate;
+            if (selectedDate != null)
+            {
+                var selectedOrderDate = selectedDate.Value.ToShortDateString();
+            
+                OrderDB.CreateOrder(new Order(Int32.Parse(id), DateTime.Parse(selectedOrderDate), true, 1, Int32.Parse(customerID), Int32.Parse(phaseId.ToString()), 1, 1));
+            
+                System.Threading.Thread.Sleep(1000);
+                UpdateDataGrid();
+            }
+            else
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Das Datum wurde nicht eingegeben\n" +
+                                "========");;
+            }
+            
+            
+            
+        }
+
+        public void GetPhaseIDByName(object sender, RoutedEventArgs e)
+        {
+            var phase = phaseCombo.SelectedValue;
+            var phaseId = PhaseDB.PhaseIdByName(phase.ToString());
+
+            MessageBox.Show(phaseId.ToString());
+        }
+        
+
+
+        
         //Show Package by selected ID
         public void GetPackageById()
         {
@@ -122,6 +207,10 @@ namespace Konfigurator.UserControls
         }
 
 
-      
+        public class Language
+        {
+            
+        }
+
     }
 }

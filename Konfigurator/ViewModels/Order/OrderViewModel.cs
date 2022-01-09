@@ -10,7 +10,6 @@ namespace Konfigurator.ViewModels.Order
         public int Id => _order.Id;
         public DateTime Datum => _order.Datum;
         public bool NeuOrBestand => _order.NeuOrBestand;
-        public double Size => _order.Size;
         public int CustomerId => _order.CustomerId;
         public int HousingId => _order.HousingId;
         public int PhaseId => _order.PhaseId;

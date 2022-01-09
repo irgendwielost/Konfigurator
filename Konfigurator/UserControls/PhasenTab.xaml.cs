@@ -29,6 +29,7 @@ namespace Konfigurator.UserControls
             }
         }
 
+     
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Selected Item
