@@ -82,7 +82,7 @@
                 <CheckBox x:Name="AvailableCheck" Grid.Row="3" Grid.Column="1" Margin="23.5,10.6,134,6.4" FontSize="15" />
                 <TextBox x:Name="AvailableText"  Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="43.5,3.2,-32.5,0" Grid.Row="3" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="185"/>
 
-                <Button Click="Refresh"></Button>
+                <Button Content="Aktualisieren" Click="Refresh" Margin="-383.5,284,383.5,-284" Grid.Row="4"></Button>
             </Grid>
         </Border>
 

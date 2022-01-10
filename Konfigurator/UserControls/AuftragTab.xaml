@@ -20,8 +20,8 @@
 
         <!-- **DataGridView** -->
 
-        
-       
+
+
 
         <!-- DataGridView which shows the 10 latest changed entries -->
         <DataGrid x:Name="DataGridOrder"  SelectionChanged="DataGridOrder_OnSelectionChanged"  AutoGeneratingColumn="OnAutoGeneratingColumnOrder" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
@@ -104,14 +104,14 @@
                 <!-- Bestand -->
                 <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,11.583,0" FontSize="20">Bestand:</Label>
                 <CheckBox  x:Name="currentCheck" Checked="NewOrStock" Unchecked="NewOrStock" Grid.Row="5" Grid.Column="1" Margin="169.417,12,10.5,10" FontSize="15" Grid.ColumnSpan="2"/>
-                <Button Click="Refresh" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
+                <Button Content="Aktualisieren" Click="Refresh" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="49" Margin="-373.5,0,321.5,-269" Width="150"/>
                 <!-- total -->
-                <TextBlock x:Name="totalText" HorizontalAlignment="Left" Height="45" Margin="100,410,0,0" Grid.Row="2" TextWrapping="Wrap" Text="0,00€" VerticalAlignment="Top" Width="200" TextAlignment="Center" LineHeight="48"/>
+                <TextBlock x:Name="totalText" HorizontalAlignment="Left" Height="45" Margin="91.5,274,0,-270" Grid.Row="5" TextWrapping="Wrap" Text="69,00€" VerticalAlignment="Top" Width="200" TextAlignment="Center" LineHeight="48" Grid.ColumnSpan="3" FontSize="24"/>
             </Grid>
         </Border>
 
         <!-- DataGridView for articles currently in the Package -->
         <DataGrid x:Name="DataGridPackage" AutoGeneratingColumn="OnAutoGeneratingColumn" Grid.Row="2" Grid.Column="1" Margin="0, -50, 10, 75" />
-        
+
     </Grid>
 </UserControl>
