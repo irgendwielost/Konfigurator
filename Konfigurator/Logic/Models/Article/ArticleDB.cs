@@ -180,7 +180,7 @@ namespace Konfigurator.Logic.Models.Article
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Artikel set Artikel_Name = '{article.Name}', Artikel_Preis = {article.Price}, Artikel_Verfugbar = {article.Available} where Artikel_ID = {article.ID}"
+                    $"Update Artikel set Artikel_Name = '{article.Name}', Artikel_Preis = '{article.Price}', Artikel_Verfugbar = {article.Available} where Artikel_ID = {article.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

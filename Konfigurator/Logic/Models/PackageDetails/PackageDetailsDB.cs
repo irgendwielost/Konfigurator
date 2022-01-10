@@ -175,7 +175,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                 double articlePrice = ArticleDB.PriceOfArticle(packageDetails.Article_ID);
                 /* SQL-Command to insert everything into PackageDetails */
                 var cmd = new OleDbCommand(
-                    $"insert into PaketDetails (Paket_ID,Artikel_ID, Artikel_Menge, Artikel_Preis, Artikel_Name, Preis_Aktuell) Values({packageDetails.Package_ID}, {packageDetails.Article_ID}, {packageDetails.ArtMenge},  {packageDetails.Price},'{packageDetails.ArticleName}', {packageDetails.Recent})"
+                    $"insert into PaketDetails (Paket_ID,Artikel_ID, Artikel_Menge, Artikel_Preis, Artikel_Name, Preis_Aktuell) Values({packageDetails.Package_ID}, {packageDetails.Article_ID}, {packageDetails.ArtMenge},  '{packageDetails.Price}','{packageDetails.ArticleName}', {packageDetails.Recent})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }

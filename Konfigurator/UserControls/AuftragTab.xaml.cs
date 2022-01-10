@@ -22,8 +22,6 @@ namespace Konfigurator.UserControls
         {
             InitializeComponent();
             UpdateDataGrid();
-            
-            GetPackageById();
             UpdatePhaseCombobox();
             UpdateHousingCombobox();
         }
@@ -123,7 +121,8 @@ namespace Konfigurator.UserControls
                 if (customerId != null) customerIdText.Text = customerId;
                 if (housingId != null) housingCombo.SelectedValue = housingId;
                 if (phaseId != null) phaseCombo.SelectedValue = phaseId;
-                if (total != null) totalText.Text = total;
+                var Total = total + "€";
+                if (total != null) totalText.Text = Total;
                 if (newOrStock == true)
                 {
                     newCheck.IsChecked = true;
@@ -258,11 +257,11 @@ namespace Konfigurator.UserControls
             
         }
 
+       
+        
         private void Refresh(object sender, RoutedEventArgs e)
         {
             UpdateDataGrid();
-            
-            GetPackageById();
             UpdatePhaseCombobox();
             UpdateHousingCombobox();
         }

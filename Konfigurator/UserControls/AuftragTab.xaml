@@ -28,8 +28,7 @@
 
         <!-- **Buttons to Manipulate the Database** -->
 
-        <!-- Button to delete -->
-        <Button Grid.Row="1" Grid.Column="0"  Style="{StaticResource UcButtonStyle}"  Margin="40, 35, 220,10 " Content="Löschen"  />
+        
         <!-- Button to edit (Opens new Window) -->
         <Button Click="EditOrder" Style="{StaticResource UcButtonStyle}"  Grid.Row="1" Grid.Column="0" Margin="220, 35, 40,10 " FontSize="15" Content="Bearbeiten..."/>
         <!-- Button to add (open new Window) -->
@@ -105,8 +104,9 @@
                 <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,11.583,0" FontSize="20">Bestand:</Label>
                 <CheckBox  x:Name="currentCheck" Checked="NewOrStock" Unchecked="NewOrStock" Grid.Row="5" Grid.Column="1" Margin="169.417,12,10.5,10" FontSize="15" Grid.ColumnSpan="2"/>
                 <Button Content="Aktualisieren" Click="Refresh" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="49" Margin="-373.5,0,321.5,-269" Width="150"/>
+                
                 <!-- total -->
-                <TextBlock x:Name="totalText" HorizontalAlignment="Left" Height="45" Margin="91.5,274,0,-270" Grid.Row="5" TextWrapping="Wrap" Text="69,00€" VerticalAlignment="Top" Width="200" TextAlignment="Center" LineHeight="48" Grid.ColumnSpan="3" FontSize="24"/>
+                <TextBlock x:Name="totalText" HorizontalAlignment="Left" Height="45" Margin="91.5,274,0,-270" Grid.Row="5" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200" TextAlignment="Center" LineHeight="48" Grid.ColumnSpan="3" FontSize="24"/>
             </Grid>
         </Border>
 

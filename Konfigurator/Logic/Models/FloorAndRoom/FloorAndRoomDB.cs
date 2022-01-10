@@ -203,8 +203,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                 double packagePrice = 0;
                 packagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
                 var cmd = new OleDbCommand(
-                    $"insert into EtageUndRaum (Auftrag_ID, Etage_ID, Raum_ID, Paket_ID, Raum_Grosse, Paket_Preis) values ({floorAndRoom.Order_ID}, {floorAndRoom.Floor_ID}, {floorAndRoom.Room_ID}, " +
-                    $"{floorAndRoom.Package_ID}, {floorAndRoom.Room_Size}, {packagePrice})"
+                    $"insert into EtageUndRaum (Auftrag_ID, Etage_ID, Raum_ID, Paket_ID, Raum_Grosse, Paket_Preis) values ({floorAndRoom.Order_ID}, {floorAndRoom.Floor_ID}, {floorAndRoom.Room_ID}, {floorAndRoom.Package_ID}, {floorAndRoom.Room_Size}, '{packagePrice}')"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -214,6 +213,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
                                 "1: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "2: Einer der Id's existiert nicht\n" +
                                 "========");
+                Console.WriteLine(e);
             }
         }
         
@@ -231,7 +231,7 @@ namespace Konfigurator.Logic.Models.FloorAndRoom
             {
                 double packagePrice = PackageDetails.PackageDetailsDB.PackageDetailsGetPrice(floorAndRoom.Package_ID);
                 var cmd = new OleDbCommand(
-                    $"Update EtageUndRaum set Paket_ID = {floorAndRoom.Package_ID}, Raum_Grosse = {floorAndRoom.Room_Size}, Paket_Preis = {packagePrice}" +
+                    $"Update EtageUndRaum set Paket_ID = {floorAndRoom.Package_ID}, Raum_Grosse = {floorAndRoom.Room_Size}, Paket_Preis = '{packagePrice}'" +
                     $" where Auftrag_ID = {floorAndRoom.Order_ID} and where Floor_ID = {floorAndRoom.Floor_ID} and where Raum_ID = {floorAndRoom.Room_ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();

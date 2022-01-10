@@ -21,11 +21,7 @@
 
         <!-- **DataGridView** -->
 
-        <!-- TextBox to define what you look for -->
-        <TextBox Grid.Row="0" Grid.Column="0" Margin="10,5.875,40,204" />
-        <!-- Button to start search -->
-        <Button Grid.Row="0" Grid.Column="0" Margin="356.8,5.875,15,204" Content="Go" FontSize="15"
-                Background="DarkGray" />
+       
 
         <!-- DataGridView which shows the 10 latest changed entries -->
         <DataGrid x:Name="PackageDataGrid"  SelectionChanged="DataGrid_OnSelectionChanged" Grid.Row="0" Grid.Column="0" Margin="10,27,15,13" />

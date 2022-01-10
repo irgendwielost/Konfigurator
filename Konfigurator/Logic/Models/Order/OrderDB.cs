@@ -88,7 +88,7 @@ namespace Konfigurator.Logic.Models.Order
                     $"insert into Auftrag (Auftrag_ID, Auftrag_Datum, Auftrag_NeuBesta," +
                     $"  Kunde_ID, Gebaude_ID, Phase_ID," +
                     $" Auftrag_Endpreis, Auftrag_Preis) VALUES ({order.Id}, '{order.Datum}', {order.NeuOrBestand}, {order.CustomerId}," +
-                    $" {order.HousingId}, {order.PhaseId}, {order.OverallPrice}, {order.Price})"
+                    $" {order.HousingId}, {order.PhaseId}, '{order.OverallPrice}', '{order.Price}')"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -113,7 +113,7 @@ namespace Konfigurator.Logic.Models.Order
                 var cmd = new OleDbCommand(
                     $"Update Auftrag set Auftrag_Datum = {order.Datum}, Auftrag_NeuBesta = {order.NeuOrBestand}," +
                     $"  Kunde_ID= {order.CustomerId}, Gebaude_ID= {order.HousingId}, Phase_ID = {order.PhaseId}," +
-                    $"  Auftrag_PreisGesamt = {order.OverallPrice} where Order_ID = {order.Id}"
+                    $"  Auftrag_PreisGesamt = '{order.OverallPrice}' where Order_ID = {order.Id}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -135,14 +135,13 @@ namespace Konfigurator.Logic.Models.Order
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Auftrag set Auftrag_Endpreis = {overallPrice}, Auftrag_Preis = {price}  WHERE Auftrag_ID = {orderId}"
+                    $"Update Auftrag set Auftrag_Endpreis = '{overallPrice}', Auftrag_Preis = '{price}'  WHERE Auftrag_ID = {orderId}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                MessageBox.Show("Du hurensohn");
-                
+                Console.WriteLine(e);
             }
         }
         
