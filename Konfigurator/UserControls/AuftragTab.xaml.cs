@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Konfigurator.Logic.Models.Factor;
 using Konfigurator.Logic.Models.FloorAndRoom;
 using Konfigurator.Logic.Models.Housing;
 using Konfigurator.Logic.Models.Order;
@@ -39,10 +40,23 @@ namespace Konfigurator.UserControls
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                
             }
         }
-        
+
+        private void UpdateFloorAndRoomDataGrid()
+        {
+            try
+            {
+                //Fill DataGridView
+                //Orders
+                var dataset = FloorAndRoomDB.GetDataSetFloorAndRoomDetailsByOrder(Int32.Parse(IDText.Text));
+                DataGridPackage.ItemsSource = dataset.Tables["EtageUndRaum"].DefaultView;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
         //Update Phase Combobox
         private void UpdateHousingCombobox()
         {
@@ -97,32 +111,49 @@ namespace Konfigurator.UserControls
             string phaseId = (DataGridOrder.SelectedCells[5].Column.GetCellContent(item) as TextBlock)?.Text;
             
             //Selected Item | total
-            string total = (DataGridOrder.SelectedCells[5].Column.GetCellContent(item) as TextBlock)?.Text;
+            string total = (DataGridOrder.SelectedCells[6].Column.GetCellContent(item) as TextBlock)?.Text;
             
             
             
             //Display Items in Textbox
-            IDText.Text = id;
-            dateText.Text = date;
-            customerIdText.Text = customerId;
-            housingCombo.SelectedValue = housingId;
-            phaseCombo.SelectedValue = phaseId;
-            totalText.Text = total;
-            newRadio.IsChecked = newOrStock;
-            NewOrStock();
+            try
+            {
+                if (id != null) IDText.Text = id;
+                if (date != null) dateText.Text = date;
+                if (customerId != null) customerIdText.Text = customerId;
+                if (housingId != null) housingCombo.SelectedValue = housingId;
+                if (phaseId != null) phaseCombo.SelectedValue = phaseId;
+                if (total != null) totalText.Text = total;
+                if (newOrStock == true)
+                {
+                    newCheck.IsChecked = true;
+                }
+                else
+                {
+                    currentCheck.IsChecked = true;
+                }
+                
+                UpdateFloorAndRoomDataGrid();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            
         }
 
-        private void NewOrStock()
+        private void NewOrStock(object sender, RoutedEventArgs e)
         {
-            if (newRadio.IsChecked == true)
+            if (newCheck.IsChecked == true)
             {
-                stockRadio.IsChecked = false;
+                currentCheck.IsChecked = false;
             }
             else
             {
-                stockRadio.IsChecked = true;
+                currentCheck.IsChecked = true;
             }
         }
+        
         
         //Add Package to Database
         private void AddOrder(object sender, RoutedEventArgs e)
@@ -131,40 +162,38 @@ namespace Konfigurator.UserControls
             var customerID = customerIdText.Text;
             var housing = housingCombo.SelectedValue;
             var phase = phaseCombo.SelectedValue;
-            var phaseId = PhaseDB.PhaseIdByName(phase.ToString());
-            
+
             var selectedDate = this.dateText.SelectedDate;
-            if (selectedDate != null)
+            try
             {
-                var selectedOrderDate = selectedDate.Value.ToShortDateString();
+                if (selectedDate != null)
+                {
+                    var selectedOrderDate = selectedDate.Value.ToShortDateString();
             
-                OrderDB.CreateOrder(new Order(Int32.Parse(id), DateTime.Parse(selectedOrderDate), true, 1, Int32.Parse(customerID), Int32.Parse(phaseId.ToString()), 1, 1));
+                    OrderDB.CreateOrder(new Order(Int32.Parse(id), DateTime.Parse(selectedOrderDate), true, Int32.Parse(customerID), Int32.Parse(housing.ToString()), Int32.Parse(phase.ToString()), 0, 0));
             
-                System.Threading.Thread.Sleep(1000);
-                UpdateDataGrid();
+                    System.Threading.Thread.Sleep(500);
+                    OpenDetailsWindow(Int32.Parse(IDText.Text));
+                    UpdateDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "Das Datum wurde nicht eingegeben\n" +
+                                    "========");
+                }
             }
-            else
+            catch (Exception exception)
             {
-                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                "Das Datum wurde nicht eingegeben\n" +
-                                "========");;
+                MessageBox.Show("Es gab einen Fehler bei dem einfügen des Datensatzes");
             }
+            
             
             
             
         }
 
-        public void GetPhaseIDByName(object sender, RoutedEventArgs e)
-        {
-            var phase = phaseCombo.SelectedValue;
-            var phaseId = PhaseDB.PhaseIdByName(phase.ToString());
-
-            MessageBox.Show(phaseId.ToString());
-        }
-        
-
-
-        
+     
         //Show Package by selected ID
         public void GetPackageById()
         {
@@ -181,11 +210,14 @@ namespace Konfigurator.UserControls
             DataGridOrder.ItemsSource = datasetPackage.Tables["EtageUndRaum"].DefaultView;
             
         }
+
+        private void EditOrder(object sender, RoutedEventArgs e)
+        {
+            OpenDetailsWindow(Int32.Parse(IDText.Text));
+        }
         
-        
-        
-        //Hide unnecessary Objects in DataGrid
-        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        //Hide unnecessary Objects in OrderDataGrid
+        private void OnAutoGeneratingColumnOrder(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             PropertyDescriptor propertyDescriptor = (PropertyDescriptor)e.PropertyDescriptor;
             e.Column.Header = propertyDescriptor.DisplayName;
@@ -200,16 +232,39 @@ namespace Konfigurator.UserControls
            
         }
 
-        private void OpenDetailsWindow(object sender, RoutedEventArgs e)
+        //Hides unnecessary Objects in PackageDatagrid
+        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            AuftragDetailsWindow auftragDetails = new AuftragDetailsWindow();
-            auftragDetails.Show();
+            PropertyDescriptor propertyDescriptor = (PropertyDescriptor)e.PropertyDescriptor;
+            e.Column.Header = propertyDescriptor.DisplayName;
+            if (propertyDescriptor.DisplayName == "Auftrag_ID")
+            {
+                e.Cancel = true;
+            }
+            
+        }
+        
+        private void OpenDetailsWindow(int id)
+        {
+            try
+            {
+                AuftragDetailsWindow auftragDetails = new AuftragDetailsWindow(id);
+                auftragDetails.Show();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Es muss eine Auftrags ID ausgewählt werden");
+            }
+            
         }
 
-
-        public class Language
+        private void Refresh(object sender, RoutedEventArgs e)
         {
+            UpdateDataGrid();
             
+            GetPackageById();
+            UpdatePhaseCombobox();
+            UpdateHousingCombobox();
         }
 
     }

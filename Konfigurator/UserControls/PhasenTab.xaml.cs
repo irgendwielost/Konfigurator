@@ -55,7 +55,7 @@ namespace Konfigurator.UserControls
             
             PhaseDB.UpdatePhase(new Phase(Int32.Parse(id), name));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(1000);
             UpdateDataGrid();
         }
         private void CreatePhase(object sender, RoutedEventArgs e)
@@ -66,7 +66,7 @@ namespace Konfigurator.UserControls
             
             //Create phase Method 
             PhaseDB.CreatePhase(new Phase(Int32.Parse(id), name));
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(1000);
             UpdateDataGrid();
         }
     }

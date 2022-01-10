@@ -18,8 +18,8 @@
             <RowDefinition Height="196" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Grid.Column="0" Margin="10, 10, 119, 257" />
-        <Button Grid.Row="0" Grid.Column="0" Margin="270, 10, 40, 257" Content="Go" FontSize="15" Background="DarkGray" />
+        
+      
 
         <DataGrid x:Name="DataGrid" SelectionChanged="DataGrid_OnSelectionChanged" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
         <Button Click="KillFactor" Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40, 35, 220,10 " FontSize="15" Content="Löschen"/>

@@ -27,7 +27,7 @@ namespace Konfigurator.Windows
                 EmployeeDB.KillEmployee(Int32.Parse(this.EmployeeId.Text), DateTime.Parse(employeeDateOfDeath));
             }
 
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             this.Close();
         }
     }

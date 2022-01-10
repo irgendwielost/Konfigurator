@@ -33,7 +33,11 @@ namespace Konfigurator.UserControls
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Selected Item
-            object item = DataGrid.SelectedItem; 
+            object item = DataGrid.SelectedItem;
+            if (item is null)
+            {
+                return;
+            }
             
             //Selected Item | id
             string id = (DataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock)?.Text;
@@ -94,7 +98,7 @@ namespace Konfigurator.UserControls
                 EmployeeDB.UpdateEmployee(new Employee(Int32.Parse(id), name, name, employed, 
                     DateTime.Parse(employedDate), null));
                 
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(500);
                 UpdateDataGrid();
             }
             else
@@ -126,7 +130,7 @@ namespace Konfigurator.UserControls
                                 "========");;
             }
 
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
 
@@ -136,6 +140,7 @@ namespace Konfigurator.UserControls
             
             KillEmployee killEmployeeWindow = new KillEmployee(Int32.Parse(id));
             killEmployeeWindow.Show();
+            UpdateDataGrid();
         }
     }
 }

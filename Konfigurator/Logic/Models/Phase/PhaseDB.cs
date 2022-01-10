@@ -185,9 +185,10 @@ namespace Konfigurator.Logic.Models.Phase
                                 "1: Die Etage konnte nicht gefunden werden\n" +
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "========");
-                throw e;
+               
             }
-            
+
+            return 0;
         }
 
 

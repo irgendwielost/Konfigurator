@@ -28,7 +28,7 @@
                 Background="DarkGray" />
 
         <!-- DataGridView which shows the 10 latest changed entries -->
-        <DataGrid x:Name="PackageDataGrid" Grid.Row="0" Grid.Column="0" Margin="10,27,15,13" />
+        <DataGrid x:Name="PackageDataGrid"  SelectionChanged="DataGrid_OnSelectionChanged" Grid.Row="0" Grid.Column="0" Margin="10,27,15,13" />
 
 
         <!-- **Buttons to Manipulate the Database** -->
@@ -37,10 +37,10 @@
         <Button Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="40,19.538,220,25.462" FontSize="15" Content="Löschen"
                 Background="#586096" />
         <!-- Button to edit (Opens new Window) -->
-        <Button  Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220,19.538,40,25.462" FontSize="15" Content="Hinzufügen"
+        <Button Click="AddFloorAndRoomToOrder" Style="{StaticResource UcButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="220,19.538,40,25.462" FontSize="15" Content="Hinzufügen"
                 Background="#586096" />
         <!-- Button to add (open new Window) -->
-        <Button Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="145.666,72.233,163.001,49.6" FontSize="15" Content="schließen"
+        <Button Click="Close" Style="{StaticResource UcButtonStyle}" Grid.Row="2" Grid.Column="0" Margin="145.666,72.233,163.001,49.6" FontSize="15" Content="schließen"
                 Background="#586096" />
 
 
@@ -78,61 +78,39 @@
                     Etage:
                 </Label>
                 <!-- Etage Combobox-->
-                <ComboBox Grid.Row="0" Grid.Column="1" Margin="41.667,6,-40.667,25.5" FontSize="20" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                    <ComboBoxItem>
-                        <TextBlock Text="1" />
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="2" />
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="3" />
-                    </ComboBoxItem>
-                </ComboBox>
+                <ComboBox x:Name="FloorCombo" DisplayMemberPath="Etage_Name" SelectedValuePath="Etage_ID" Grid.Row="0" Grid.Column="1" Margin="41.667,6,-40.667,25.5" FontSize="20" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
 
-                <!-- Raum -->
+                    <!-- Raum -->
                 <!-- Raum  Label -->
                 <Label Grid.Row="2" Grid.Column="0" Margin="0,0,134.333,0" FontSize="20" HorizontalAlignment="Right"
                        Width="64.791" Grid.ColumnSpan="2">
                     Raum:
                 </Label>
                 <!-- Raum  ComboBox -->
-                <ComboBox Grid.Row="2" Grid.Column="1" Margin="41.667,0,-40.667,1" FontSize="20" Grid.ColumnSpan="2">
-                    <ComboBoxItem>
-                        <TextBlock Text="Wohnzimmer" />
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Schlafzimmer" />
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Bongzimmer" />
-                    </ComboBoxItem>
-                </ComboBox>
+                <ComboBox x:Name="RoomCombo" DisplayMemberPath="Raum_Name" SelectedValuePath="Raum_ID" Grid.Row="2" Grid.Column="1" Margin="41.667,0,-40.667,1" FontSize="20" Grid.ColumnSpan="2"/>
 
-                <!-- GebäudeArt -->
+                    <!-- GebäudeArt -->
                 <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,134.333,20.667"
                        FontSize="20" Grid.ColumnSpan="2" Width="117.25" Grid.RowSpan="2">
                     Raumgröße:
                 </Label>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="41.667,10.833,-40.667,20.667" FontSize="22"
+                <TextBox x:Name="RoomSize" Grid.Row="3" Grid.Column="1" Margin="41.667,10.833,-40.667,20.667" FontSize="22"
                           Grid.ColumnSpan="2" Grid.RowSpan="2" Height="32.5" />
 
-                <!-- Phasen -->
+                <!-- Package -->
                 <Label Grid.Row="4" Grid.Column="0" Margin="0,25.417,137.332,8.083" FontSize="20" Width="61.792"
                        HorizontalAlignment="Right" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     Paket:
                 </Label>
-                <TextBox Grid.Row="4" Grid.Column="1" Margin="41.667,25.417,-40.667,7.083" FontSize="22"
+                <TextBox x:Name="PackageIdText"  Grid.Row="4" Grid.Column="1" Margin="41.667,25.417,-40.667,7.083" FontSize="22"
                           Grid.ColumnSpan="2" Grid.RowSpan="2" Height="32.5"/>
 
-                <!-- Neu -->
-                <!-- Bestand -->
-
+             
             </Grid>
         </Border>
 
         <!-- DataGridView for articles currently in the Package -->
-        <DataGrid x:Name="ArticlesDataGrid" Grid.Row="1" Grid.Column="1" Margin="0,0,18,49.6" Grid.RowSpan="2" />
+        <DataGrid AutoGeneratingColumn="OnAutoGeneratingColumn" x:Name="ArticlesDataGrid" Grid.Row="1" Grid.Column="1" Margin="0,0,18,49.6" Grid.RowSpan="2" />
     </Grid>
 </Window>

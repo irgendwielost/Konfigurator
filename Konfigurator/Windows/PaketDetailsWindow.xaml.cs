@@ -19,9 +19,11 @@ namespace Konfigurator.Windows
         public PackageDetailsWindow()
         {
             InitializeComponent();
-            MessageBox.Show("Falsches Fenster");
         }
 
-        
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

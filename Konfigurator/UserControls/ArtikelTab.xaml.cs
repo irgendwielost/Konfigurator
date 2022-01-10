@@ -82,9 +82,9 @@ namespace Konfigurator.UserControls
             var priceTextBox = PriceText.Text;
             bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
             
-            ArticleDB.UpdateArticle(new Article(Int32.Parse(idTextBox), nameTextBox, Double.Parse(priceTextBox), available));
+            ArticleDB.UpdateArticle(new Article(Int32.Parse(idTextBox), nameTextBox, double.Parse(priceTextBox), available));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
         private void KillArticle(object sender, RoutedEventArgs e)
@@ -93,7 +93,7 @@ namespace Konfigurator.UserControls
             
             ArticleDB.KillArticle(Int32.Parse(id));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
         
@@ -105,9 +105,9 @@ namespace Konfigurator.UserControls
             var priceTextBox = PriceText.Text;
             bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
 
-            ArticleDB.CreateArticle(new Article(Int32.Parse(idTextBox), nameTextBox, Double.Parse(priceTextBox),
+            ArticleDB.CreateArticle(new Article(Int32.Parse(idTextBox), nameTextBox, double.Parse(priceTextBox),
                 available));
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
     }

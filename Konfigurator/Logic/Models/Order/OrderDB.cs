@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Windows;
 using Konfigurator.Logic.Models.Factor;
+using Konfigurator.Logic.Models.Room;
 
 namespace Konfigurator.Logic.Models.Order
 {
@@ -46,8 +47,7 @@ namespace Konfigurator.Logic.Models.Order
                 if (reader.Read())
                 {
                     return new Order(id, reader.GetDateTime(1), reader.GetBoolean(2), reader.GetInt32(3),
-                        reader.GetInt32(4), reader.GetInt32(5),
-                        reader.GetDouble(6), reader.GetDouble(7));
+                        reader.GetInt32(4), reader.GetInt32(5), reader.GetDouble(6), reader.GetDouble(7));
                 }
             }
             catch (Exception e)
@@ -87,8 +87,8 @@ namespace Konfigurator.Logic.Models.Order
                 var cmd = new OleDbCommand(
                     $"insert into Auftrag (Auftrag_ID, Auftrag_Datum, Auftrag_NeuBesta," +
                     $"  Kunde_ID, Gebaude_ID, Phase_ID," +
-                    $" Faktor_Mult, Auftrag_Endpreis) VALUES ({order.Id}, {order.Datum}, {order.NeuOrBestand}, {order.CustomerId}," +
-                    $" {order.HousingId}, {order.PhaseId}, {order.FactorMult}, {order.OverallPrice})"
+                    $" Auftrag_Endpreis, Auftrag_Preis) VALUES ({order.Id}, '{order.Datum}', {order.NeuOrBestand}, {order.CustomerId}," +
+                    $" {order.HousingId}, {order.PhaseId}, {order.OverallPrice}, {order.Price})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -97,6 +97,7 @@ namespace Konfigurator.Logic.Models.Order
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
+               
             }
         }
         
@@ -112,7 +113,7 @@ namespace Konfigurator.Logic.Models.Order
                 var cmd = new OleDbCommand(
                     $"Update Auftrag set Auftrag_Datum = {order.Datum}, Auftrag_NeuBesta = {order.NeuOrBestand}," +
                     $"  Kunde_ID= {order.CustomerId}, Gebaude_ID= {order.HousingId}, Phase_ID = {order.PhaseId}," +
-                    $" Faktor_Mult = {order.FactorMult}, Auftrag_PreisGesamt = {order.OverallPrice} where Order_ID = {order.Id}"
+                    $"  Auftrag_PreisGesamt = {order.OverallPrice} where Order_ID = {order.Id}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -126,7 +127,24 @@ namespace Konfigurator.Logic.Models.Order
             }
         }
         
+        public static void UpdateOrderPrice(int orderId, double price, double overallPrice)
+        {
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
 
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Update Auftrag set Auftrag_Endpreis = {overallPrice}, Auftrag_Preis = {price}  WHERE Auftrag_ID = {orderId}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Du hurensohn");
+                
+            }
+        }
         
         // gets the Price of the order Without the Factor
         public static double GetPriceForOrder(int OrderID)
@@ -140,15 +158,15 @@ namespace Konfigurator.Logic.Models.Order
                     $"Select Paket_Preis from EtageUndRaum where Auftrag_ID = {OrderID}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
                         totalPrice += reader.GetDouble(0);
-                    }
                 }
 
+               
                 return totalPrice;
+                
             }
             catch (Exception e)
             {
@@ -157,7 +175,9 @@ namespace Konfigurator.Logic.Models.Order
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
+
             }
+
             return 0;
         }
 
@@ -167,7 +187,7 @@ namespace Konfigurator.Logic.Models.Order
         public static double GetFullOrderPrice(int orderId)
         {
             double OrderPrice = GetPriceForOrder(orderId);
-            double finalPrice = OrderPrice * FactorDB.GetMultOfFactor(OrderPrice);
+            double finalPrice = OrderPrice * FactorDB.GetMultOfFactor(RoomDB.GetRoomGrosseForOrder(orderId));
             return finalPrice;
         }
     }

@@ -37,7 +37,7 @@ namespace Konfigurator.UserControls
         {
             CustomerDB.KillCustomer(Int32.Parse(IdText.Text));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
 
@@ -46,7 +46,7 @@ namespace Konfigurator.UserControls
         {
             CustomerDB.ReviveCustomer((Int32.Parse(IdText.Text)));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
         private void EditCustomer(object sender, RoutedEventArgs e)
@@ -64,7 +64,7 @@ namespace Konfigurator.UserControls
             CustomerDB.UpdateCustomer(new Customer(Int32.Parse(id), name, Int32.Parse(plz),
                 region, street, tel, email, current) );
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
             
         }

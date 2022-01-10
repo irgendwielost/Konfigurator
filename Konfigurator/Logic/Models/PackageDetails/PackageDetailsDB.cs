@@ -37,7 +37,7 @@ namespace Konfigurator.Logic.Models.PackageDetails
                                     "Die PaketDetails-Tabelle Konnte nicht gefunden werden :(\n" +
                                     "========");
                     Console.WriteLine(e);
-                    throw e;
+                   
                 }
             }
 
@@ -208,7 +208,6 @@ namespace Konfigurator.Logic.Models.PackageDetails
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
         }
         
@@ -259,5 +258,29 @@ namespace Konfigurator.Logic.Models.PackageDetails
 
             return 0;
         }
+        
+          
+        // Deletes Gebaude by looking for ID
+        public static void DeleteArticleFromPackage(int packageID, int articleID)
+        {
+            // Database connection opens 
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+            
+            try
+            {
+                var cmd = new OleDbCommand(
+                    $"Delete * from PaketDetails where Paket_ID={packageID} and Artikel_ID = {articleID}"
+                    , db.Connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Artikel in diesem Paket wurde nicht gefunden\n" +
+                                "========");
+            }
+        }
+
     }
 }

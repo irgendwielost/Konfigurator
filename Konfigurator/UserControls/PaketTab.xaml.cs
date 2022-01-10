@@ -108,7 +108,7 @@ namespace Konfigurator.UserControls
             bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
             
             PackageDB.UpdatePackage(new Logic.Models.Package.Package(Int32.Parse(id), name, available));
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
         
@@ -119,7 +119,7 @@ namespace Konfigurator.UserControls
             bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
             
             PackageDB.CreatePackage(new Logic.Models.Package.Package(Int32.Parse(id), name, available));
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
 
@@ -135,10 +135,14 @@ namespace Konfigurator.UserControls
             var id = IdText.Text;
             PackageDB.KillPackage(Int32.Parse(id));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateDataGrid();
         }
-  
+
+        private void Refresh(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGrid();
+        }
     }
 
     

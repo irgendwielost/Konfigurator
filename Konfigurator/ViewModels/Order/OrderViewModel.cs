@@ -13,7 +13,6 @@ namespace Konfigurator.ViewModels.Order
         public int CustomerId => _order.CustomerId;
         public int HousingId => _order.HousingId;
         public int PhaseId => _order.PhaseId;
-        public double FactorMult => _order.FactorMult;
         public double OverallPrice => _order.OverallPrice;
 
 

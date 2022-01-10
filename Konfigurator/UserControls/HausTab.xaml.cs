@@ -134,7 +134,7 @@ namespace Konfigurator.UserControls
             
             HousingDB.UpdateHousing(new Housing(Int32.Parse(id), name));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateHousingDataGrid();
         }
         
@@ -147,7 +147,7 @@ namespace Konfigurator.UserControls
             
             FloorDB.UpdateFloor(new Floor(Int32.Parse(id), name));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateFloorDataGrid();
         }
         
@@ -160,7 +160,7 @@ namespace Konfigurator.UserControls
 
             RoomDB.UpdateRoom(new Room(Int32.Parse(id), name));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
             UpdateRoomDataGrid();
         }
 

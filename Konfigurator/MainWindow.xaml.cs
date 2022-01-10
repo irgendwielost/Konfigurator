@@ -24,11 +24,9 @@ namespace Konfigurator
     {
         //Current Time and Date variables
         DateTime localDate = DateTime.Now;
-        DateTime localTime = DateTime.Now;
         public MainWindow()
         {
             InitializeComponent();
-            CurrentTime.Text = localTime.ToString("t")+ " Uhr";
             CurrentDate.Text = localDate.ToString("d") ;
             GetNameByID();
         }
@@ -79,7 +77,7 @@ namespace Konfigurator
 
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
         {
-            PackageDetailsWindow changePassword = new PackageDetailsWindow();
+            ChangePassword changePassword = new ChangePassword();
             changePassword.Show();
         }
         

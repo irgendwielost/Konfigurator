@@ -20,10 +20,7 @@
 
         <!-- **DataGridView** -->
 
-        <!-- TextBox to define what you look for -->
-        <TextBox Grid.Row="0" Grid.Column="0" Margin="10, 10, 99, 257" />
-        <!-- Button to start search -->
-        <Button Grid.Row="0" Grid.Column="0" Margin="290, 10, 15, 257" Content="Go" FontSize="15" Background="DarkGray" />
+        
 
         <!-- DataGridView which shows the 10 latest changed entries -->
         <DataGrid x:Name="DataGrid" DataContext="dataview" SelectionChanged="DataGrid_OnSelectionChanged" AutoGenerateColumns="True" Grid.Row="0" Grid.Column="0" Margin="10, 50, 15, -10" />
@@ -85,6 +82,7 @@
                 <CheckBox x:Name="AvailableCheck" Grid.Row="3" Grid.Column="1" Margin="23.5,10.6,134,6.4" FontSize="15" />
                 <TextBox x:Name="AvailableText"  Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="43.5,3.2,-32.5,0" Grid.Row="3" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="185"/>
 
+                <Button Click="Refresh"></Button>
             </Grid>
         </Border>
 

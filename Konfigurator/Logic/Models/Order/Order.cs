@@ -4,7 +4,7 @@ namespace Konfigurator.Logic.Models.Order
 {
     public class Order
     {
-        public Order(int id, DateTime datum, bool neuOrBestand, int customerId, int housingId, int phaseId, double factorMult, double overallPrice)
+        public Order(int id, DateTime datum, bool neuOrBestand, int customerId, int housingId, int phaseId, double overallPrice, double price)
         {
             Id = id;
             Datum = datum;
@@ -12,8 +12,8 @@ namespace Konfigurator.Logic.Models.Order
             CustomerId = customerId;
             HousingId = housingId;
             PhaseId = phaseId;
-            FactorMult = factorMult;
             OverallPrice = overallPrice;
+            Price = price;
         }
 
         public int Id { get; set; }
@@ -22,7 +22,8 @@ namespace Konfigurator.Logic.Models.Order
         public int CustomerId { get; set; }
         public int HousingId { get; set; }
         public int PhaseId { get; set; }
-        public double FactorMult { get; set; }
         public double OverallPrice { get; set; }
+        
+        public double Price { get; set; }
     }
 }

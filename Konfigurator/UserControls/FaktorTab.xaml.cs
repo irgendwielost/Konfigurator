@@ -68,9 +68,9 @@ namespace Konfigurator.UserControls
             var size = SizeText.Text;
             bool inUse = InUseCheck.IsChecked != null && (bool)InUseCheck.IsChecked;
             
-            FactorDB.UpdateFaktor(new Factor(Int32.Parse(id), name, Double.Parse(mult), Double.Parse(size), inUse ));
+            FactorDB.UpdateFaktor(new Factor(Int32.Parse(id), name, double.Parse(mult), double.Parse(size), inUse ));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(1000);
             UpdateDataGrid();
         }
 
@@ -81,7 +81,7 @@ namespace Konfigurator.UserControls
             
             FactorDB.KillFactor(Int32.Parse(id));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(1000);
             UpdateDataGrid();
         }
         private void AddFactor(object sender, RoutedEventArgs e)
@@ -92,9 +92,9 @@ namespace Konfigurator.UserControls
             var size = SizeText.Text;
             bool inUse = InUseCheck.IsChecked != null && (bool)InUseCheck.IsChecked;
             
-            FactorDB.CreateFactor(new Factor(Int32.Parse(id), name, Double.Parse(mult), Double.Parse(size), inUse));
+            FactorDB.CreateFactor(new Factor(Int32.Parse(id), name, double.Parse(mult), double.Parse(size), inUse));
             
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(1000);
             UpdateDataGrid();
             
         } 

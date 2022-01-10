@@ -83,7 +83,7 @@ namespace Konfigurator.Logic.Models.Factor
                 var cmd = new OleDbCommand(
                     $"INSERT INTO Faktor (Faktor_ID, Faktor_Name, Faktor_Mult," +
                     $" Faktor_Grosse, Faktor_Benutzung) VALUES ({factor.ID}, \"{factor.Name}\", " +
-                    $"{factor.Mult}, {factor.Grosse}, {factor.Used})"
+                    $"'{factor.Mult}', '{factor.Grosse}', {factor.Used})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -161,7 +161,7 @@ namespace Konfigurator.Logic.Models.Factor
             try
             {
                 var cmd = new OleDbCommand(
-                    $"Update Faktor set Faktor_Name = '{factor.Name}', Faktor_Mult = {factor.Mult}, Faktor_Grosse = {factor.Grosse}, Faktor_Benutzung = {factor.Used} where Faktor_ID = {factor.ID}"
+                    $"Update Faktor set Faktor_Name = '{factor.Name}', Faktor_Mult = {factor.Mult}, Faktor_Grosse = '{factor.Grosse}', Faktor_Benutzung = {factor.Used} where Faktor_ID = {factor.ID}"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
@@ -173,7 +173,7 @@ namespace Konfigurator.Logic.Models.Factor
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
-                throw e;
+                
             }
         }
         
@@ -250,8 +250,9 @@ namespace Konfigurator.Logic.Models.Factor
         */
         
         // gets the Multiplier for the Order
-        public static double GetMultOfFactor(double currentPrice)
+        public static double GetMultOfFactor(double orderSize)
         {
+            
             // Opening a Connection to the Database
             var db = new DataBase.DataBase();
             db.Connection.Open();
@@ -260,31 +261,24 @@ namespace Konfigurator.Logic.Models.Factor
 
             try
             {
-                // get all the Fakto_Grosse which are used 
+                // get all the FaktorGrosse which are used 
                 var cmd = new OleDbCommand($"select Faktor_Grosse from Faktor where Faktor_Grosse={true}"
                     , db.Connection);
                 var reader = cmd.ExecuteReader();
                 // put all the Grosse in a list
-                if (reader.Read() && reader.HasRows)
+               
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
                         allGrosse.Add(reader.GetDouble(0));
-                    }
                 }
-                else
-                {
-                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
-                                    "Kein Faktor konnte gefunden werden\n" +
-                                    "========");
-                }
+                
                 // sort the list small to big
                 allGrosse.OrderBy(d => d);
                 double currentGrosse = 0;
                 // get the smallest number closest to the actual price
                 foreach (var grosse in allGrosse)
                 {
-                    if (grosse <= currentPrice)
+                    if (grosse <= orderSize)
                     {
                         currentGrosse = grosse;
                     }
@@ -297,13 +291,22 @@ namespace Konfigurator.Logic.Models.Factor
                         $"select Faktor_Mult from Faktor where Faktor_Grosse={currentGrosse} and Faktor_Benutzung={true}"
                         , db.Connection);
                     var readerMult = cmd2.ExecuteReader();
-                    return readerMult.GetDouble(0);
+                    Console.WriteLine(currentGrosse);
+                    if (readerMult.Read())
+                    {
+                        Console.WriteLine($"gefundender faktor: {readerMult.GetDouble(0)}");
+                        return readerMult.GetDouble(0);
+                        
+                    }
+
+                    return 1;
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                     "Ein unbekannter Fehler ist aufgetreten\n" +
                                     "========");
+                    Console.WriteLine(e);
                 }
             }
             catch (Exception e)
@@ -313,6 +316,7 @@ namespace Konfigurator.Logic.Models.Factor
                                 "2: Die Tabelle konnte nicht gefunden werden\n" +
                                 "3: Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
+                
             }
 
             return 0;

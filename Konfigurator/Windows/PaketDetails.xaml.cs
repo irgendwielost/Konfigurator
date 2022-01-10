@@ -31,7 +31,7 @@ namespace Konfigurator.Windows
                 Console.WriteLine(e);
             }
         }
-
+        
         //On Selected Datagrid Row
         private void DataGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -67,15 +67,15 @@ namespace Konfigurator.Windows
             bool available = AvailableCheck.IsChecked != null && (bool)AvailableCheck.IsChecked;
             
             PackageDetailsDB.CreatePackageDetails(new PackageDetails(PackageId, Int32.Parse(ArticleId), 
-                Int32.Parse(ArticleAmount), Double.Parse(ArticlePrice), ArticleName, available));
-            MessageBox.Show("Der Artikel " + ArticleName + " wurde in das Paket hinzugefügt");
-            
+                Int32.Parse(ArticleAmount), double.Parse(ArticlePrice), ArticleName, available));
+
         }
 
         //Do we need this? 
         private void RemoveArticleFromPackage(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Artikel konnte nicht gefunden werden");
+            PackageDetailsDB.DeleteArticleFromPackage(PackageId, Int32.Parse(IdText.Text));
+            UpdateDataGrid();
         }
         public void isItAvailable()
         {
@@ -92,7 +92,7 @@ namespace Konfigurator.Windows
                 AvailableText.Foreground = Brushes.Red;
             }
         }
-
+        
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             Close();

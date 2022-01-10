@@ -2,10 +2,11 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Konfigurator.Logic.Models.Employee
 {
-     public class EmployeeDB
+    public class EmployeeDB
     {
         // Return the Dataset with "Mitarbeiter" inside
         public static DataSet GetDataSetEmployee()
@@ -31,9 +32,10 @@ namespace Konfigurator.Logic.Models.Employee
                                     "========");
                 }
             }
+
             return null;
         }
-        
+
         /* ======================================================================================================================================================= */
 
         // Returns a "Mitarbeiter" by ID
@@ -51,7 +53,7 @@ namespace Konfigurator.Logic.Models.Employee
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    
+
                     return new Employee(id, reader.GetString(1), reader.GetString(2), reader.GetBoolean(3),
                         reader.GetDateTime(4),
                         reader.GetDateTime(5));
@@ -66,18 +68,19 @@ namespace Konfigurator.Logic.Models.Employee
                                 "========");
                 return null;
             }
+
             return null;
         }
-        
+
         /* ======================================================================================================================================================= */
-        
+
         // Create a new "Mitarbeiter" (all data required) 
         public static void CreateEmployee(Employee employee)
         {
             // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(
@@ -93,12 +96,12 @@ namespace Konfigurator.Logic.Models.Employee
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
-                
+
             }
         }
-        
+
         /* ======================================================================================================================================================= */
-        
+
         public static void KillEmployee(int ID, DateTime Date)
         {
             // Open the connection to the database
@@ -123,14 +126,14 @@ namespace Konfigurator.Logic.Models.Employee
         }
 
         /* ======================================================================================================================================================= */
-        
+
         // Update the data on "Mitarbeiter" except ID
         public static void UpdateEmployee(Employee employee)
         {
             // Open the connection to the database
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+
             try
             {
                 var cmd = new OleDbCommand(
@@ -146,8 +149,50 @@ namespace Konfigurator.Logic.Models.Employee
                                 "2: Der Mitarbeiter konnte nicht gefunden werden\n" +
                                 "3: Die Tabelle konnte nicht gefunden werden\n" +
                                 "========");
-                throw e;
+                
             }
+        }
+
+        // Change the Password of the Employee
+        public static bool ChangeEmployeePassword(int ID, string CurrentEmployeePassword, string NewEmployeePassword)
+        {
+            // Open the connection to the database
+            var db = new DataBase.DataBase();
+            db.Connection.Open();
+
+            try
+            {
+                var cmdGetPassword = new OleDbCommand(
+                    $"Select Mitarbeiter_Passwort From Mitarbeiter where Mitarbeiter_ID = {ID}"
+                    , db.Connection);
+                var reader = cmdGetPassword.ExecuteReader();
+                if (reader.Read())
+                {
+                    if (CurrentEmployeePassword == reader.GetString(0))
+                    {
+                        var cmdSetNewPassword = new OleDbCommand(
+                            $"Update Mitarbeiter set Mitarbeiter_Passwort='{NewEmployeePassword}' where Mitarbeiter_ID={ID}"
+                            , db.Connection);
+                        cmdSetNewPassword.ExecuteNonQuery();
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                        "Die ID oder das Passwort ist Falsch\n" +
+                                        "========");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // If the above failed show following Error Message: 
+                MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                "Der Mitarbeiter wurde nicht gefunden\n" +
+                                "========");
+            }
+
+            return false;
         }
     }
 }

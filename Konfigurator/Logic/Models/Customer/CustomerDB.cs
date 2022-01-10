@@ -81,10 +81,7 @@ namespace Konfigurator.Logic.Models.Customer
             {
                 var cmd = new OleDbCommand(
                     $"INSERT INTO Kunde (Kunde_ID, Kunde_Name, Kunde_Plz, Kunde_Ort, Kunde_Strasse," +
-                    $" Kunde_Tel, Kunde_Email, Kunde_Aktuell) VALUES ({customer.ID}, \"{customer.Name}\",{customer.Plz}," +
-                    $" \"{customer.Region}\" , \"{customer.Street}\", \"{customer.Tel}\"," +
-                    $" " +
-                    $"\"{customer.Email}\", {customer.Recent} )"
+                    $" Kunde_Tel, Kunde_Email, Kunde_Aktuell) VALUES ({customer.ID}, \"{customer.Name}\",{customer.Plz}, \"{customer.Region}\" , \"{customer.Street}\", \"{customer.Tel}\", \"{customer.Email}\", {customer.Recent} )"
                     , db.Connection);
                 
                 //! What is this? !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -107,7 +104,6 @@ namespace Konfigurator.Logic.Models.Customer
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Nicht alle Daten wurden richtig eingegeben\n" +
                                 "========");
-                throw e;
             }
         }
         
@@ -138,7 +134,6 @@ namespace Konfigurator.Logic.Models.Customer
                 MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
                                 "Der Kunde wurde nicht gefunden\n" +
                                 "========");
-                throw e;
             }
         }
         

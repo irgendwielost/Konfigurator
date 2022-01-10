@@ -136,5 +136,40 @@ namespace Konfigurator.Logic.Models.Room
                                     "========");
                 }
             }
+            
+            // gets the Price of the order Without the Factor
+            public static double GetRoomGrosseForOrder(int OrderID)
+            {
+                var db = new DataBase.DataBase();
+                db.Connection.Open();
+                double totalPrice = 0;
+                try
+                {
+                    var cmd = new OleDbCommand(
+                        $"Select Raum_Grosse from EtageUndRaum where Auftrag_ID = {OrderID}"
+                        , db.Connection);
+                    var reader = cmd.ExecuteReader();
+                
+                    while (reader.Read())
+                    {
+                        totalPrice += reader.GetDouble(0);
+                    }
+
+               
+                    return totalPrice;
+                
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("======== Ein Fehler ist Aufgetreten: ========\n" +
+                                    "1: Der Auftrag konnte nicht gefunden werden\n" +
+                                    "2: Die Tabelle konnte nicht gefunden werden\n" +
+                                    "3: Nicht alle Daten wurden richtig eingegeben\n" +
+                                    "========");
+
+                }
+
+                return 0;
+            }
         }
 }

@@ -53,14 +53,8 @@
 
                 <!-- **DataGridView** -->
 
-                <!-- Search Bar -->
-                <TextBox Grid.Column="0" Grid.Row="1" Margin="10,22.583,95.5,217.917"></TextBox>
-                <!-- Search Button -->
-                <Button Grid.Column="0" Grid.Row="1" Margin="296.792,22.583,55.375,217.917" >
-                    <StackPanel>
-                        <Image Source="../img/loupe.png" Height="10" Width="16.167"/>
-                    </StackPanel>
-                </Button>
+                
+               
                 <!-- DataGrid -->
                 <DataGrid x:Name="DataGridHousing" SelectionChanged="DataGridHousing_OnSelectionChanged" Grid.Column="0" Grid.Row="1" Margin="10,46.083,55.375,36.5" ></DataGrid>
             </Grid>
@@ -110,14 +104,7 @@
 
                     <!-- **DataGridView** -->
 
-                    <!-- Search Bar -->
-                    <TextBox Grid.Column="0" Grid.Row="0" Margin="9,64.833,69.5,66.667" Height="14.75"></TextBox>
-                    <!-- Search Button -->
-                    <Button Grid.Column="0" Grid.Row="0" Margin="123.25,64.833,46.5,66.667" Height="14.75" >
-                        <StackPanel>
-                            <Image Source="../img/loupe.png" Height="10" Width="16.167"/>
-                        </StackPanel>
-                    </Button>
+                 
                     <!-- DataGrid -->
                     <DataGrid x:Name="DataGridFloor" SelectionChanged="DataGridFloor_OnSelectionChanged" Grid.Column="0" Grid.Row="0" Margin="10,84.583,46.5,0" Grid.RowSpan="2" Height="207.917"></DataGrid>
                 </Grid>
@@ -155,14 +142,7 @@
 
                 <!-- **DataGridView** -->
 
-                <!-- Search Bar -->
-                <TextBox Grid.Column="0" Grid.Row="0" Margin="10,64.417,68.5,67.333"></TextBox>
-                <!-- Search Button -->
-                <Button Grid.Column="0" Grid.Row="0" Margin="125.25,64.417,46.5,67.333" >
-                    <StackPanel>
-                        <Image Source="../img/loupe.png" Height="10" Width="18.625"/>
-                    </StackPanel>
-                </Button>
+               
                 <!-- DataGrid -->
                 <DataGrid x:Name="DataGridRoom" SelectionChanged="DataGridRoom_OnSelectionChanged" Grid.Column="0" Grid.Row="0" Margin="10,80.583,46.5,2" Grid.RowSpan="2" Height="207.917"></DataGrid>
             </Grid>

@@ -101,11 +101,11 @@ namespace Konfigurator.Logic.Models.Article
             // Opening a Connection to the Database
             var db = new DataBase.DataBase();
             db.Connection.Open();
-            
+           
             try
             {
                 var cmd = new OleDbCommand(
-                    $"INSERT INTO Artikel (Artikel_ID, Artikel_Name,Artikel_Preis, Artikel_Verfugbar) VALUES ({article.ID}, \"{article.Name} \" , {article.Price},{article.Available})"
+                    $"INSERT INTO Artikel (Artikel_ID, Artikel_Name,Artikel_Preis, Artikel_Verfugbar) VALUES ({article.ID}, \"{article.Name} \" , '{article.Price}',{article.Available})"
                     , db.Connection);
                 cmd.ExecuteNonQuery();
             }
